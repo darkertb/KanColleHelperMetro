@@ -834,19 +834,19 @@
 			switch(channel){
 				case 'HIT' :
 					//url = '//www.hitbox.tv/embedchat/' + ID;
-					url = '//www.hitbox.tv/embedchat/{ID}?autoconnect=true';
+					url = '//www.hitbox.tv/embedchat/' + ID + '?autoconnect=true';
 					break;
 				case 'JTV' :
-					url = '//zh-tw.justin.tv/chat/embed?channel={ID}&popout_chat=true';
+					url = '//zh-tw.justin.tv/chat/embed?channel=' + ID + '&popout_chat=true';
 					break;
 				case 'TTV' :
-					url = '//www.twitch.tv/{ID}/chat';
+					url = '//www.twitch.tv/' + ID + '/chat';
 					break;
 				case 'UST' :
-					url = '//www.ustream.tv/socialstream/{ID}?siteMode=1';
+					url = '//www.ustream.tv/socialstream/' + ID + '?siteMode=1';
 					break;
 				case 'CC' :
-					url = '//www.connectcast.tv/{ID}/chat';
+					url = '//www.connectcast.tv/' + ID + '/chat';
 					break;
 				case 'VL' :
 					url = '//vaughnlive.tv/popout/chat/' + ID;
@@ -855,18 +855,18 @@
 					url = '//breakers.tv/popout/chat/' + ID;
 					break;
 				case 'STUP' :
-					url = '//streamup.com/{ID}/embeds/chatonly';
+					url = '//streamup.com/' + ID + '/embeds/chatonly';
 					//alert('Streamup無法使用此功能');
 					break;
 				case 'YT' :
 					//url = '//www.youtube.com/live_chat?v=' + ID;
-				    url = '//www.youtube.com/live_chat?is_popout=1&v={ID}&embed_domain=darkertb.github.io';
+				    url = '//www.youtube.com/live_chat?is_popout=1&v=' + ID + '&embed_domain=darkertb.github.io';
 					break;
 				case 'AFTV' :
 					alert('AfreeTV無法使用此功能');
 					break;
 				case 'LH' :
-					url = '//livehouse.in/embed/channel/{ID}/chatroom';
+					url = '//livehouse.in/embed/channel/' + ID + '/chatroom';
 					break;
 			    case 'BEAM':
 			        url = '//beam.pro/embed/chat/' + ID;
@@ -876,7 +876,7 @@
 		else if(wType == 'video'){
 			switch(channel){
 				case 'HIT' :
-					url = '//www.hitbox.tv/embed/{ID}?popout=true&autoplay=true';
+					url = '//www.hitbox.tv/embed/' + ID + '?popout=true&autoplay=true';
 					break;
 				case 'JTV' :
 					url = '//www.justin.tv/widgets/live_embed_player.swf?channel=' + ID;
@@ -891,24 +891,24 @@
 					url = '//www.connectcast.tv/embed/' + ID;
 					break;
 				case 'VL' :
-					//url = '//vaughnlive.tv/embed/video/{ID}?viewers=true';
+					//url = '//vaughnlive.tv/embed/video/' + ID + '?viewers=true';
 					url = '//vaughnlive.tv/embed/video/' + ID;
 					break;
 				case 'BRK' :
 					url = '//breakers.tv/embed/video/' + ID;
 					break;
 				case 'STUP' :
-					url = '//streamup.com/{ID}/embeds/video';
-					//url = '//streamup.com/rooms/{ID}s-Channel/plugins/video/show?startMuted=false&autoplayAudio=true';;
+					url = '//streamup.com/' + ID + '/embeds/video';
+					//url = '//streamup.com/rooms/' + ID + 's-Channel/plugins/video/show?startMuted=false&autoplayAudio=true';;
 					break;
 				case 'YT' :
-					url = '//www.youtube.com/embed/{ID}?autoplay=true';
+					url = '//www.youtube.com/embed/' + ID + '?autoplay=true';
 					break;
 				case 'AFTV' :
-					url = '//www.afreecatv.com.tw/{ID}/popout';
+					url = '//www.afreecatv.com.tw/' + ID + '/popout';
 					break;
 				case 'LH' :
-					url = '//livehouse.in/embed/channel/{ID}/video';
+					url = '//livehouse.in/embed/channel/' + ID + '/video';
 					break;
                 case 'BEAM':
                     url = '//beam.pro/embed/player/' + ID;
