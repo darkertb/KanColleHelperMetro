@@ -42,7 +42,8 @@
 																			    cookies['dtvType'] = document.getElementById('cts').value;
 																			    cookies['selectedCh'] = document.getElementById('chs').value;
 																			    ">
-						    <option value=''>無(使用右側列表)</option>
+						    <option value=''>無(使用右側列表)</option>							
+						    <!-- 
 						    <option value='VL'>VaughnLive</option>
 						    <option value='BRK'>Breakers</option>
 						    <option value='HIT'>Hitbox</option>
@@ -54,7 +55,8 @@
 						    <option value='CC'>ConnectCast</option>
                             <option value='BEAM'>Beam</option>
                             <option value='YT'>Youtube</option>
-						    <!-- <option value='AFTV'>AfreecaTV</option> -->
+							<option value='AFTV'>AfreecaTV</option> 
+							-->
 						    </select>
 					    </td>
 					    <td>
@@ -181,21 +183,34 @@
 	var topOffset = 0;
 	var chatHeightOffset = 30;
 	
-	//平台列表
+	// ===平台列表===
 	var platformList = [
-			{'key': 'TTV', 'name': 'TwitchTV', 'sourceUrl': 'http://www.hitbox.tv/{ID}'},
-			{'key': 'STUP', 'name': 'Streamup', 'sourceUrl': 'https://streamup.com/{ID}'}, 
-			{'key': 'LH', 'name': 'LiveHouse', 'sourceUrl': 'https://livehouse.in/channel/{ID}'},
-			{'key': 'YT', 'name': 'Youtube'},
-			{'key': 'HIT', 'name': 'Hitbox'},
-			{'key': 'VL', 'name': 'VaughnLive'},
-			{'key': 'BRK', 'name': 'Breakers'},
-			{'key': 'UST', 'name': 'Ustream'},
-			{'key': 'CC', 'name': 'ConnectCast'},
-			{'key': 'AFTV', 'name': 'AfreecaTV'},
-			{'key': 'BEAM', 'name': 'Beam'},
-		];
+			{'key': 'AFTV', 'name': 'AfreecaTV', 'sUrl': 'http://afreecatv.com.tw/{ID}', 'vUrl': 'http://www.afreecatv.com.tw/{ID}/popout', 'cUrl': 'http://www.afreecatv.com.tw/live_chat.php?id={ID}'},
+			{'key': 'BEAM', 'name': 'Beam', 'sUrl': 'https://beam.pro/{ID}', 'vUrl': 'https://beam.pro/embed/player/{ID}', 'cUrl': 'https://beam.pro/embed/chat/{ID}'},
+			{'key': 'BRK', 'name': 'Breakers', 'sUrl': 'https://breakers.tv/{ID}', 'vUrl': 'https://breakers.tv/embed/video/{ID}', 'cUrl': 'https://breakers.tv/popout/chat/{ID}'},
+			{'key': 'CC', 'name': 'ConnectCast', 'sUrl': 'http://www.connectcast.tv/{ID}', 'vUrl': 'http://www.connectcast.tv/embed/{ID}', 'cUrl': 'http://www.connectcast.tv/{ID}/chat'},
+			{'key': 'HIT', 'name': 'Hitbox', 'sUrl': 'http://www.hitbox.tv/{ID}', 'vUrl': 'http://www.hitbox.tv/embed/{ID}?popout=true&autoplay=true', 'cUrl': 'http://www.hitbox.tv/embedchat/{ID}?autoconnect=true'},
+			{'key': 'LH', 'name': 'LiveHouse', 'sUrl': 'https://livehouse.in/channel/{ID}', 'vUrl': 'https://livehouse.in/embed/channel/{ID}/video', 'cUrl': 'https://livehouse.in/embed/channel/{ID}/chatroom'},
+			{'key': 'STUP', 'name': 'Streamup', 'sUrl': 'https://streamup.com/{ID}', 'vUrl': 'https://streamup.com/{ID}/embeds/video', 'cUrl': 'https://streamup.com/{ID}/embeds/chatonly'}, 
+			{'key': 'TTV', 'name': 'TwitchTV', 'sUrl': 'https://www.twitch.tv/{Id}', 'vUrl': 'https://player.twitch.tv/?channel={ID}', 'cUrl': 'https://www.twitch.tv/{ID}/chat'},
+			{'key': 'UST', 'name': 'Ustream', 'sUrl': 'http://www.ustream.tv/channel/{ID}', 'vUrl': 'http://www.ustream.tv/embed/{ID}', 'cUrl': 'http://www.ustream.tv/socialstream/{ID}?siteMode=1'},
+			{'key': 'VL', 'name': 'VaughnLive', 'sUrl': 'https://vaughnlive.tv/{ID}', 'vUrl': 'https://vaughnlive.tv/embed/video/{ID}', 'cUrl': 'https://vaughnlive.tv/popout/chat/{ID}'},
+			{'key': 'YT', 'name': 'Youtube', 'sUrl': 'https:////www.youtube.com/watch?v={ID}', 'vUrl': 'https://www.youtube.com/embed/{ID}?autoplay=true', 'cUrl': 'https://www.youtube.com/live_chat?is_popout=1&v={ID}&embed_domain=darkertb.github.io'},
+		];	
+		
+	for (var idx in platformList) {
+        $("#cts").append($("<option></option>").attr("value", platformList[idx].key).text(platformList[idx].name));
+    }
 	
+	function GetPlatformInfo (key) {
+		for (var i = 0; i < platformList.length; i++) {			
+			if (platformList[i]['key'] == key.toUpperCase()) {
+				return platformList[i];
+			}
+		}			
+		return null;
+	}
+	// ==============
 
 	/*
 	releaseNotes = '新增:|\t-現在視窗存檔可以存五個了。||修改:|\t-壓縮cookie字串長度，以便儲存更多資料。';
@@ -743,6 +758,17 @@
 		
 		var url = '';
 		
+		// testing
+		
+		var platformInfo = GetPlatformInfo(channel);
+		
+		if (platformInfo != null) {
+			url = platformInfo.sUrl;
+			url = url.replace('{ID}', ID);
+		}
+		
+		// =======
+		/*
 		switch(channel){
 			case 'HIT' :
 				url = '//www.hitbox.tv/' + ID;
@@ -779,6 +805,7 @@
 				url = '//beam.pro/' + ID;
 				break;
 		}
+		*/
 			
 		if(url != ''){
 			var newwin = window.open();   //此行一定要如此書寫,否則失效
@@ -791,23 +818,35 @@
 		var url = '';
 		SetChannelData(cName, forceUseCName);
 		
+		var platformInfo = GetPlatformInfo(channel);
+		
+		if (platformInfo != null) {
+			url = (wType == 'chat') ? platformInfo.cUrl : platformInfo.vUrl;
+			if (url == undefined || url == '') {
+				alert(platformInfo.name + '無法使用此功能');
+				return '';
+			}
+			url = url.replace('{ID}', ID);
+		}
+		
+		/*
 		if(wType == 'chat'){
 			switch(channel){
 				case 'HIT' :
 					//url = '//www.hitbox.tv/embedchat/' + ID;
-					url = '//www.hitbox.tv/embedchat/' + ID + '?autoconnect=true';
+					url = '//www.hitbox.tv/embedchat/{ID}?autoconnect=true';
 					break;
 				case 'JTV' :
-					url = '//zh-tw.justin.tv/chat/embed?channel=' + ID + '&popout_chat=true';
+					url = '//zh-tw.justin.tv/chat/embed?channel={ID}&popout_chat=true';
 					break;
 				case 'TTV' :
-					url = '//www.twitch.tv/' + ID + '/chat';
+					url = '//www.twitch.tv/{ID}/chat';
 					break;
 				case 'UST' :
-					url = '//www.ustream.tv/socialstream/' + ID + '?siteMode=1';
+					url = '//www.ustream.tv/socialstream/{ID}?siteMode=1';
 					break;
 				case 'CC' :
-					url = '//www.connectcast.tv/' + ID + '/chat';
+					url = '//www.connectcast.tv/{ID}/chat';
 					break;
 				case 'VL' :
 					url = '//vaughnlive.tv/popout/chat/' + ID;
@@ -816,18 +855,18 @@
 					url = '//breakers.tv/popout/chat/' + ID;
 					break;
 				case 'STUP' :
-					url = '//streamup.com/' + ID + '/embeds/chatonly';
+					url = '//streamup.com/{ID}/embeds/chatonly';
 					//alert('Streamup無法使用此功能');
 					break;
 				case 'YT' :
 					//url = '//www.youtube.com/live_chat?v=' + ID;
-				    url = '//www.youtube.com/live_chat?is_popout=1&v=' + ID + '&embed_domain=darkertb.github.io';
+				    url = '//www.youtube.com/live_chat?is_popout=1&v={ID}&embed_domain=darkertb.github.io';
 					break;
 				case 'AFTV' :
 					alert('AfreeTV無法使用此功能');
 					break;
 				case 'LH' :
-					url = '//livehouse.in/embed/channel/' + ID + '/chatroom';
+					url = '//livehouse.in/embed/channel/{ID}/chatroom';
 					break;
 			    case 'BEAM':
 			        url = '//beam.pro/embed/chat/' + ID;
@@ -837,7 +876,7 @@
 		else if(wType == 'video'){
 			switch(channel){
 				case 'HIT' :
-					url = '//www.hitbox.tv/embed/' + ID + '?popout=true&autoplay=true';
+					url = '//www.hitbox.tv/embed/{ID}?popout=true&autoplay=true';
 					break;
 				case 'JTV' :
 					url = '//www.justin.tv/widgets/live_embed_player.swf?channel=' + ID;
@@ -852,30 +891,31 @@
 					url = '//www.connectcast.tv/embed/' + ID;
 					break;
 				case 'VL' :
-					//url = '//vaughnlive.tv/embed/video/' + ID + '?viewers=true';
+					//url = '//vaughnlive.tv/embed/video/{ID}?viewers=true';
 					url = '//vaughnlive.tv/embed/video/' + ID;
 					break;
 				case 'BRK' :
 					url = '//breakers.tv/embed/video/' + ID;
 					break;
 				case 'STUP' :
-					url = '//streamup.com/' + ID + '/embeds/video';
-					//url = '//streamup.com/rooms/' + ID + 's-Channel/plugins/video/show?startMuted=false&autoplayAudio=true';;
+					url = '//streamup.com/{ID}/embeds/video';
+					//url = '//streamup.com/rooms/{ID}s-Channel/plugins/video/show?startMuted=false&autoplayAudio=true';;
 					break;
 				case 'YT' :
-					url = '//www.youtube.com/embed/' + ID + '?autoplay=true';
+					url = '//www.youtube.com/embed/{ID}?autoplay=true';
 					break;
 				case 'AFTV' :
-					url = '//www.afreecatv.com.tw/' + ID + '/popout';
+					url = '//www.afreecatv.com.tw/{ID}/popout';
 					break;
 				case 'LH' :
-					url = '//livehouse.in/embed/channel/' + ID + '/video';
+					url = '//livehouse.in/embed/channel/{ID}/video';
 					break;
                 case 'BEAM':
                     url = '//beam.pro/embed/player/' + ID;
                     break;
 			}
 		}
+		*/
 		
 		return url;
 	}
