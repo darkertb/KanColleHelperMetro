@@ -1,0 +1,109 @@
+<HTML>
+    <HEAD>
+        <script language="javascript"src="libs/lz-string/lz-string.js"></script>
+        <script type="text/javascript"src="libs/jquery1.3.2/jquery.min.js"></script>
+        <script type="text/javascript"src="libs/jqueryui1.7.2/jquery-ui.min.js"></script>
+        <link rel="stylesheet"type="text/css"href="libs/jqueryui1.7.2/themes/base/jquery-ui.css"/>
+        <link href="icon.ico"rel="SHORTCUT ICON">
+        <link rel="stylesheet"type="text/css"href="css/dtb-tvtheme.css"/>
+        <title>DarkerTV</title>
+    </HEAD>
+    <BODY>  
+    <span class="menu-enabler btn light small"title="選單開關"onclick="menuOC();"onmouseover='changeCursor(0);'onmouseout='changeCursor(1);'>&nbsp;M</span>
+    <span class="mobile-chat-enabler btn dark"title="開關聊天室"onclick="chatOC();">開關聊天室</span>
+    <div class='menu'id='menu'>
+    <form>
+    <table border="1">
+    <tr>
+    <td>
+    <font>頻道名:</font>
+    <input class="stream-name"type="text"value=""id="cn00">
+    <font>平台:</font>
+     <select class="stream-type"id="cts"onchange="document.getElementById('chs').value = 'null-null';
+    cookies['dtvType'] = document.getElementById('cts').value;
+    cookies['selectedCh'] = document.getElementById('chs').value;
+    ">
+    <option value=''>無(使用右側列表)</option>
+    <option value='VL'>VaughnLive</option>
+    <option value='HIT'>Hitbox</option>
+    <option value='STUP'>Streamup</option>
+    <option value='LH'>LiveHouse</option>
+    <option value='UST'>Ustream</option>
+    <option value='TTV'>TwitchTV</option>
+    <option value='JTV'>JustinTV - 已死亡</option>
+    <option value='CC'>ConnectCast</option>
+    <option value='YT'>Youtube</option>
+    <option value='AFTV'>AfreecaTV</option>
+    </select>
+    </td>
+    <td>
+    <select class="stream"id="chs"onchange="document.getElementById('cts').value = ''; 
+    cookies['dtvType'] = document.getElementById('cts').value;
+    cookies['selectedCh'] = document.getElementById('chs').value;
+    ">
+    <option value='null-null'>無</option>
+    <optgroup label="Today">
+    <option value='today01-VL'>today01(today-VaughnLive)</option>
+    <option value='today_cook-TTV'>today_cook(歐狼廚房-TwitchTV)</option>
+    <option value='161090-LH'>today(today-LiveHouse)</option>
+    </optgroup>
+    <optgroup label="Linzet">
+    <option value='470709-LH'>linzet(LZ-LiveHouse)</option>
+    <option value='anotsukagehisa-TTV'>anotsukagehisa(LZ-TwitchTV)</option>
+    </optgroup>
+    <optgroup label="社長">
+    <option value='solidusserjun-VL'>solidusserjun(社長-VaughnLive)</option>
+    <option value='serjunplaygame-TTV'>serjunplaygame(社長-TwitchTV)</option>
+    </optgroup>
+    <optgroup label="其他">
+    <option value='asianpoet-TTV'>ㄎㄈㄑ(ㄎㄈㄑ-TTV)</option>
+    <option value='maiwaifuazusaazuki-HIT'>maiwaifuazusaazuki(小豆-Hitbox)</option>
+    <option value='region_rain-VL'>region_rain(女粉-VaughnLive)</option>
+    <option value='qttsix-TTV'>qttsix(小六-TwitchTV)</option>
+    <option value='blusewilly_retry-TTV'>blusewilly_retry(ㄌㄉ-TwitchTV)</option>
+    <option value='mengmengder-VL'>mengmengder(金箔-VaughnLive)</option>
+    <option value='198422-LH'>198422(小豆-LiveHouse)</option>
+    <option value='201502-LH'>201502(摳ㄆ-LiveHouse)</option>
+    <option value='shagojoy-TTV'>shagojoy(shagojoy-TwitchTV)</option>
+    <option value='assassinsheep-TTV'>assassinsheep(懶羊腦濕-TwitchTV)</option>
+    <option value='celeshuang-TTV'>celeshuang</option>
+    <option value='Luoduanyu-TTV'>Luoduanyu(笑笑-TwitchTV)</option>
+    <option value='13690851-UST'>芭樂丁外國台(Ustream)</option>
+    <option value='13744639-UST'>kingotcentaur(Ustream)</option>
+    </optgroup>
+    <optgroup label="永遠的大哥">
+    <option value='su3cj3x04-JTV'>su3cj3x04(大哥-JustinTV)</option> 
+    </optgroup>
+    </select>
+    </td>
+    <td>
+    <select class="sl"id="slslot"onchange="cookies['slslot'] = document.getElementById('slslot').value;">
+    </select>
+    <span class="btn light small"title="儲存視窗狀態"onclick="saveWindowsState();"onmouseover='changeCursor(0);'onmouseout='changeCursor(1);'>&nbsp;S</span>
+    <span class="btn light small"title="讀取視窗狀態"onclick="loadWindowsState();"onmouseover='changeCursor(0);'onmouseout='changeCursor(1);'>&nbsp;L</span>
+    </td>
+    <td>
+    <span class="btn dark large"title="新增實況視窗"onclick="SetStream(false);"onmouseover='changeCursor(0);'onmouseout='changeCursor(1);'>&nbsp;&nbsp;V ❐</span>
+    <span class="btn dark large"title="新增聊天室視窗"onclick="setChat(document.getElementById('chs').value, false, 300, 480);"onmouseover='changeCursor(0);'onmouseout='changeCursor(1);'>&nbsp;&nbsp;C ❐</span>
+    <span class="btn light large"title="跳出實況"onclick="SetStream(true);"onmouseover='changeCursor(0);'onmouseout='changeCursor(1);'>&nbsp;&nbsp;V ↗</span>
+    <span class="btn light large"title="跳出聊天室"onclick="setChat(document.getElementById('chs').value, true, 300, 480);"onmouseover='changeCursor(0);'onmouseout='changeCursor(1);'>&nbsp;&nbsp;C ↗</span>
+    <span class="btn dark medium"title="前往實況頁面"onclick="go2OriginalPage();"onmouseover='changeCursor(0);'onmouseout='changeCursor(1);'>&nbsp;&nbsp;➪</span>
+    <span class="btn light medium"title="設定背景圖片"onclick="setBG(null);"onmouseover='changeCursor(0);'onmouseout='changeCursor(1);'>&nbsp;bg</span>
+    <span class="btn light medium"title="開關燈"onclick="turnOF(false);"onmouseover='changeCursor(0);'onmouseout='changeCursor(1);'>&nbsp;&nbsp;燈</span>
+    </td>
+    <td>
+    <font>拖拉視窗右下角可以縮放</font>
+    </td>
+    </tr>
+    </table>
+    </form>
+    </div>
+    <p>
+    </p>
+    </BODY>
+</HTML>
+<script type="text/javascript"src="js/string_ext.js"></script>
+<script type="text/javascript"src="js/window_template.js"></script>
+<script>
+eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('4r=\'2.1.0\';4d=\'5T/4Y/29\';4Z=\'新版本:\'+4r+\'　　最後更新:\'+4d+\'||\';4 3T=W;4 2W=-5h;4 36=-30;4 3c=0;4 2Y=30;5i=\'新增:|\\t-增加跳出6a平台的聊天室功能。\';4 1j=0;4 Z=0;4 25=W;$(9(){$(\'.2P\').3J()});4 1j=0;4 Z=0;4 1x=W;4 a;4 2f=E;6k{a=1Z.5P(33.5E(1c(\'a\')))}5D(e){}7(a==c){a={};3T=E}7(a[\'1g\']==c)a[\'1g\']=1c(\'1g\');7(a[\'1J\']==c)a[\'1J\']=1c(\'1J\');7(a[\'U\']==c)a[\'U\']=1c(\'U\');7(a[\'1f\']==c)a[\'1f\']=1c(\'1f\');4 2A=j.B(\'1m\');13(i=1;i<6;i++){7(a[\'o\']!=c){7(a[\'o\'][i]!=c){4 2a=1n 3G(i+\'.O-\'+a[\'o\'][i].K,i);2A.3F.3X(2a)}m{4 2a=1n 3G(i+\'.X\',i);2A.3F.3X(2a)}}}7(a[\'2Q\']!=c)1x=a[\'2Q\'];7(a[\'1g\']!=c)j.B(\'3b\').I=a[\'1g\'];7(a[\'1J\']!=c)j.B(\'2C\').I=a[\'1J\'];7(a[\'U\']!=c)3P(a[\'U\']);7(a[\'1f\']!=c)j.B(\'1h\').I=a[\'1f\'];7(a[\'1m\']!=c)j.B(\'1m\').I=a[\'1m\'];m a[\'1m\']=1;7(a[\'o\']==c)a[\'o\']=1n 3t();4 o=1n 3t();2R();9 2R(){7(4c()){3Z();$(\'.2P-3k\').2g();$(\'.3s-N-3k\').2N()}m{$(\'.3s-N-3k\').2g()}4 1e=43();7(1e==c)f;4 1T=1e[\'Y\'];4 1v=1e[\'N\'];4 w=1e[\'w\'];4 h=1e[\'h\'];7(w==c)w=14.3u+2W;7(1v==c)w+=1k;7(h==c)h=14.3A+36;7(1T!=c){4 8=15(1T,\'Y\',E);4 3i=d;1y(8,w,h,b,d,3c,30,\'Y\')}7(1v!=c){8=(1v==\'4X\')?15(1T,\'N\',E):15(1v,\'N\',E);1y(8,1k,R(h)+2Y,b,d,R(w),3c,\'N\')}4 3m=1v!=c?d:c;4 23=1e[\'53\'];7(23!=c&&23!=\'\')2H(23,3i,3m);m 2H(b,3i,3m);25=E}9 3K(q){1E(q,\'2r\');7(q.1t.31(\'z-28\')>=1j)f;1j++;q.1t.31(\'52\',1j)}9 1E(q,39){25=W;4 12=j.B(q.1t.1S("P")+\'3C\');12.J.3D=39;7(39==\'2r\')f;4 s=\'#\'+q.1t.1S("P");w=$(s).G();h=$(s).T();2U=$(s).4V();x=2U.40;y=2U.4Q;28=35(o,q.1t.1S("P"));4 H=o[28];3x.3z(1Z.37(H));H[\'w\']=w;H[\'h\']=h;H[\'x\']=x;H[\'y\']=y;o[28]=H}9 4P(){1A=a[\'1m\'];4 V=a[\'o\'][1A];3v=V.K;13(i=0;i<3v;i++){7(V[i]!=c){b=V[i][\'P\'];d=V[i][\'d\'];1b=V[i][\'1b\'];x=V[i][\'x\'];y=V[i][\'y\'];w=V[i][\'w\'];h=V[i][\'h\'];8=15(b+\'-\'+d,1b,E);1y(8,w,h,b,d,x,y,1b)}}}9 4U(){1A=a[\'1m\'];a[\'o\'][1A]={};a[\'o\'][1A]=o;21=33.3R(1Z.37(a));32(\'a\',21);1l(\'儲存成功[\'+1A+\']:\'+o.K+\'個視窗\')}$(14).3H(9(){3x.3z(\'5e\');7(!25)f;4 2Z=R(14.3u)+2W;4 34=R(14.3A)+36;$(\'#1w\').G(2Z).T(34);1G(\'1w\');4 3S=R(34)+2Y;$(\'#2l\').31(\'40\',2Z).T(3S);1G(\'2l\')});14.58=9(){21=33.3R(1Z.37(a));32(\'a\',21)};9 3P(1D){4 S=\'\';7(1D==c)S=4v(\'圖片連結\\r    如要指定單色，請刪除「22://」，使用「#」開頭。\\r    4w:#4x\',"22://");m S=1D;7(S==c||S==\'22://\')f;7(S.Q(\'22://\')==-1&&S.Q(\'#\')>-1){j.1a.J.2k=c;j.1a.J.3V=S}m{7(S==\'\'){j.1a.J.2k=c;3Q(E)}m j.1a.J.2k="8("+S+")"}a[\'U\']=S}9 3Q(2X){7(2X&&a[\'U\']!=c&&a[\'U\'].Q(\'#\')>-1)f;7(!2X){1x=!1x;7(a[\'U\']!=c&&a[\'U\'].Q(\'#\')>-1)a[\'U\']=\'\'}a[\'2Q\']=1x;j.1a.J.2k=c;j.1a.J.3V=1x?"#4I":"#4K"}9 4L(){7(2f){$(\'#2l\').2g();$(\'#1w\').G(R($(\'#1w\').G())+1k);$(\'#2i\').G(R($(\'#2i\').G())+1k)}m{$(\'#2l\').2N();$(\'#1w\').G(R($(\'#1w\').G())-1k);$(\'#2i\').G(R($(\'#2i\').G())-1k)}2f=!2f}9 3Z(){4 s=\'.2P\';7($(s).3B(":4C")){$(s).2g()}m{$(s).2N()}}9 4E(1K){7(1K==\'1\')j.1a.J.1K=\'57\';7(1K==\'0\')j.1a.J.1K=\'63\'}9 1y(8,w,h,18,1H,1i,2B,1u){7(1H==\'\'||1H==\'c\'||18==\'\'||18==\'c\'){1l(\'請選擇實況台\');f}7(8==\'\'||8==c){f}4 1O=18.4o();7(1u=="Y"&&(1O=="5k"||1O.Q(\'66\')>-1||1O==\'67\')){1l("這裡不歡迎L粉ㄛ 滾!")}1j++;4 3O=18+\' - \'+2e(1H);4 3r=1n 61();3r.2R(Z,1j,w,h,1i,2B,3O,8);$("p").5W(3r.5X);j.B("A"+Z+"3C").J.3D="2J";$("#A"+Z+"3I").3d(9(){4 1q=2h.P.1Q(\'3I\',\'\');2p(1q)});$("#A"+Z+"3M").3d(9(){4 1q=2h.P.1Q(\'3M\',\'\');2y(1q,8)});$("#A"+Z+"3U").3d(9(){4 1q=2h.P.1Q(\'3U\',\'\');3W(1q)});$(9(){$(\'.6j\').3J({3L:9(1F,q){3K(q)},3E:9(1F,q){1E(q,\'2J\')}}).2u({3L:9(1F,q){1E(q,\'2r\')},3H:9(1F,q){1G(q.1t.1S("P"))},3E:9(1F,q){1E(q,\'2J\')}})});1G(\'A\'+Z);3N={P:18,d:1H,1b:1u,x:1i,y:2B,w:w,h:h,5x:\'W\',2c:\'A\'+Z.5y()};o[o.K]=3N;Z++}9 3W(11){4 s=\'#\'+11;4 3Y=11+\'5m\';4 5l=10,5p=27,5r=\'5q\';4 1C=$(s).T();4 12=j.B(3Y);7(1C>50&&1C!=12.2L){12.2L=1C}7($(2h).3B(\':5L\')){f W}m 7(1C!=19){$(s).3w({T:19},27);$(s).2u(\'5O\')}m{$(s).3w({T:12.2L},27);$(s).2u(\'5K\')}}9 2y(11,8){4 12=j.B(11+\'F\');12.5J=8}9 2p(11,2z){4 12=j.B(11);4 s=\'#\'+11;4g(o,35(o,11),E);7(2z==5C||2z)$(s).5F(5G,9(){$(s).3y()});m $(s).3y()}9 5A(){13(4 i=0;i<o.K;i++){2p(o[i][\'2c\'],W)}}9 5v(){13(4 i=0;i<o.K;i++){4 1s=o[i][\'P\']+\'-\'+o[i][\'d\'];4 8=15(1s,o[i][\'1b\'],E);2y(o[i][\'2c\'],8)}}9 1G(P){4 2I=j.B(P);4 2x=j.B(P+\'F\');2x.J.T=R(2I.J.T)-30;2x.J.G=R(2I.J.G)-5}9 65(2b){4 8=15(j.B(\'2C\').I,\'Y\',W);7(8==\'\'||8==c)f;7(2b){7(d==\'\'||d==\'c\'||b==\'\'||b==\'c\'){1l(\'請選擇實況台\');f}14.2m(8,b,4p=\'T=2o,G=4j\')}m 1y(8,4j,5o,b,d,0,30,\'Y\')}9 5H(1s,2b,w,h,1i){7(1i==c)1i=5I;4 1L=15(1s,\'N\',W);7(1L==\'\'||1L==c)f;7(2b){7(d==\'\'||d==\'c\'||b==\'\'||b==\'c\'){1l(\'請選擇實況台\');f}14.2m(1L,b+d,4p=(d!=\'1I\')?\'T=2o,G=27\':\'T=2o,G=1k\')}m 1y(1L,w,h,b,d,(1i+5),30,\'N\')}9 2n(1B,1W){7(48()&&!1W){d=3n(\'d\');b=3n(\'b\')}m{d=2M("1b",1B);b=2M("D",1B)}d=d.5Q()}9 2H(18,42,2K){4 2F=18+\' - \'+2e(42);7(2K!=c)2F+=\' | \'+2e(2K);j.5N=2F}9 48(){4 1h=j.B(\'1h\').I;4 2D=j.B(\'3b\').I;4 2E=1c(\'1g\');4 41=1c(\'1f\');7(2E==\'\'||2E!=2D||41!=1h){a[\'1g\']=2D;a[\'1f\']=1h}7(1h!=""){f E}m f W}9 5M(){4 1B=j.B(\'2C\').I;2n(1B);7(d==\'\'||d==\'c\'||b==\'\'||b==\'c\'){1l(\'請選擇實況台\');f}4 8=\'\';2w(d){k\'1N\':8=\'//C.2v.u/\'+b;l;k\'2q\':8=\'//C.2t.u/\'+b;l;k\'1V\':8=\'//C.2s.u/\'+b;l;k\'20\':8=\'//3o.u/\'+b;l;k\'2j\':8=\'//C.2G.u/d/\'+b;l;k\'1P\':8=\'//C.3e.1p/5B?v=\'+b;l;k\'1X\':8=\'//3g.1p/\'+b;l;k\'1I\':8=\'//C.3h.u/\'+b;l;k\'1M\':8=\'//3p.3l/d/\'+b;l}7(8!=\'\'){4 4a=14.2m();4a.2T=8}}9 15(1s,1u,1W){4 8=\'\';2n(1s,1W);7(1u==\'N\'){2w(d){k\'1N\':8=\'//C.2v.u/5n/\'+b+\'?5s=E\';l;k\'2q\':8=\'//5t-4m.2t.u/N/17?d=\'+b+\'&5z=E\';l;k\'1V\':8=\'//C.2s.u/\'+b+\'/N\';l;k\'2j\':8=\'//C.2G.u/5w/\'+b+\'?5R=1\';l;k\'1I\':8=\'//C.3h.u/\'+b+\'/N\';l;k\'20\':8=\'//3o.u/3q/N/\'+b;l;k\'1X\':8=\'//3g.1p/\'+b+\'/45/5S\';l;k\'1P\':8=\'//C.3e.1p/6f?6g=1&v=\'+b+\'&6e=6d.6b.6c\';l;k\'2O\':1l(\'6h無法使用此功能\');l;k\'1M\':8=\'//3p.3l/17/d/\'+b+\'/6i\';l}}m 7(1u==\'Y\'){2w(d){k\'1N\':8=\'//C.2v.u/17/\'+b+\'?3q=E&4k=E\';l;k\'2q\':8=\'//C.2t.u/6n/6o.6m?d=\'+b;l;k\'1V\':8=\'//6l.2s.u/?d=\'+b;l;k\'2j\':8=\'//C.2G.u/17/\'+b+\'?v=3&69=5Y\';l;k\'1I\':8=\'//C.3h.u/17/\'+b;l;k\'20\':8=\'//3o.u/17/Y/\'+b;l;k\'1X\':8=\'//3g.1p/\'+b+\'/45/Y\';l;k\'1P\':8=\'//C.3e.1p/17/\'+b+\'?4k=E\';l;k\'2O\':8=\'//C.5Z.1p.4m/\'+b+\'/3q\';l;k\'1M\':8=\'//3p.3l/17/d/\'+b+\'/Y\';l}}f 8}9 3n(38){7(38==\'b\')f j.B(\'3b\').I;m 7(38==\'d\')f j.B(\'1h\').I}9 2M(2S,49){1d=49.3f("-");4 1z=\'\';7(2S=="D"){7(1d.K>2){13(4 i=0;i<1d.K-1;i++)1z+=(i!=0?\'-\':\'\')+1d[i]}m{1z=1d[0]}}m 7(2S=="1b"){1z=1d[1d.K-1]}f 1z}9 46(){f 1z=[{\'M\':\'1V\',\'D\':\'5U\'},{\'M\':\'1X\',\'D\':\'5V\'},{\'M\':\'1M\',\'D\':\'62\'},{\'M\':\'1P\',\'D\':\'68\'},{\'M\':\'1N\',\'D\':\'64\'},{\'M\':\'20\',\'D\':\'5u\'},{\'M\':\'2j\',\'D\':\'4F\'},{\'M\':\'1I\',\'D\':\'4D\'},{\'M\':\'2O\',\'D\':\'4A\'},]}9 2e(M){4 1Y=46();13(4 i=0;i<1Y.K;i++){7(1Y[i][\'M\'].Q(M)>-1){f 1Y[i][\'D\']}}f\'4B\'}9 4G(){4 16=\'\';4 1o=44.47;7((1r=1o.Q("4H/"))!=-1){16="2d"}m 7((1r=1o.Q("2d"))!=-1){16="2d"}m 7((1r=1o.Q("4z"))!=-1){16="4J 4N 4s"}m 7((1r=1o.Q("4h"))!=-1){16="4h"}m 7((1r=1o.Q("4l"))!=-1){16="4l"}m 7((1r=1o.Q("4b"))!=-1){16="4b"}f 16}9 35(H,M){13(i=0;i<H.K;i++){7(H[i][\'2c\']==M){f i}}f-1}9 4c(){f(/4t|4y|4u|4M|5j|5a|5b|2d 59/i.56(44.47))}9 32(D,I){4 4q=30;4 26=1n 4O();26.5c(26.5d()+4q*24*60*60*5g);j.1D=D+"="+5f(I)+";55="+26.54()}9 1c(D){4 2V=j.1D.4T(1n 4S("(^| )"+D+"=([^;]*)(;|$)"));7(2V!=c)f 4R(2V[2]);f c}9 43(){4 3j=2T.4e.4W(1,2T.4e.K);7(3j==\'\')f c;4 3a=3j.3f(\'&\'),r={},1U,i;13(i=0;i<3a.K;i+=1){1U=3a[i].3f(\'=\');r[4n(1U[0]).4o()]=4n(1U[1])}f r};9 51(1R){1R=1R.1Q(/\\|/g,"\\n");f 1R}9 4g(H,I,4i){7(4i)H.4f(R(I),1);m{13(i=0;i<H.K;i++){7(H[i]==I)H.4f(i,1)}}}',62,397,'||||var|||if|url|function|cookies|ID|null|channel||return||||document|case|break|else||wList||ui||className||tv|||||||getElementById|www|name|true||width|array|value|style|length||key|chat||id|indexOf|parseInt|inputText|height|bg|tmp|false||video|frameIndex||_iFrameId|elem|for|window|getCHUrl|browserName|embed|_id||body|type|getCookie|strArray|getPara|dtvType|dtvName|cts|leftPos|topZ|350|alert|slslot|new|nAgt|com|iFrameId|verOffset|cName|helper|wType|chatInfo|A0|isLightOn|newWindow|result|loadIndex|sName|curH|cookie|setCDisplay|event|RefreshIframeSize|_channel|CC|selectedCh|cursor|chatUrl|LH|HIT|_idUpper|YT|replace|msg|attr|videoInfo|s2|TTV|forceUseCName|STUP|platformList|JSON|VL|cookieString|http|customID||autoResizeIFrame|exp|300|index||new_option|isPopout|fid|Opera|GetFullName|chatEnable|hide|this|A0F|UST|background|A1|open|SetChannelData|480|WindowClose|JTV|block|twitch|justin|resizable|hitbox|switch|elemF|WindowRefresh|useAnimation|slSelect|topPos|chs|cns|cookieName|titleStr|ustream|SetHTMLTitle|elemW|none|_chatChannel|vlaue|GetChannelInfo|show|AFTV|menu|light|init|keyName|location|pos|arr|widthOffset|isInit|chatHeightOffset|newWidth||css|SetCookie|LZString|newHeight|getWindowArrayIndex|heightOffset|stringify|getType|state|s1|cn00|topOffset|click|youtube|split|streamup|connectcast|vChannel|s1Str|enabler|in|cChannel|GetCustomChannelInfo|vaughnlive|livehouse|popout|template|mobile|Array|innerWidth|length_|animate|console|remove|log|innerHeight|is|container|display|stop|options|Option|resize|BC|draggable|setZIndex|start|BR|window1|fullWindowTitle|setBG|turnOF|compress|newChatHeight|newCookie|BS|backgroundColor|WindowMinimize|add|oldName|menuOC|left|cookieType|_videoChannel|getRequests|navigator|embeds|GetPlatformList|userAgent|UseCustomChannel|channelStr|newwin|Firefox|IsMobile|lastUpdate|search|splice|arrayRemove|Chrome|useIndex|800|autoplay|Safari|tw|decodeURIComponent|toLowerCase|config|Days|version|Explorer|Android|iPhone|prompt|EX|0f0f0f|webOS|MSIE|AfreecaTV|unknown|visible|ConnectCast|changeCursor|Ustream|GetBrowserName|OPR|fff|Microsoft|2a2a2a|chatOC|iPad|Internet|Date|loadWindowsState|top|unescape|RegExp|match|saveWindowsState|offset|substring|same|07|findNewVersion||messageFormat|zIndex|cid|toGMTString|expires|test|default|onbeforeunload|Mini|BlackBerry|IEMobile|setTime|getTime|resized|escape|1000|353|releaseNotes|iPod|anotsukagehisa|toggleMinHeight|OH|embedchat|500|duration|swing|easing|autoconnect|zh|VaughnLive|WindowAllRefresh|socialstream|mini|toString|popout_chat|WindowAllClose|watch|undefined|catch|decompress|slideUp|200|setChat|830|src|enable|animated|go2OriginalPage|title|disable|parse|toUpperCase|siteMode|chatonly|2016|TwitchTV|Streamup|append|html|direct|afreecatv||WTemplate|LiveHouse|pointer|Hitbox|SetStream|linzet|470709|Youtube|wmode|LIVEHouse|github|io|darkertb|embed_domain|live_chat|is_popout|AfreeTV|chatroom|demo|try|player|swf|widgets|live_embed_player'.split('|'),0,{}))
+</script>

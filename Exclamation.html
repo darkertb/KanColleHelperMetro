@@ -1,0 +1,97 @@
+<html>
+<head>
+    <title>驚嘆號文產生器</title>
+    <link href="icon.ico" rel="SHORTCUT ICON">
+
+    <script type="text/javascript" src="libs/jquery1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
+    <script src="libs/bootstrap/js/bootstrap.min.js"></script>
+    <script src="libs/zeroclipboard/ZeroClipboard.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <br />
+
+    <form class="col-sm-10 form-horizontal" role="form">
+        
+        <div class="form-group">
+            <label class="col-sm-2 control-label">原文</label>
+            <div class="col-sm-10">
+                <input id="source-str" type="text" class="form-control" placeholder="請輸入句子" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">間隔字元</label>
+            <div class="col-sm-10">
+                <input id="interval-str" type="text" class="form-control" placeholder="請輸入字元" value="！" />
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">結果</label>
+            <div class="col-sm-10">
+                <input id="result-str" type="text" class="form-control" placeholder="" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label"></label>
+            <div class="col-sm-10">
+                <button id="create-btn" type="button" class="btn btn-default">產生</button>
+                <button id="copy-btn" data-clipboard-target="result-str" type="button" class="btn btn-default">複製</button>
+            </div>
+        </div>
+
+
+    </form>
+</body>
+
+</html>
+
+<script>
+
+    //js-start
+    var client = new ZeroClipboard(document.getElementById("copy-btn"));
+
+	$(document).ready(function(){
+	    $("#create-btn").click(function () {
+	        var resultStr = CreateExclamationString();
+
+	        $('#result-str').val(resultStr);
+	    });
+
+	    $("#interval-str").change(function () {
+	        var resultStr = CreateExclamationString();
+
+	        $('#result-str').val(resultStr);
+	    });
+
+	    $("#source-str").change(function () {
+	        var resultStr = CreateExclamationString();
+
+	        $('#result-str').val(resultStr);
+	    });
+	});
+
+
+	function CreateExclamationString() {
+	    var sourceStr = $('#source-str').val();
+	    var sourceAry = sourceStr.split('');
+	    var intervalWord = $('#interval-str').val();
+	    var resultStr = '';
+
+	    for (var key in sourceAry) {
+	        resultStr += sourceAry[key] + intervalWord;
+	    }
+
+	    return resultStr;
+	}
+
+	//js-end
+</script>

@@ -1,2 +1,0 @@
-# KanColleHelperMetro
-kancolle robot

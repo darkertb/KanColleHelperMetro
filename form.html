@@ -1,0 +1,192 @@
+<html>
+	<head>
+		<title>DarkerTV頁面產生器</title>		
+		<link href="icon.ico" rel="SHORTCUT ICON">
+		
+		<script type="text/javascript" src="libs/jquery1.9.1/jquery.min.js"></script>
+		<link rel="stylesheet" href = "libs/bootstrap/css/bootstrap.min.css">
+		<script src="libs/bootstrap/js/bootstrap.min.js"></script>		
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	
+	<body>
+	
+		<br />
+		
+		<form class="col-sm-10 form-horizontal" role="form">
+            <div class="form-group">
+                <label class="col-sm-2 control-label"></label>
+                <div class="col-sm-10">
+                    <select id="stream-list" class="form-control stream-list"></select>
+                </div>
+            </div>	
+
+            <hr>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">實況ID</label>
+				<div class="col-sm-10">
+					<input id="stream-id" type="text" class="form-control"  placeholder="實況ID" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">平台</label>
+				<div class="col-sm-10">
+					<select id="stream-pla" class="form-control select-pla"></select>
+				</div>
+			</div>
+
+            <hr>
+			
+			<div class="form-group">
+				<label class="col-sm-2 control-label">聊天室ID</label>
+				<div class="col-sm-10">
+					<input id="chat-id" type="text" class="form-control"  placeholder="聊天室ID，空白則與實況相同" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">平台</label>
+				<div class="col-sm-10">
+                    <select id="chat-pla" class="form-control select-pla"></select>
+				</div>
+			</div>		
+			
+            <hr>
+			
+			<div class="form-group">
+				<label class="col-sm-2 control-label"></label>
+				<div class="col-sm-10">
+					<button id="openPage" type="button" class="btn btn-default">直接開啟</button>
+					<button id="gotoPage" type="button" class="btn btn-default">開啟新分頁</button>
+				</div>
+			</div>		
+
+			
+		</form>
+	</body>
+
+</html>
+
+<script>
+    //js-start
+
+    var baseUrl = "https://darkertb.github.io/MyTV/";
+
+    //====================.select-pla init====================
+    var streamPlaList = {
+        "TTV": "TwitchTV",
+        "VL": "VaughnLive",
+        "BRK": "breakers",
+        "HIT": "Hitbox",
+        "STUP": "Streamup",
+        "LH": "LiveHouse",
+        "UST": "Ustream",
+        "CC": "ConnectCast",
+        "BEAM": "Beam",
+        "YT": "Youtube"
+    };
+
+    for (var skey in streamPlaList) {
+        $(".select-pla").append($("<option></option>").attr("value", skey).text(streamPlaList[skey]));
+    }
+    //========================================================
+
+    //====================.stream-list init====================
+    var streamList = {
+        "無": "null;null",
+        "小豆動畫台(VL&HIT)": "maiwaifuazusaazuki-VL;maiwaifuazusaazuki-HIT",
+        "小豆動畫台(VL)": "maiwaifuazusaazuki-VL;null",
+        "畫師Kumyka21(VL&LH)": "kumyka21-VL;526311-LH",
+        "畫師Kumyka21(STUP&LH)": "kumy-ka-STUP;526311-LH",
+        "女粉(LH)": "519246-LH;519246-LH",
+        "乾爹偶豚抬(TTV)": "kimikisstest11-TTV;kimikisstest11-TTV",
+    }; 
+
+    for (var skey in streamList) {
+        $(".stream-list").append($("<option></option>").attr("value", streamList[skey]).text(skey));
+    }
+    //========================================================
+	
+	$(document).ready(function(){
+		$("#gotoPage").click(function(){
+			var newTab = window.open();
+			newTab.location= CombineUrl(); 
+		});
+		$("#openPage").click(function(){
+			window.location = CombineUrl();
+		});
+	});
+
+	$(".stream-list").change(function () {
+	    var streamInfo = $(".stream-list").val().split(";");        
+
+	    var videoInfo = SplitInfo(streamInfo[0]);
+	    var chatInfo = SplitInfo(streamInfo[1]);
+                
+	    if (videoInfo != null) {
+	        $("#stream-id").val(videoInfo[0]);
+	        $("#stream-pla").val(videoInfo[1]);
+	    } else {
+	        $("#stream-id").val("null");
+	    }
+        
+	    if (chatInfo != null) {
+	        $("#chat-id").val(chatInfo[0]);
+	        $("#chat-pla").val(chatInfo[1]);
+	    } else {
+	        $("#chat-id").val("null");
+	    }
+	});
+
+	function CombineUrl () {
+		var SID = $("#stream-id").val();
+		var SPla = $("#stream-pla").val();
+		var CID = $("#chat-id").val();
+		var CPla = $("#chat-pla").val();
+
+		var videoParam = (SID == "null" || SID == "") ? "" : ("v=" + SID + "-" + SPla);
+
+		var chatParam = (CID == "null" || (CID == "" && SID == "")) ? "" : "c=";
+		if (CID != "null") {
+		    if (CID == "" || (CID == SID && SPla == CPla))
+		        chatParam += "s";
+		    else
+		        chatParam += CID + "-" + CPla;
+		}
+
+		var url = baseUrl;
+		if (videoParam != "") {
+		    url += "?" + videoParam;
+		}
+		if (chatParam != "") {
+		    url += (videoParam == "" ? "?" : "&") + chatParam;
+		}
+			
+		return url
+	}
+
+	function SplitInfo(cInfo) {
+	    if (cInfo == null || cInfo.indexOf('-') == -1)
+	        return null;
+
+	    strArray = cInfo.split("-");
+
+	    var result = { 0: '', 1: '' };
+
+	    //如果ary不只兩個代表頻道名含有 - 字符，需要另外做拼裝
+	    if (strArray.length > 2) {
+	        for (var i = 0; i < strArray.length - 1; i++) 
+	            result[0] += (i != 0 ? '-' : '') + strArray[i];
+	    }
+	    else {
+	        result[0] = strArray[0];
+	    }
+        
+	    result[1] = strArray[strArray.length - 1];
+
+	    return result;
+	}
+
+	//js-end
+</script>

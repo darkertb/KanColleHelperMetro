@@ -1,0 +1,14 @@
+{
+  "name": "Simple DakrerTV",
+  "description": "Right click link, and open channel with DarkerTV.",
+  "version": "0.0.1",
+  "permissions": ["contextMenus", "tabs"],
+  "background": {
+    "persistent": false,
+    "scripts": ["background.js"]
+  },
+  "browser_action": {
+      "default_title": "copy sad face"
+  },
+  "manifest_version": 2
+}

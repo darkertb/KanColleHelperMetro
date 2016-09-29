@@ -1,0 +1,72 @@
+<html>
+	<head>
+		<title>DarkerTV頁面產生器</title>		
+		<link href="icon.ico" rel="SHORTCUT ICON">
+		
+		<script type="text/javascript" src="libs/jquery1.9.1/jquery.min.js"></script>
+		<link rel="stylesheet" href = "libs/bootstrap/css/bootstrap.min.css">
+		<script src="libs/bootstrap/js/bootstrap.min.js"></script>		
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	
+	<body>
+	
+		<br />
+		
+		<form class="col-sm-10 form-horizontal" role="form">
+            <div class="form-group">
+				<label class="col-sm-2 control-label">實況ID</label>
+				<div class="col-sm-10">
+					<input id="letter-a" type="text" class="form-control"  placeholder="實況ID" />
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-2 control-label">實況ID</label>
+				<div class="col-sm-10">
+					<input id="letter-b" type="text" class="form-control"  placeholder="實況ID" />
+				</div>
+			</div>	
+
+			<hr>
+			
+			<div class="form-group">
+				<label class="col-sm-2 control-label"></label>
+				<div class="col-sm-10">
+					<button id="compare" type="button" class="btn btn-default">比較</button>
+				</div>
+			</div>	
+			<div class="form-group">
+				<label class="col-sm-2 control-label">結果</label>
+				<div class="col-sm-10">
+					<p id="res"></p>
+				</div>
+			</div>	
+			
+			
+		</form>
+	</body>
+
+</html>
+
+<script>
+    //js-start
+	$(document).ready(function(){
+		$("#compare").click(function(){
+			var a = $("#letter-a").val();
+			var b = $("#letter-b").val();        
+
+			$("#res").text(CombineUrl(a, b));
+		});
+	});
+	function CombineUrl (a, b) {
+		var result = a.localeCompare(b);
+		
+		var resString = result > 0 ? '{1} 在前面' : (result == 0 ? '一樣' : '{0} 在前面');
+		
+		return resString.replace('{0}', a).replace('{1}', b);
+	}
+
+	//js-end
+</script>

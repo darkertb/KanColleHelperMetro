@@ -1,0 +1,1014 @@
+<HTML>
+    <HEAD>
+        <!-- <link rel="stylesheet" href = "bootstrap/css/bootstrap.min.css"> -->
+        <script language="javascript"src="libs/lz-string/lz-string.js"></script>
+        <script type="text/javascript"src="libs/jquery1.3.2/jquery.min.js"></script>
+        <script type="text/javascript"src="libs/jqueryui1.7.2/jquery-ui.min.js"></script>
+        <link rel="stylesheet"type="text/css"href="libs/jqueryui1.7.2/themes/base/jquery-ui.css"/>
+
+        <link href="icon.ico" rel="SHORTCUT ICON">
+
+        <!--
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+        <script type="text/javascript" src="libs/jqueryui1.12.0rc.2/jquery-ui.min.1.7.2.js"></script>
+        <link rel="stylesheet" type="text/css" href="libs/jqueryui1.12.0rc.2/jquery-ui.min.css"/>
+        -->
+
+        <link rel="stylesheet" type="text/css" href="css/dtb-tvtheme.css"/>
+        <!-- <script src="bootstrap/js/bootstrap.min.js"></script> -->
+
+        <title>DarkerTV</title>
+    </HEAD>
+
+    <BODY> <!-- background="http://i.imgur.com/gsWCoxE.jpg" --> 
+	    <span class="menu-enabler btn light small" title="選單開關" onclick="menuOC();" onmouseover='changeCursor(0);' onmouseout='changeCursor(1);'>&nbsp;M</span>
+	    <span class="mobile-chat-enabler btn dark" title="開關聊天室" onclick="chatOC();">開關聊天室</span>
+	    <div class='menu' id='menu'>
+	    <!-- <div class='menu' style='z-index:2147483648; overflow:hidden; max-width:972px; max-height:32px; left:16px; top:-18px; background-color:#6441a5;'> -->
+		    <form>			
+			    <!--	舊code, 已不使用
+			    <input type="button" value="更改大小" onclick="ResizeIframe(x00.value, y00.value);">
+			    <input type="button" value="跳出LZ聊天室" onclick="wo();">
+			    <input type="button" value="跳出海泥巴聊天室" onclick="jtv();">
+			    -->
+			
+			    <table border="1">
+				    <tr>
+					    <td>
+						    <font>頻道名:</font>
+						    <input class="stream-name" type="text" value="" id="cn00">
+						    <font>平台:</font>
+						     <select class="stream-type" id="cts" onchange="document.getElementById('chs').value = 'null-null'; 
+																			    cookies['dtvType'] = document.getElementById('cts').value;
+																			    cookies['selectedCh'] = document.getElementById('chs').value;
+																			    ">
+						    <option value=''>無(使用右側列表)</option>
+						    <option value='VL'>VaughnLive</option>
+						    <option value='BRK'>Breakers</option>
+						    <option value='HIT'>Hitbox</option>
+						    <option value='STUP'>Streamup</option>
+						    <option value='LH'>LiveHouse</option>
+						    <option value='UST'>Ustream</option>
+						    <option value='TTV'>TwitchTV</option>
+						    <option value='JTV'>JustinTV - 已死亡</option>
+						    <option value='CC'>ConnectCast</option>
+                            <option value='BEAM'>Beam</option>
+                            <option value='YT'>Youtube</option>
+						    <!-- <option value='AFTV'>AfreecaTV</option> -->
+						    </select>
+					    </td>
+					    <td>
+						    <select class="stream" id="chs" onchange="document.getElementById('cts').value = '';  
+																			    cookies['dtvType'] = document.getElementById('cts').value;
+																			    cookies['selectedCh'] = document.getElementById('chs').value;
+																		    ">
+						    <option value='null-null'>無</option>
+						    <optgroup label="Today">
+							    <option value='today01-VL'>today01(today-VaughnLive)</option>
+							    <!-- <option value='today02_game-TTV'>today02_game(today-TwitchTV)</option> -->
+							    <option value='today_cook-TTV'>today_cook(歐狼廚房-TwitchTV)</option>
+							    <option value='161090-LH'>today(today-LiveHouse)</option>
+						    </optgroup>
+						    <optgroup label="Linzet">
+							    <option value='470709-LH'>linzet(LZ-LiveHouse)</option>
+							    <option value='anotsukagehisa-TTV'>anotsukagehisa(LZ-TwitchTV)</option>
+							    <!--
+							    <option value='linzet000-VL'>linzet000(LZ000-VaughnLive)</option>
+							    <option value='dioburando-VL'>dioburando(LZ-VaughnLive)</option>
+							    <option value='SaintTechnologyEmpire-STUP'>SaintTechnologyEmpire(LZ-Streamup)</option>
+							    <option value='linzet-CC'>linzet(LZ-ConnectCast)</option>
+							    <option value='5564604-UST'>linzet(LZ-Ustream)</option>
+							    -->
+						    </optgroup>
+						    <optgroup label="社長">
+							    <option value='solidusserjun-VL'>solidusserjun(社長-VaughnLive)</option>
+							    <option value='serjunplaygame-TTV'>serjunplaygame(社長-TwitchTV)</option>
+							    <!--
+							    <option value='bigserjun-VL'>bigserjun(社長-VaughnLive)</option>
+							    <option value='456641-LH'>serjun(社長-LiveHouse)</option>
+							    <option value='serjun55555-STUP'>serjun55555(社長-Streamup)</option>
+							    <option value='14943021-UST'>Serjun555(社長-Ustream)</option>
+							    -->
+						    </optgroup>
+						    <optgroup label="其他">
+							    <option value='asianpoet-TTV'>ㄎㄈㄑ(ㄎㄈㄑ-TTV)</option>
+							    <option value='maiwaifuazusaazuki-HIT'>maiwaifuazusaazuki(小豆-Hitbox)</option>
+							    <option value='region_rain-VL'>region_rain(女粉-VaughnLive)</option>
+							    <option value='airirositu-BEAM'>airirositu(女粉-Beam)</option>
+							    <option value='qttsix-TTV'>qttsix(小六-TwitchTV)</option>
+							    <option value='blusewilly_retry-TTV'>blusewilly_retry(ㄌㄉ-TwitchTV)</option>
+							    <option value='mengmengder-VL'>mengmengder(金箔-VaughnLive)</option>
+							    <option value='198422-LH'>198422(小豆-LiveHouse)</option>
+							    <option value='201502-LH'>201502(摳ㄆ-LiveHouse)</option>
+							    <option value='shagojoy-TTV'>shagojoy(shagojoy-TwitchTV)</option>
+							    <option value='assassinsheep-TTV'>assassinsheep(懶羊腦濕-TwitchTV)</option>
+							    <option value='celeshuang-TTV'>celeshuang</option>
+							    <option value='Luoduanyu-TTV'>Luoduanyu(笑笑-TwitchTV)</option>
+							    <option value='13690851-UST'>芭樂丁外國台(Ustream)</option>
+							    <option value='13744639-UST'>kingotcentaur(Ustream)</option>
+						    </optgroup>
+						    <optgroup label="永遠的大哥">
+							    <option value='su3cj3x04-JTV'>su3cj3x04(大哥-JustinTV)</option> 
+						    </optgroup>
+						    <!-- optgroup label="死去">
+							    <option value='198388-LH'>linzet(LZ-LiveHouse)</option>
+							    <option value='nakedserjun-VL'>nakedserjun(社長-VaughnLive)</option>
+							    <option value='solidserjun-VL'>solidserjun(社長-VaughnLive)</option>
+							    <option value='liquidserjun-VL'>liquidserjun(社長2-VaughnLive)</option>
+							    <option value='linzet-VL'>linzet(LZ-VaughnLive)</option>
+						    </optgroup -->
+						     <!-- 
+						    <option value='Udry-HIT'>Udry(LZ-Hitbox)</option>
+						    <option value='Linzet-HIT'>Linzet(LZ-Hitbox)</option>
+						    <option value='gannipizza-JTV'>gannipizza(廖哥)</option>
+						    <option value='rabbitdaddy520-TTV'>rabbitdaddy520(廖哥)</option>
+						    <option value='serjun555555555555555-JTV'>serjun555555555555555(社長JTV)</option> 
+						     -->
+						    </select>
+					    </td>
+					    <td>
+						    <select class="sl" id="slslot" onchange="cookies['slslot'] = document.getElementById('slslot').value;">
+						    </select>
+						    <span class="btn light small" title="儲存視窗狀態" onclick="saveWindowsState();" onmouseover='changeCursor(0);' onmouseout='changeCursor(1);'>&nbsp;S</span>
+						    <span class="btn light small" title="讀取視窗狀態" onclick="loadWindowsState();" onmouseover='changeCursor(0);' onmouseout='changeCursor(1);'>&nbsp;L</span>
+					    </td>
+					    <td>
+						    <span class="btn dark large" title="新增實況視窗" onclick="SetStream(false);" onmouseover='changeCursor(0);' onmouseout='changeCursor(1);'>&nbsp;&nbsp;V ❐</span>
+						    <span class="btn dark large" title="新增聊天室視窗" onclick="setChat(document.getElementById('chs').value, false, 300, 480);" onmouseover='changeCursor(0);' onmouseout='changeCursor(1);'>&nbsp;&nbsp;C ❐</span>
+
+						    <span class="btn light large" title="跳出實況" onclick="SetStream(true);" onmouseover='changeCursor(0);' onmouseout='changeCursor(1);'>&nbsp;&nbsp;V ↗</span>
+						    <span class="btn light large" title="跳出聊天室" onclick="setChat(document.getElementById('chs').value, true, 300, 480);" onmouseover='changeCursor(0);' onmouseout='changeCursor(1);'>&nbsp;&nbsp;C ↗</span>
+
+						    <span class="btn dark medium" title="前往實況頁面" onclick="go2OriginalPage();"onmouseover='changeCursor(0);' onmouseout='changeCursor(1);'>&nbsp;&nbsp;➪</span>
+						
+						    <span class="btn light medium" title="設定背景圖片" onclick="setBG(null);" onmouseover='changeCursor(0);' onmouseout='changeCursor(1);'>&nbsp;bg</span>
+						    <span class="btn light medium" title="開關燈" onclick="turnOF(false);" onmouseover='changeCursor(0);' onmouseout='changeCursor(1);'>&nbsp;&nbsp;燈</span>
+						    <!--<span title="填選意見書" onclick="var newwin = window.open();newwin.location='http://goo.gl/forms/KxHmscFBvq';" style="background-color:#C388CA; border-width:1px; border-style:solid; font-size:9pt; width:15px; display:inline-block;" onmouseover='changeCursor(0);' onmouseout='changeCursor(1);'>R</span>-->
+					    </td>
+					    <td>
+						    <font>拖拉視窗右下角可以縮放</font>
+					    </td>
+				    </tr>
+			    </table>
+		    </form>
+	    </div>
+	    <p>
+	    </p>
+    </BODY>
+</HTML>
+
+<script type="text/javascript" src="js_dev/string_ext.js"></script>
+<script type="text/javascript" src="js_dev/window_template.js"></script>
+
+<script>
+	//js-start
+
+	//記錄用
+	//http://zh-tw.justin.tv/widgets/live_embed_player.swf?channel=gannipizza&auto_play=true
+
+	//版本號
+	version = '2.2.2';
+	//最後更新日
+	lastUpdate = '2016/08/10';
+	//當發現新版本時的預設title
+	findNewVersion = '新版本:' + version + '　　最後更新:' + lastUpdate + '||';
+	//是否寫入新版cookie flag
+	var newCookie = false;
+	
+	/* default config */
+	var widthOffset = -353;
+	var heightOffset = -30;
+	var topOffset = 0;
+	var chatHeightOffset = 30;
+	
+	//平台列表
+	var platformList = [
+			{'key': 'TTV', 'name': 'TwitchTV', 'sourceUrl': 'http://www.hitbox.tv/{ID}'},
+			{'key': 'STUP', 'name': 'Streamup', 'sourceUrl': 'https://streamup.com/{ID}'}, 
+			{'key': 'LH', 'name': 'LiveHouse', 'sourceUrl': 'https://livehouse.in/channel/{ID}'},
+			{'key': 'YT', 'name': 'Youtube'},
+			{'key': 'HIT', 'name': 'Hitbox'},
+			{'key': 'VL', 'name': 'VaughnLive'},
+			{'key': 'BRK', 'name': 'Breakers'},
+			{'key': 'UST', 'name': 'Ustream'},
+			{'key': 'CC', 'name': 'ConnectCast'},
+			{'key': 'AFTV', 'name': 'AfreecaTV'},
+			{'key': 'BEAM', 'name': 'Beam'},
+		];
+	
+
+	/*
+	releaseNotes = '新增:|\t-現在視窗存檔可以存五個了。||修改:|\t-壓縮cookie字串長度，以便儲存更多資料。';
+	版本說明*/
+	releaseNotes = '新增:|\t-增加跳出LIVEHouse平台的聊天室功能。';
+	//目前最大深度
+	var topZ = 0;
+	//已產生的視窗數量(用來產生div ID)
+	var frameIndex = 0;
+	
+	var autoResizeIFrame = false;
+
+	$(function(){$('.menu').draggable();});
+		
+	//目前最大深度
+	var topZ = 0;
+	//已產生的視窗數量(用來產生div ID)
+	var frameIndex = 0;
+
+	var isLightOn = false;
+
+	var cookies;
+	
+	var chatEnable = true;
+	//Json format新版cookie
+	try{
+		cookies = JSON.parse(LZString.decompress(getCookie('cookies')));
+	}catch(e){}
+	//如果失敗，new一個cookies
+	if(cookies == null){
+		cookies = {};
+		newCookie = true;
+	}
+		
+	//從舊版cookie轉換成新版cookie
+	if(cookies['dtvName'] == null)
+		cookies['dtvName'] = getCookie('dtvName');
+	if(cookies['selectedCh'] == null)
+		cookies['selectedCh'] = getCookie('selectedCh');
+	if(cookies['bg'] == null)
+		cookies['bg'] = getCookie('bg');
+	if(cookies['dtvType'] == null)
+		cookies['dtvType'] = getCookie('dtvType');
+
+	//檢查有無存檔
+	var slSelect = document.getElementById('slslot');
+	for(i=1;i<6;i++){
+		if(cookies['wList'] != null){
+			if(cookies['wList'][i] != null){
+				var new_option = new Option(i + '.O-' + cookies['wList'][i].length, i);
+				slSelect.options.add(new_option);
+			}else{
+				var new_option = new Option(i + '.X', i);
+				slSelect.options.add(new_option);
+			}
+		}
+	}		
+		
+	//從cookie內取出設定值
+	if(cookies['light'] != null)
+		isLightOn = cookies['light'];
+		
+	if(cookies['dtvName'] != null)
+		document.getElementById('cn00').value = cookies['dtvName'];
+	if(cookies['selectedCh'] != null)
+		document.getElementById('chs').value = cookies['selectedCh'];
+	if(cookies['bg'] != null)
+		setBG(cookies['bg']);
+	if(cookies['dtvType'] != null)
+		document.getElementById('cts').value = cookies['dtvType'];
+	if(cookies['slslot'] != null)
+		document.getElementById('slslot').value = cookies['slslot'];
+	else
+		cookies['slslot'] = 1;
+
+	if(cookies['wList'] == null)	
+		cookies['wList'] = new Array();
+		
+	var wList = new Array();
+
+	init();
+    		
+	//初始化API
+	function init () {		
+		if (IsMobile()) {
+			menuOC();		
+			$('.menu-enabler').hide();
+			$('.mobile-chat-enabler').show();
+		} 
+		else {
+			$('.mobile-chat-enabler').hide();
+		}
+
+		//get參數
+		var getPara = getRequests();
+		
+		//如果沒有get參數, 不處理
+		if(getPara == null)
+			return;
+		
+		var videoInfo = getPara['video'];
+		if (videoInfo == null)
+			videoInfo = getPara['vid'];
+		if (videoInfo == null)
+			videoInfo = getPara['v'];
+			
+		var chatInfo = getPara['chat'];
+		if (chatInfo == null)
+			chatInfo = getPara['cht'];
+		if (chatInfo == null)
+			chatInfo = getPara['c'];
+			
+		var w = getPara['w'];
+		var h = getPara['h'];
+		
+		if(w == null)
+			w = window.innerWidth + widthOffset;
+			
+		if (chatInfo == null)
+			w += 350;
+			
+		if(h == null)
+			h = window.innerHeight + heightOffset;
+			
+		if (videoInfo != null) {
+		    var url = getCHUrl(videoInfo, 'video', true);
+		    var vChannel = channel;
+
+		    newWindow(url, w, h, ID, channel, topOffset, 30, 'video');
+		}
+
+		if(chatInfo != null){
+			url = (chatInfo == 'same' || chatInfo == 's') ? getCHUrl(videoInfo, 'chat', true) : getCHUrl(chatInfo, 'chat', true);
+			newWindow(url, 350, parseInt(h) + chatHeightOffset, ID, channel, parseInt(w), topOffset, 'chat');
+		}
+		
+		var cChannel = chatInfo != null ? channel : null;
+		
+		var customID = getPara['cid'];
+		
+		if (customID != null && customID != '')
+			SetHTMLTitle(customID, vChannel, cChannel);
+		else
+			SetHTMLTitle(ID, vChannel, cChannel);
+		
+		//因為使用get產生預設視窗，所以啟用自動resize
+		autoResizeIFrame = true;
+	}
+
+	//設定深度
+	function setZIndex (ui) {
+		setCDisplay(ui, 'block');
+		
+		//如果已是最大深度, 便不再增加深度
+		if(ui.helper.css('z-index') >= topZ)
+			return;
+		
+		topZ++;
+		ui.helper.css('zIndex',topZ);
+	}
+
+	//設定iframe遮罩block or none
+	function setCDisplay (ui, state) {
+		//取消視窗自動resize功能(因為已經手動移動 or 改變大小了)
+		autoResizeIFrame = false;
+	
+		var elem = document.getElementById(ui.helper.attr("id") + 'container');
+		elem.style.display = state;
+		
+		if(state == 'block')
+			return;
+			
+		var className = '#' + ui.helper.attr("id");
+		w = $(className).width();
+		h = $(className).height();
+		pos = $(className).offset();
+		x = pos.left;
+		y = pos.top;
+		
+		index = getWindowArrayIndex(wList, ui.helper.attr("id"));
+		var array = wList[index];
+		console.log(JSON.stringify(array));
+		array['w'] = w;
+		array['h'] = h;
+		array['x'] = x;
+		array['y'] = y;
+		wList[index] = array;
+	}
+
+	//利用儲存在cookie的wList裡之資料來創建視窗
+	function loadWindowsState(){	
+		loadIndex = cookies['slslot'];
+			
+		var tmp = cookies['wList'][loadIndex];
+		length_ = tmp.length;
+		
+		for(i=0;i<length_;i++){
+			if(tmp[i] != null){
+				ID = tmp[i]['id'];
+				channel = tmp[i]['channel'];
+				type = tmp[i]['type'];
+				x = tmp[i]['x'];
+				y = tmp[i]['y'];
+				w = tmp[i]['w'];
+				h = tmp[i]['h'];
+				
+				url = getCHUrl(ID + '-' + channel, type, true);
+				newWindow(url, w, h, ID, channel, x, y, type);
+			}
+		}
+	}
+
+	function saveWindowsState () {
+		loadIndex = cookies['slslot'];
+		cookies['wList'][loadIndex] = {};
+		cookies['wList'][loadIndex] = wList;
+		cookieString = LZString.compress(JSON.stringify(cookies));
+		SetCookie('cookies', cookieString);
+		alert('儲存成功['+loadIndex+']:' + wList.length + '個視窗');
+	}
+	
+	$(window).resize(function() {
+		console.log('resized');
+		if (! autoResizeIFrame) return;
+	
+		var newWidth = parseInt(window.innerWidth) + widthOffset;
+		var newHeight = parseInt(window.innerHeight) + heightOffset;
+		
+		$('#A0').width(newWidth).height(newHeight);
+		RefreshIframeSize('A0');
+		
+		var newChatHeight = parseInt(newHeight) + chatHeightOffset;
+		$('#A1').css('left', newWidth).height(newChatHeight);
+		RefreshIframeSize('A1');
+	});
+
+	window.onbeforeunload=function(){
+		cookieString = LZString.compress(JSON.stringify(cookies));
+		SetCookie('cookies', cookieString);
+	};
+
+	//設定背景
+	function setBG (cookie) {
+		var inputText = '';
+		
+		if (cookie == null)
+			inputText=prompt('圖片連結\r    如要指定單色，請刪除「http://」，使用「#」開頭。\r    EX:#0f0f0f', "http://");
+		else 
+			inputText = cookie;
+		
+		if(inputText == null || inputText == 'http://')
+			return;
+			
+		if (inputText.indexOf('http://') == -1 && inputText.indexOf('#') > -1) {
+			document.body.style.background = null;
+			document.body.style.backgroundColor = inputText;
+		}
+		else {
+			if (inputText == '') {
+				document.body.style.background = null;
+				turnOF(true);
+			}
+			else 
+				document.body.style.background = "url("+inputText+")";	
+		}
+		
+		cookies['bg'] = inputText;
+	}
+
+	//開關燈
+	// bool	isInit	是否初始化時呼叫的
+	function turnOF(isInit) 
+	{
+		//如果是初始化而且背景設定為單色時，不初始化開關燈
+		if (isInit && cookies['bg'] != null && cookies['bg'].indexOf('#') > -1) return;
+
+		if (! isInit) {
+			isLightOn = !isLightOn;
+			
+			//如果飛初始化且背景設定為單色時，開關燈時要清除背景設定
+			if (cookies['bg'] != null && cookies['bg'].indexOf('#') > -1) cookies['bg'] = '';
+		}
+			
+		cookies['light'] = isLightOn;
+		
+		document.body.style.background = null;
+		document.body.style.backgroundColor = isLightOn ? "#fff" : "#2a2a2a";
+	}
+	
+	function chatOC () {
+		if (chatEnable) {
+			$('#A1').hide();
+			$('#A0').width(parseInt($('#A0').width()) + 350);
+			$('#A0F').width(parseInt($('#A0F').width()) + 350);
+		} 
+		else {
+			$('#A1').show();
+			$('#A0').width(parseInt($('#A0').width()) - 350);
+			$('#A0F').width(parseInt($('#A0F').width()) - 350);
+		}
+		
+		chatEnable = ! chatEnable;
+	}
+
+	//選單開關
+	function menuOC () {	
+		var className = '.menu';
+		
+		if ($(className).is(":visible")) {
+			$(className).hide();
+		}
+		else {
+			$(className).show();
+		}
+	}
+
+	function changeCursor(cursor)
+	{
+		if(cursor == '1')
+			document.body.style.cursor = 'default';
+		if(cursor == '0')
+			document.body.style.cursor = 'pointer';
+	}
+
+	//新增視窗
+	function newWindow (url, w, h, _id, _channel, leftPos, topPos, wType) {
+		if(_channel == '' || _channel == 'null' || _id == '' || _id == 'null'){
+			alert('請選擇實況台');
+			return;
+		}
+		if(url == '' || url == null){
+			return;
+		}
+
+	    //***anti***
+		var _idUpper = _id.toLowerCase();
+		if (wType == "video" && (_idUpper == "anotsukagehisa" || _idUpper.indexOf('linzet') > -1 || _idUpper == '470709')) {
+		    alert("這裡不歡迎L粉ㄛ 滾!");
+		    //return;
+		}
+	    //***anti***
+		
+		topZ++;
+		
+		var fullWindowTitle = _id + '  - ' + GetFullName(_channel);
+		var template = new WTemplate();
+		template.init(frameIndex, topZ, w, h, leftPos, topPos, fullWindowTitle, url);
+		$("p").append(template.html);
+		
+		document.getElementById("A"+ frameIndex +"container").style.display = "none";
+		$( "#A" + frameIndex + "BC").click(function() {
+			var iFrameId = this.id.replace('BC', '');
+			WindowClose(iFrameId);
+		});
+		$( "#A" + frameIndex + "BR").click(function() {
+			var iFrameId = this.id.replace('BR', '');
+			WindowRefresh(iFrameId, url);
+		});
+		$( "#A" + frameIndex + "BS").click(function() {
+			var iFrameId = this.id.replace('BS', '');
+			WindowMinimize(iFrameId);
+		});
+		$(function(){$('.demo').draggable({start: function( event, ui ) {setZIndex(ui);}, stop: function( event, ui ) {setCDisplay(ui, 'none');}}).resizable({start: function( event, ui ) {setCDisplay(ui, 'block');}, resize: function( event, ui ) {RefreshIframeSize(ui.helper.attr("id"));}, stop: function( event, ui ) {setCDisplay(ui, 'none');}});});
+		RefreshIframeSize('A' + frameIndex);
+		
+		window1 = {id:_id, channel:_channel, type:wType, x:leftPos, y:topPos, w:w, h:h, mini:'false', fid:'A' + frameIndex.toString()};
+		wList[wList.length] = window1;
+		
+		frameIndex++;
+	}
+
+	function WindowMinimize (_iFrameId) {
+		var className = '#' + _iFrameId;
+		var oldName = _iFrameId + 'OH';
+		var toggleMinHeight = 10, duration = 300, easing = 'swing';
+		
+		var curH = $(className).height();
+		var elem = document.getElementById(oldName);
+		if(curH > 50 && curH != elem.vlaue)
+		{
+			elem.vlaue = curH;
+		}
+		
+		if ($(this).is(':animated')){
+			return false;
+		}
+		else if(curH != 19){
+			$(className).animate({
+				height : 19
+			}, 300);
+			$(className).resizable('disable');
+		}
+		else{
+			$(className).animate({
+				height : elem.vlaue
+			}, 300);
+			$(className).resizable('enable');
+		}
+	}
+
+	function WindowRefresh (_iFrameId, url) {
+		var elem = document.getElementById(_iFrameId + 'F');
+		elem.src = url;
+	}
+
+	function WindowClose (_iFrameId, useAnimation) {
+		var elem = document.getElementById(_iFrameId);
+		var className = '#' + _iFrameId;
+		
+		arrayRemove(wList, getWindowArrayIndex(wList, _iFrameId), true);
+		
+		if (useAnimation == undefined || useAnimation)
+			$(className).slideUp(200, function() { $(className).remove(); } );
+		else
+			$(className).remove();
+	}
+
+	function WindowAllClose () {
+		for (var i=0;i<wList.length;i++) {
+			WindowClose(wList[i]['fid'], false);
+		}
+	}
+
+	function WindowAllRefresh () {
+		for (var i=0;i<wList.length;i++) {
+			var cName = wList[i]['id'] + '-' + wList[i]['channel'];
+			var url = getCHUrl(cName, wList[i]['type'], true);
+			WindowRefresh(wList[i]['fid'], url);
+		}
+	}
+
+	//動態修正Iframe高度(%數
+	//動態更新Iframe尺寸
+	function RefreshIframeSize (id) {		
+		var elemW = document.getElementById(id);
+		var elemF = document.getElementById(id + 'F');
+		
+		elemF.style.height = parseInt(elemW.style.height) - 30;
+		elemF.style.width = parseInt(elemW.style.width) - 5;
+	}
+		
+	//實況畫面處理
+	function SetStream (isPopout) {		
+		var url = getCHUrl(document.getElementById('chs').value, 'video', false);
+		
+		if(url == '' || url == null)
+			return;
+			
+		if(isPopout)
+		{
+			if(channel == '' || channel == 'null' || ID == '' || ID == 'null'){
+				alert('請選擇實況台');
+				return;
+			}
+			window.open(url, ID, config='height=480,width=800');
+		}
+		else
+			newWindow(url, 800, 500, ID, channel, 0, 30, 'video');
+	}
+
+	//聊天室處理
+	function setChat (cName, isPopout, w, h, leftPos) {
+		//預設位置 y:830
+		if(leftPos == null)
+			leftPos = 830;
+		
+		var chatUrl = getCHUrl(cName, 'chat', false);
+		if(chatUrl == '' || chatUrl == null)
+			return;
+		
+		if(isPopout){
+			if(channel == '' || channel == 'null' || ID == '' || ID == 'null'){
+				alert('請選擇實況台');
+				return;
+			}
+			window.open(chatUrl, ID+channel, config=(channel != 'CC') ? 'height=480,width=300' : 'height=480,width=350');
+		}
+		else
+			newWindow(chatUrl, w, h, ID, channel, (leftPos + 5), 30, 'chat');
+		
+	}
+
+	//設定平台&實況ID
+	function SetChannelData (sName, forceUseCName) 
+	{
+		//var getPara = getRequests();
+
+		if(UseCustomChannel() && ! forceUseCName)
+		{
+			//使用自訂頻道功能
+			channel = GetCustomChannelInfo('channel');
+			ID = GetCustomChannelInfo('ID');
+		}
+		else
+		{
+			//使用頻道列表
+			channel = GetChannelInfo("type", sName);
+			ID = GetChannelInfo("name", sName);
+		}
+		
+		channel = channel.toUpperCase();
+	}
+
+	function SetHTMLTitle (_id, _videoChannel, _chatChannel) {
+		var titleStr = _id + '  - ' + GetFullName(_videoChannel);
+		if (_chatChannel != null)
+			titleStr += '  | ' + GetFullName(_chatChannel);
+			
+		document.title = titleStr;
+	}
+
+	//是否使用自訂頻道
+	function UseCustomChannel () {
+		var cts = document.getElementById('cts').value;
+		var cns = document.getElementById('cn00').value;
+		
+		var cookieName = getCookie('dtvName');
+		var cookieType = getCookie('dtvType');
+		
+		//如果沒有cookie, 或是頻道資料不相同, 更新cookie
+		if(cookieName == '' || cookieName != cns || cookieType != cts)
+		{
+			cookies['dtvName'] = cns;
+			cookies['dtvType'] = cts;
+		}
+		
+		//自訂平台是否選擇"無"
+		if(cts != "")
+		{		
+			return true;
+		}
+		else
+			return false;
+		
+	}
+
+	//跳轉至原實況頁面(new page
+	function go2OriginalPage (){
+		var sName = document.getElementById('chs').value;
+		SetChannelData(sName);
+		if(channel == '' || channel == 'null' || ID == '' || ID == 'null'){
+			alert('請選擇實況台');
+			return;
+		}
+		
+		var url = '';
+		
+		switch(channel){
+			case 'HIT' :
+				url = '//www.hitbox.tv/' + ID;
+				break;
+			case 'JTV' :
+				url = '//www.justin.tv/' + ID;
+				break;
+			case 'TTV' :
+				url = '//www.twitch.tv/' + ID;
+				break;
+			case 'VL' :
+				url = '//vaughnlive.tv/' + ID;
+				break;
+			case 'BRK' :
+				url = '//vaughnlive.tv/' + ID;
+				break;
+			case 'UST' :
+				url = '//www.ustream.tv/channel/' + ID;
+				//alert('Ustream無法使用此功能');
+				break;
+			case 'YT' :
+				url = '//www.youtube.com/watch?v=' + ID;
+				break;
+			case 'STUP' :
+				url = '//streamup.com/' + ID;
+				break;
+			case 'CC' :
+				url = '//www.connectcast.tv/' + ID;
+				break;
+			case 'LH' :
+				url = '//livehouse.in/channel/' + ID;
+				break;
+			case 'BEAM' :
+				url = '//beam.pro/' + ID;
+				break;
+		}
+			
+		if(url != ''){
+			var newwin = window.open();   //此行一定要如此書寫,否則失效
+			newwin.location= url;   // url是 cgi 程式或者超連結 html
+		}
+	}
+
+	//取得實況畫面or聊天室url
+	function getCHUrl (cName, wType, forceUseCName){
+		var url = '';
+		SetChannelData(cName, forceUseCName);
+		
+		if(wType == 'chat'){
+			switch(channel){
+				case 'HIT' :
+					//url = '//www.hitbox.tv/embedchat/' + ID;
+					url = '//www.hitbox.tv/embedchat/' + ID + '?autoconnect=true';
+					break;
+				case 'JTV' :
+					url = '//zh-tw.justin.tv/chat/embed?channel=' + ID + '&popout_chat=true';
+					break;
+				case 'TTV' :
+					url = '//www.twitch.tv/' + ID + '/chat';
+					break;
+				case 'UST' :
+					url = '//www.ustream.tv/socialstream/' + ID + '?siteMode=1';
+					break;
+				case 'CC' :
+					url = '//www.connectcast.tv/' + ID + '/chat';
+					break;
+				case 'VL' :
+					url = '//vaughnlive.tv/popout/chat/' + ID;
+					break;
+				case 'BRK' :
+					url = '//breakers.tv/popout/chat/' + ID;
+					break;
+				case 'STUP' :
+					url = '//streamup.com/' + ID + '/embeds/chatonly';
+					//alert('Streamup無法使用此功能');
+					break;
+				case 'YT' :
+					//url = '//www.youtube.com/live_chat?v=' + ID;
+				    url = '//www.youtube.com/live_chat?is_popout=1&v=' + ID + '&embed_domain=darkertb.github.io';
+					break;
+				case 'AFTV' :
+					alert('AfreeTV無法使用此功能');
+					break;
+				case 'LH' :
+					url = '//livehouse.in/embed/channel/' + ID + '/chatroom';
+					break;
+			    case 'BEAM':
+			        url = '//beam.pro/embed/chat/' + ID;
+                    break;
+			}
+		}
+		else if(wType == 'video'){
+			switch(channel){
+				case 'HIT' :
+					url = '//www.hitbox.tv/embed/' + ID + '?popout=true&autoplay=true';
+					break;
+				case 'JTV' :
+					url = '//www.justin.tv/widgets/live_embed_player.swf?channel=' + ID;
+					break;
+				case 'TTV' :
+					url = '//player.twitch.tv/?channel=' + ID;
+					break;
+				case 'UST' :
+					url = '//www.ustream.tv/embed/' + ID;
+					break;
+				case 'CC' :					
+					url = '//www.connectcast.tv/embed/' + ID;
+					break;
+				case 'VL' :
+					//url = '//vaughnlive.tv/embed/video/' + ID + '?viewers=true';
+					url = '//vaughnlive.tv/embed/video/' + ID;
+					break;
+				case 'BRK' :
+					url = '//breakers.tv/embed/video/' + ID;
+					break;
+				case 'STUP' :
+					url = '//streamup.com/' + ID + '/embeds/video';
+					//url = '//streamup.com/rooms/' + ID + 's-Channel/plugins/video/show?startMuted=false&autoplayAudio=true';;
+					break;
+				case 'YT' :
+					url = '//www.youtube.com/embed/' + ID + '?autoplay=true';
+					break;
+				case 'AFTV' :
+					url = '//www.afreecatv.com.tw/' + ID + '/popout';
+					break;
+				case 'LH' :
+					url = '//livehouse.in/embed/channel/' + ID + '/video';
+					break;
+                case 'BEAM':
+                    url = '//beam.pro/embed/player/' + ID;
+                    break;
+			}
+		}
+		
+		return url;
+	}
+
+	//從自訂頻道功能取得資訊
+	function GetCustomChannelInfo (getType) {
+		if(getType == 'ID')
+			return document.getElementById('cn00').value;
+		else if(getType == 'channel')
+			return document.getElementById('cts').value;
+		
+	}
+
+	//從列表取得資訊
+	function GetChannelInfo (keyName, channelStr) {
+		strArray = channelStr.split("-");
+		var result = '';		
+		
+		if(keyName == "name") {
+			//如果ary不只兩個代表頻道名含有 - 字符，需要另外做拼裝
+			if (strArray.length > 2) {
+				for(var i = 0; i < strArray.length - 1; i++) 
+					result += (i != 0 ?'-' : '') + strArray[i];
+			} 
+			else {
+				result = strArray[0];
+			}
+		}
+		else if(keyName == "type") {
+			result = strArray[strArray.length - 1];
+		}
+		
+		return result;
+	}
+
+	function GetFullName (key) {			
+		for (var i = 0; i < platformList.length; i++) {
+			
+			if (platformList[i]['key'].indexOf(key) > -1) {
+				return platformList[i]['name'];
+			}
+		}	
+		
+		return 'unknown';
+	}
+	
+	function GetBrowserName () {
+		var browserName = '';
+		var nAgt = navigator.userAgent;
+	
+	    // In Opera 15+, the true version is after "OPR/" 
+		if ((verOffset=nAgt.indexOf("OPR/"))!=-1) {
+		 browserName = "Opera";
+		}
+		// In older Opera, the true version is after "Opera" or after "Version"
+		else if ((verOffset=nAgt.indexOf("Opera"))!=-1) {
+		 browserName = "Opera";
+		}
+		// In MSIE, the true version is after "MSIE" in userAgent
+		else if ((verOffset=nAgt.indexOf("MSIE"))!=-1) {
+		 browserName = "Microsoft Internet Explorer";
+		}
+		// In Chrome, the true version is after "Chrome" 
+		else if ((verOffset=nAgt.indexOf("Chrome"))!=-1) {
+		 browserName = "Chrome";
+		}
+		// In Safari, the true version is after "Safari" or after "Version" 
+		else if ((verOffset=nAgt.indexOf("Safari"))!=-1) {
+		 browserName = "Safari";
+		}
+		// In Firefox, the true version is after "Firefox" 
+		else if ((verOffset=nAgt.indexOf("Firefox"))!=-1) {
+		 browserName = "Firefox";
+		}
+		
+		return browserName;
+	}
+
+	function getWindowArrayIndex (array, key){
+		for(i=0;i<array.length;i++){
+			if(array[i]['fid'] == key){
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+	function IsMobile () {
+		return  (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+	}
+
+	function SetCookie(name,value)//两个参数，一个是cookie的名子，一个是值
+	{
+		var Days = 30; //此 cookie 将被保存 30 天
+		var exp  = new Date();    //new Date("December 31, 9998");
+		exp.setTime(exp.getTime() + Days*24*60*60*1000);
+		document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString(); 
+	}
+
+	function getCookie(name)//取cookies函数        
+	{
+		var arr = document.cookie.match(new RegExp("(^| )"+name+"=([^;]*)(;|$)"));
+		 if(arr != null) return unescape(arr[2]); return null;
+
+	}
+
+	function getRequests() {
+		var s1Str = location.search.substring(1, location.search.length);
+		if (s1Str == '') return null;
+		
+		var s1 = s1Str.split('&'),
+			r = {}, s2, i;
+		for (i = 0; i < s1.length; i += 1) {
+			s2 = s1[i].split('=');
+			r[decodeURIComponent(s2[0]).toLowerCase()] = decodeURIComponent(s2[1]);
+		}
+		return r;
+	};
+
+	function messageFormat (msg) {
+		msg = msg.replace(/\|/g, "\n");
+		return msg;
+	}
+
+	function arrayRemove (array, value, useIndex) {
+		if(useIndex)
+			array.splice(parseInt(value), 1);
+		else{
+			for(i=0;i<array.length;i++){
+				if(array[i] == value)
+					array.splice(i, 1);
+			}
+		}
+	}
+	//js-end
+</script>

@@ -1,0 +1,79 @@
+$fontSize: 9pt;
+$fontColor: white;
+
+$buttonFontColor: black;
+$buttonColorLight: #E4AFEA;
+$buttonBorderWidth: 1px;
+$buttonWidthL: 30px;
+$buttonWidthM: 20px;
+$buttonWidthS: 15px;
+$buttonBorderStyle: solid;
+$buttonDisplay: inline-block;
+
+
+body {
+    color: $fontColor;    
+    font-family: Calibri, Arial;
+    margin: 0px;
+    background-color: #2a2a2a;
+}
+
+td, select, input, span.btn {
+    font-size: $fontSize;
+}    
+
+input.stream-name {
+    width: 100px;
+}
+
+select.stream-type {
+    width: 120px;
+}
+
+select.stream {
+    width: 200px;
+}
+
+select.sl {
+    width: 60px;
+}
+
+div.menu {
+    z-index:2147483648;
+    overflow:hidden;
+    max-width:973px;
+    max-height:32px;
+    left:16px;
+    top:-18px;
+    background-color:#7859B1;
+}
+
+span.btn {
+    color: $buttonFontColor;
+    border-width: $buttonBorderWidth;
+    border-style: $buttonBorderStyle;
+    display: $buttonDisplay;
+    
+    &.small{
+        width: $buttonWidthS;
+    }
+    &.medium{
+        width: $buttonWidthM;
+    }
+    &.large{
+        width: $buttonWidthL;
+    }
+    &.light{
+        background-color: $buttonColorLight;
+    }
+    &.dark{
+        background-color: darken($buttonColorLight, 15%);
+    }
+}
+
+
+//---------------------------
+
+.demo {
+    position: absolute;
+}
