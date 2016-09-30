@@ -1,5 +1,4 @@
-function PlatformList() {
-	this.list = [
+var platformList = [
 			{'key': 'AFTV', 'name': 'AfreecaTV', 'sUrl': 'http://afreecatv.com.tw/{ID}', 'vUrl': 'http://www.afreecatv.com.tw/{ID}/popout', 'cUrl': 'http://www.afreecatv.com.tw/live_chat.php?id={ID}'},
 			{'key': 'BEAM', 'name': 'Beam', 'sUrl': 'https://beam.pro/{ID}', 'vUrl': 'https://beam.pro/embed/player/{ID}', 'cUrl': 'https://beam.pro/embed/chat/{ID}'},
 			{'key': 'BRK', 'name': 'Breakers', 'sUrl': 'https://breakers.tv/{ID}', 'vUrl': 'https://breakers.tv/embed/video/{ID}', 'cUrl': 'https://breakers.tv/popout/chat/{ID}'},
@@ -12,25 +11,3 @@ function PlatformList() {
 			{'key': 'VL', 'name': 'VaughnLive', 'sUrl': 'https://vaughnlive.tv/{ID}', 'vUrl': 'https://vaughnlive.tv/embed/video/{ID}', 'cUrl': 'https://vaughnlive.tv/popout/chat/{ID}'},
 			{'key': 'YT', 'name': 'Youtube', 'sUrl': 'https:////www.youtube.com/watch?v={ID}', 'vUrl': 'https://www.youtube.com/embed/{ID}?autoplay=true', 'cUrl': 'https://www.youtube.com/live_chat?is_popout=1&v={ID}&embed_domain=darkertb.github.io'},
 		];	
-		
-	this.get = function(key) {
-		for (var i = 0; i < this.list.length; i++) {			
-			if (this.list[i]['key'] == key.toUpperCase()) {
-				return this.list[i];
-			}
-		}			
-		return null;
-	};
-	
-	this.name = function(key) {
-		
-		for (var i = 0; i < this.list.length; i++) {			
-			if (this.list[i]['key'] == key.toUpperCase()) {
-				return this.list[i].name;
-			}
-		}			
-		return 'unknown';
-	}
-}
-
-var platformList = new PlatformList();
