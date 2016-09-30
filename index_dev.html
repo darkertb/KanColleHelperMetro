@@ -4,7 +4,7 @@
         <script language="javascript"src="libs/lz-string/lz-string.js"></script>
         <script type="text/javascript"src="libs/jquery1.3.2/jquery.min.js"></script>
         <script type="text/javascript"src="libs/jqueryui1.7.2/jquery-ui.min.js"></script>
-		<script type="text/javascript" src="libs/crypto-js/aes.js"></script>
+		<script type="text/javascript" src="libs/lzbase62/lzbase62.min.js"></script>
         <link rel="stylesheet"type="text/css"href="libs/jqueryui1.7.2/themes/base/jquery-ui.css"/>
 
         <link href="icon.ico" rel="SHORTCUT ICON">
@@ -551,22 +551,15 @@
 	}
 	
 	function ExportPage () {
-		var key = CryptoJS.enc.Base64.parse("#base64Key#");
-		var iv  = CryptoJS.enc.Base64.parse("#base64IV#");
-		
-		var code = CryptoJS.AES.encrypt(JSON.stringify(wList), key, {iv: iv});
-		
-		var text = location.protocol + '//' + location.host + location.pathname + '?e=' + code;
+		var compressed = lzbase62.compress(JSON.stringify(wList))		
+		var text = location.protocol + '//' + location.host + location.pathname + '?e=' + compressed;
 		
 		CopyText(text);
 	}
 	
 	function ImportPage (encrypted) {
-		var key = CryptoJS.enc.Base64.parse("#base64Key#");
-		var iv  = CryptoJS.enc.Base64.parse("#base64IV#");
-
-		var decrypted = CryptoJS.AES.decrypt(encrypted, key, {iv: iv});
-		return JSON.parse(decrypted.toString(CryptoJS.enc.Utf8));
+		var decompressed = lzbase62.decompress(encrypted);
+		return JSON.parse(decompressed);
 	}
 	
 	function NewWindowByArray (window) {	
