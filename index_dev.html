@@ -4,6 +4,7 @@
         <script language="javascript"src="libs/lz-string/lz-string.js"></script>
         <script type="text/javascript"src="libs/jquery1.3.2/jquery.min.js"></script>
         <script type="text/javascript"src="libs/jqueryui1.7.2/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="libs/crypto-js/aes.js"></script>
         <link rel="stylesheet"type="text/css"href="libs/jqueryui1.7.2/themes/base/jquery-ui.css"/>
 
         <link href="icon.ico" rel="SHORTCUT ICON">
@@ -21,6 +22,8 @@
     </HEAD>
 
     <BODY> <!-- background="http://i.imgur.com/gsWCoxE.jpg" --> 
+		<input class="win-code" value="">
+	
 	    <span class="menu-enabler btn light small" title="選單開關" onclick="menuOC();" onmouseover='changeCursor(0);' onmouseout='changeCursor(1);'>&nbsp;M</span>
 	    <span class="mobile-chat-enabler btn dark" title="開關聊天室" onclick="chatOC();">開關聊天室</span>
 	    <div class='menu' id='menu'>
@@ -148,7 +151,7 @@
 						    <!--<span title="填選意見書" onclick="var newwin = window.open();newwin.location='http://goo.gl/forms/KxHmscFBvq';" style="background-color:#C388CA; border-width:1px; border-style:solid; font-size:9pt; width:15px; display:inline-block;" onmouseover='changeCursor(0);' onmouseout='changeCursor(1);'>R</span>-->
 					    </td>
 					    <td>
-						    <font>拖拉視窗右下角可以縮放</font>
+							<span class="btn dark medium" title="複製現在頁面編碼" onclick="ExportPage();"onmouseover='changeCursor(0);' onmouseout='changeCursor(1);'>&nbsp;EX</span>
 					    </td>
 				    </tr>
 			    </table>
@@ -169,7 +172,7 @@
 	//http://zh-tw.justin.tv/widgets/live_embed_player.swf?channel=gannipizza&auto_play=true
 
 	//版本號
-	version = '2.2.2';
+	version = '2.2.3';
 	//最後更新日
 	lastUpdate = '2016/08/10';
 	//當發現新版本時的預設title
@@ -294,7 +297,9 @@
 	init();
     		
 	//初始化API
-	function init () {		
+	function init () {	
+		$('.win-code').hide();
+	
 		if (IsMobile()) {
 			menuOC();		
 			$('.menu-enabler').hide();
@@ -310,7 +315,17 @@
 		//如果沒有get參數, 不處理
 		if(getPara == null)
 			return;
-		
+			
+		var exportCode = getPara['e'];
+		if (exportCode != null) {
+			var windowList = ImportPage(exportCode);
+			
+			for(var i = 0; i < windowList.length; i++) {
+				NewWindowByArray(windowList[i]);
+			}
+			return;
+		}
+			
 		var videoInfo = getPara['video'];
 		if (videoInfo == null)
 			videoInfo = getPara['vid'];
@@ -534,6 +549,38 @@
 		if(cursor == '0')
 			document.body.style.cursor = 'pointer';
 	}
+	
+	function ExportPage () {
+		var key = CryptoJS.enc.Base64.parse("#base64Key#");
+		var iv  = CryptoJS.enc.Base64.parse("#base64IV#");
+		
+		var code = CryptoJS.AES.encrypt(JSON.stringify(wList), key, {iv: iv});
+		
+		var text = location.protocol + '//' + location.host + location.pathname + '?e=' + code;
+		
+		CopyText(text);
+	}
+	
+	function ImportPage (encrypted) {
+		var key = CryptoJS.enc.Base64.parse("#base64Key#");
+		var iv  = CryptoJS.enc.Base64.parse("#base64IV#");
+
+		var decrypted = CryptoJS.AES.decrypt(encrypted, key, {iv: iv});
+		return JSON.parse(decrypted.toString(CryptoJS.enc.Utf8));
+	}
+	
+	function NewWindowByArray (window) {	
+		ID = window['id'];
+		channel = window['channel'];
+		type = window['type'];
+		x = window['x'];
+		y = window['y'];
+		w = window['w'];
+		h = window['h'];
+		
+		url = getCHUrl(ID + '-' + channel, type, true);
+		newWindow(url, w, h, ID, channel, x, y, type);
+	}
 
 	//新增視窗
 	function newWindow (url, w, h, _id, _channel, leftPos, topPos, wType) {
@@ -756,56 +803,14 @@
 			return;
 		}
 		
-		var url = '';
-		
-		// testing
-		
+		var url = '';	
+		//從平台關鍵字尋找平台資訊		
 		var platformInfo = GetPlatformInfo(channel);
 		
 		if (platformInfo != null) {
 			url = platformInfo.sUrl;
 			url = url.replace('{ID}', ID);
 		}
-		
-		// =======
-		/*
-		switch(channel){
-			case 'HIT' :
-				url = '//www.hitbox.tv/' + ID;
-				break;
-			case 'JTV' :
-				url = '//www.justin.tv/' + ID;
-				break;
-			case 'TTV' :
-				url = '//www.twitch.tv/' + ID;
-				break;
-			case 'VL' :
-				url = '//vaughnlive.tv/' + ID;
-				break;
-			case 'BRK' :
-				url = '//vaughnlive.tv/' + ID;
-				break;
-			case 'UST' :
-				url = '//www.ustream.tv/channel/' + ID;
-				//alert('Ustream無法使用此功能');
-				break;
-			case 'YT' :
-				url = '//www.youtube.com/watch?v=' + ID;
-				break;
-			case 'STUP' :
-				url = '//streamup.com/' + ID;
-				break;
-			case 'CC' :
-				url = '//www.connectcast.tv/' + ID;
-				break;
-			case 'LH' :
-				url = '//livehouse.in/channel/' + ID;
-				break;
-			case 'BEAM' :
-				url = '//beam.pro/' + ID;
-				break;
-		}
-		*/
 			
 		if(url != ''){
 			var newwin = window.open();   //此行一定要如此書寫,否則失效
@@ -818,6 +823,7 @@
 		var url = '';
 		SetChannelData(cName, forceUseCName);
 		
+		//從平台關鍵字尋找平台資訊
 		var platformInfo = GetPlatformInfo(channel);
 		
 		if (platformInfo != null) {
@@ -828,94 +834,6 @@
 			}
 			url = url.replace('{ID}', ID);
 		}
-		
-		/*
-		if(wType == 'chat'){
-			switch(channel){
-				case 'HIT' :
-					//url = '//www.hitbox.tv/embedchat/' + ID;
-					url = '//www.hitbox.tv/embedchat/' + ID + '?autoconnect=true';
-					break;
-				case 'JTV' :
-					url = '//zh-tw.justin.tv/chat/embed?channel=' + ID + '&popout_chat=true';
-					break;
-				case 'TTV' :
-					url = '//www.twitch.tv/' + ID + '/chat';
-					break;
-				case 'UST' :
-					url = '//www.ustream.tv/socialstream/' + ID + '?siteMode=1';
-					break;
-				case 'CC' :
-					url = '//www.connectcast.tv/' + ID + '/chat';
-					break;
-				case 'VL' :
-					url = '//vaughnlive.tv/popout/chat/' + ID;
-					break;
-				case 'BRK' :
-					url = '//breakers.tv/popout/chat/' + ID;
-					break;
-				case 'STUP' :
-					url = '//streamup.com/' + ID + '/embeds/chatonly';
-					//alert('Streamup無法使用此功能');
-					break;
-				case 'YT' :
-					//url = '//www.youtube.com/live_chat?v=' + ID;
-				    url = '//www.youtube.com/live_chat?is_popout=1&v=' + ID + '&embed_domain=darkertb.github.io';
-					break;
-				case 'AFTV' :
-					alert('AfreeTV無法使用此功能');
-					break;
-				case 'LH' :
-					url = '//livehouse.in/embed/channel/' + ID + '/chatroom';
-					break;
-			    case 'BEAM':
-			        url = '//beam.pro/embed/chat/' + ID;
-                    break;
-			}
-		}
-		else if(wType == 'video'){
-			switch(channel){
-				case 'HIT' :
-					url = '//www.hitbox.tv/embed/' + ID + '?popout=true&autoplay=true';
-					break;
-				case 'JTV' :
-					url = '//www.justin.tv/widgets/live_embed_player.swf?channel=' + ID;
-					break;
-				case 'TTV' :
-					url = '//player.twitch.tv/?channel=' + ID;
-					break;
-				case 'UST' :
-					url = '//www.ustream.tv/embed/' + ID;
-					break;
-				case 'CC' :					
-					url = '//www.connectcast.tv/embed/' + ID;
-					break;
-				case 'VL' :
-					//url = '//vaughnlive.tv/embed/video/' + ID + '?viewers=true';
-					url = '//vaughnlive.tv/embed/video/' + ID;
-					break;
-				case 'BRK' :
-					url = '//breakers.tv/embed/video/' + ID;
-					break;
-				case 'STUP' :
-					url = '//streamup.com/' + ID + '/embeds/video';
-					//url = '//streamup.com/rooms/' + ID + 's-Channel/plugins/video/show?startMuted=false&autoplayAudio=true';;
-					break;
-				case 'YT' :
-					url = '//www.youtube.com/embed/' + ID + '?autoplay=true';
-					break;
-				case 'AFTV' :
-					url = '//www.afreecatv.com.tw/' + ID + '/popout';
-					break;
-				case 'LH' :
-					url = '//livehouse.in/embed/channel/' + ID + '/video';
-					break;
-                case 'BEAM':
-                    url = '//beam.pro/embed/player/' + ID;
-                    break;
-			}
-		}
-		*/
 		
 		return url;
 	}
@@ -1001,6 +919,17 @@
 			}
 		}
 		return -1;
+	}
+	
+	// ================ tools ==================
+	
+	function CopyText (text) {
+		$('.win-code').show();
+		var copyTextarea = document.querySelector('.win-code');
+		copyTextarea.value = text;
+		copyTextarea.select();
+		document.execCommand('copy');		
+		$('.win-code').hide();
 	}
 	
 	function IsMobile () {
