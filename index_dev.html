@@ -187,19 +187,10 @@
 	var topOffset = 0;
 	var chatHeightOffset = 30;
 			
-	for (var idx in platformList) {
-        $("#cts").append($("<option></option>").attr("value", platformList[idx].key).text(platformList[idx].name));
+	for (var idx in platformList.list) {
+		var platformInfo = platformList.list[idx];
+        $("#cts").append($("<option></option>").attr("value", platformInfo.key).text(platformInfo.name));
     }
-	
-	function GetPlatformInfo (key) {
-		for (var i = 0; i < platformList.length; i++) {			
-			if (platformList[i]['key'] == key.toUpperCase()) {
-				return platformList[i];
-			}
-		}			
-		return null;
-	}
-	// ==============
 
 	/*
 	releaseNotes = '新增:|\t-現在視窗存檔可以存五個了。||修改:|\t-壓縮cookie字串長度，以便儲存更多資料。';
@@ -279,7 +270,7 @@
 		cookies['wList'] = new Array();
 		
 	var wList = new Array();
-
+	
 	init();
     		
 	//初始化API
@@ -581,7 +572,7 @@
 		
 		topZ++;
 		
-		var fullWindowTitle = _id + '  - ' + GetFullName(_channel);
+		var fullWindowTitle = _id + '  - ' + platformList.name(_channel);
 		var template = new WTemplate();
 		template.init(frameIndex, topZ, w, h, leftPos, topPos, fullWindowTitle, url);
 		$("p").append(template.html);
@@ -741,9 +732,10 @@
 	}
 
 	function SetHTMLTitle (_id, _videoChannel, _chatChannel) {
-		var titleStr = _id + '  - ' + GetFullName(_videoChannel);
+		//var titleStr = _id + '  - ' + GetFullName(_videoChannel);
+		var titleStr = _id + '  - ' + platformList.name(_videoChannel);
 		if (_chatChannel != null)
-			titleStr += '  | ' + GetFullName(_chatChannel);
+			titleStr += '  | ' + platformList.name(_chatChannel);
 			
 		document.title = titleStr;
 	}
@@ -784,7 +776,7 @@
 		
 		var url = '';	
 		//從平台關鍵字尋找平台資訊		
-		var platformInfo = GetPlatformInfo(channel);
+		var platformInfo = platformList.get(channel);
 		
 		if (platformInfo != null) {
 			url = platformInfo.sUrl;
@@ -803,7 +795,7 @@
 		SetChannelData(cName, forceUseCName);
 		
 		//從平台關鍵字尋找平台資訊
-		var platformInfo = GetPlatformInfo(channel);
+		var platformInfo = platformList.get(channel);
 		
 		if (platformInfo != null) {
 			url = (wType == 'chat') ? platformInfo.cUrl : platformInfo.vUrl;
@@ -846,17 +838,6 @@
 		}
 		
 		return result;
-	}
-
-	function GetFullName (key) {			
-		for (var i = 0; i < platformList.length; i++) {
-			
-			if (platformList[i]['key'].indexOf(key) > -1) {
-				return platformList[i]['name'];
-			}
-		}	
-		
-		return 'unknown';
 	}
 	
 	function GetBrowserName () {
