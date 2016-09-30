@@ -68,29 +68,17 @@
 
 </html>
 
+<script type="text/javascript" src="js_dev/platform_list.js"></script>
+
 <script>
     //js-start
 
     var baseUrl = "https://darkertb.github.io/MyTV/";
 
-    //====================.select-pla init====================
-    var streamPlaList = {
-        "TTV": "TwitchTV",
-        "VL": "VaughnLive",
-        "BRK": "breakers",
-        "HIT": "Hitbox",
-        "STUP": "Streamup",
-        "LH": "LiveHouse",
-        "UST": "Ustream",
-        "CC": "ConnectCast",
-        "BEAM": "Beam",
-        "YT": "Youtube"
-    };
-
-    for (var skey in streamPlaList) {
-        $(".select-pla").append($("<option></option>").attr("value", skey).text(streamPlaList[skey]));
+	//產生平台列表
+    for (var idx in platformList) {
+        $(".select-pla").append($("<option></option>").attr("value", platformList[idx].key).text(platformList[idx].name));
     }
-    //========================================================
 
     //====================.stream-list init====================
     var streamList = {
