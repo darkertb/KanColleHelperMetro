@@ -35,7 +35,7 @@ function onClickHandler(info, tab) {
 	else
 		sourceUrl = (info.selectionText) ? info.selectionText : info.linkUrl;
 			
-	var url = 'https://darkertb.github.io/MyTV/?v=';
+	var url = 'http://darkertb.github.io/MyTV/?v=';
 	
 	var streamInfo = [];
 	
