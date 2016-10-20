@@ -1,0 +1,84 @@
+
+<script type="text/javascript"src="libs/jquery1.3.2/jquery.min.js"></script>
+
+<button id="up" type="button" class="btn btn-default">up</button>
+<br />
+<button id="left" type="button" class="btn btn-default">left</button>
+<button id="right" type="button" class="btn btn-default">right</button>
+<br />
+<button id="down" type="button" class="btn btn-default">down</button>
+
+<script>
+	
+	var posX = 0;
+	var posY = 0;
+	
+	var ground = [];
+	for (var i = 0; i < 10; i++) {
+		ground[i] = [];
+		for (var y = 0; y < 10; y++) {
+			ground[i][y] = 0;
+		}
+	}
+	ground[0][0] = 1;
+	
+	ground[2][5] = 2;
+	ground[2][8] = 2;
+	ground[2][7] = 2;
+	
+	print();
+	
+	$("#up").click(function(){
+		Move(0, -1);
+		print();
+	});
+	$("#down").click(function(){
+		Move(0, 1);
+		print();
+	});
+	$("#left").click(function(){
+		Move(-1, 0);
+		print();
+	});
+	$("#right").click(function(){
+		Move(1, 0);
+		print();
+	});
+	
+	function Move (moveX, moveY) {
+		var newX = posX + moveX;
+		var newY = posY + moveY;
+	
+		if (newX > 9 || newX < 0)
+			return;
+		if (newY > 9 || newY < 0)
+			return;
+	
+		if (ground[newX][newY] != 0)
+			return;
+			
+		ground[posX][posY] = 0;
+		ground[newX][newY] = 1;
+		
+		posX = newX;
+		posY = newY;
+	}
+	
+	function print () {
+		console.log(posX + ',' + posY);
+		/*
+		document.write("<table>");
+		for (var i=0; i < 10; i++){
+			document.write("<tr>");
+			
+			for(var y=0 ;y < 10; y++) {
+				document.write("<th>" + ground[y][i] + "</th>");
+			}
+			
+			document.write("</tr>");
+		}
+		document.write("</table>");
+		*/
+	}
+	
+</script>
