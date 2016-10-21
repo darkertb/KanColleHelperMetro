@@ -7,6 +7,8 @@
 <button id="right" type="button" class="btn btn-default">right</button>
 <br />
 <button id="down" type="button" class="btn btn-default">down</button>
+<br />
+<button id="bomb" type="button" class="btn btn-default">bomb</button>
 
 <script>
 	
@@ -44,6 +46,15 @@
 		Move(1, 0);
 		print();
 	});
+	$("#bomb").click(function(){
+		SetBomb();
+	});
+	
+	// ==========123===========
+	
+	function SetBomb () {
+		ground[posX][posY] = 3;
+	}
 	
 	function Move (moveX, moveY) {
 		var newX = posX + moveX;
@@ -57,11 +68,15 @@
 		if (ground[newX][newY] != 0)
 			return;
 			
-		ground[posX][posY] = 0;
+		if (ground[posX][posY] == 1) {
+			ground[posX][posY] = 0;
+		}
 		ground[newX][newY] = 1;
 		
 		posX = newX;
 		posY = newY;
+		
+		posX = (poxY + poxX) + (6 * newX * newY);
 	}
 	
 	function print () {
