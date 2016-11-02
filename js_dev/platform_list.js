@@ -8,6 +8,7 @@ var platformList = [
 			{'key': 'STUP', 'name': 'Streamup', 'sUrl': 'https://streamup.com/{ID}', 'vUrl': 'https://streamup.com/{ID}/embeds/video', 'cUrl': 'https://streamup.com/{ID}/embeds/chatonly'}, 
 			{'key': 'TTV', 'name': 'TwitchTV', 'sUrl': 'https://www.twitch.tv/{ID}', 'vUrl': 'https://player.twitch.tv/?channel={ID}', 'cUrl': 'https://www.twitch.tv/{ID}/chat'},
 			{'key': 'UST', 'name': 'Ustream', 'sUrl': 'http://www.ustream.tv/channel/{ID}', 'vUrl': 'http://www.ustream.tv/embed/{ID}', 'cUrl': 'http://www.ustream.tv/socialstream/{ID}?siteMode=1'},
-			{'key': 'VL', 'name': 'VaughnLive', 'sUrl': 'https://vaughnlive.tv/{ID}', 'vUrl': 'https://vaughnlive.tv/embed/video/{ID}', 'cUrl': 'https://vaughnlive.tv/popout/chat/{ID}'},
+			//{'key': 'VL', 'name': 'VaughnLive', 'sUrl': 'https://vaughnlive.tv/{ID}', 'vUrl': 'https://vaughnlive.tv/embed/video/{ID}', 'cUrl': 'https://vaughnlive.tv/popout/chat/{ID}'},
+			{'key': 'VL', 'name': 'VaughnLive', 'sUrl': 'https://vaughnlive.tv/{ID}', 'vUrl': 'http://live.sk-knower.com/vlurl.php?live={ID}', 'cUrl': 'https://vaughnlive.tv/popout/chat/{ID}'},
 			{'key': 'YT', 'name': 'Youtube', 'sUrl': 'https:////www.youtube.com/watch?v={ID}', 'vUrl': 'https://www.youtube.com/embed/{ID}?autoplay=true', 'cUrl': 'https://www.youtube.com/live_chat?is_popout=1&v={ID}&embed_domain=darkertb.github.io'},
 		];	
