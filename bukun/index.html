@@ -99,12 +99,12 @@
 	
 	var oldWeekday = 0;
 	
-	SetFocusWeekday();
-	SetRecord();
+	if(SetFocusWeekday())
+		SetRecord();
 	
 	window.addEventListener("focus", function(event) { 
-			SetFocusWeekday();
-			SetRecord();
+			if(SetFocusWeekday())
+				SetRecord();
 		}, false);
 			
 	$("#bukun").change(function () {
@@ -146,7 +146,7 @@
 		var newWeekday = GetWeekday();
 		
 		if (oldWeekday == newWeekday)
-			return;
+			return false;
 	
 		for (var i = 1; i < 8; i++) {
 			$('.' + i + '-d').css("background-color", "#fff");
@@ -155,6 +155,8 @@
 		$('.' + newWeekday + '-d').css("background-color", "#BCF5A9");
 		
 		oldWeekday = newWeekday;
+		
+		return true;
 	}
 	
 	/*
