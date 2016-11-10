@@ -139,6 +139,7 @@
 		
 	function GetWeekday () {
 		var d = new Date();
+		d.setHours(d.getHours() - 4);
 		return d.getDay();
 	}
 	
