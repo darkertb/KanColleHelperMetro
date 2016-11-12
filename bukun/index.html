@@ -83,7 +83,7 @@
 					<td class='srb'>429</td>
 					<td class='rb'>429</td>
 				</tr>
-				<tr class="7-d">
+				<tr class="0-d">
 					<td>日</td>
 					<td class='wb'>2000</td>
 					<td class='srb'>500</td>
@@ -97,7 +97,7 @@
 <script>
 	//js-start		
 	
-	var oldWeekday = 0;
+	var oldWeekday = -1;
 	
 	if(SetFocusWeekday())
 		SetRecord();
@@ -150,7 +150,7 @@
 		if (oldWeekday == newWeekday)
 			return false;
 	
-		for (var i = 1; i < 8; i++) {
+		for (var i = 0; i < 7; i++) {
 			$('.' + i + '-d').css("background-color", "#fff");
 		}		
 		
