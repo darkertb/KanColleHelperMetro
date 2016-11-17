@@ -1,0 +1,182 @@
+<HTML>
+    <HEAD>
+		<link rel="stylesheet" href = "../libs/bootstrap/css/bootstrap.min.css">
+        <script type="text/javascript"src="../libs/jquery1.3.2/jquery.min.js"></script>
+
+        <link href="../icon.ico" rel="SHORTCUT ICON">
+
+        <title>Bukun</title>
+    </HEAD>
+
+    <BODY>
+		<form class="col-sm-10 form-horizontal" role="form">
+            <hr>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">週武勲</label>
+				<div class="col-sm-10">
+					<input id="bukun" type="text" class="form-control"  placeholder="武勲" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">R武勲</label>
+				<div class="col-sm-10">
+					<input id="bukunR" type="text" class="form-control"  placeholder="武勲" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">SR武勲</label>
+				<div class="col-sm-10">
+					<input id="bukunSR" type="text" class="form-control"  placeholder="武勲" />
+				</div>
+			</div>
+
+			<p class="result text-center"></p>
+
+            <hr>	
+			
+		</form>
+		
+		<table class="table">
+			<thead>
+				<tr>
+					<th>週</th>
+					<th>標準武勲</th>
+					<th>標準SR武勲</th>
+					<th>標準R武勲</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="1-d">
+					<td>一</td>
+					<td class='wb'>286</td>
+					<td class='srb'>72</td>
+					<td class='rb'>72</td>
+				</tr>
+				<tr class="2-d">
+					<td>二</td>
+					<td class='wb'>572</td>
+					<td class='srb'>143</td>
+					<td class='rb'>143</td>
+				</tr>
+				<tr class="3-d">
+					<td>三</td>
+					<td class='wb'>858</td>
+					<td class='srb'>215</td>
+					<td class='rb'>215</td>
+				</tr>
+				<tr class="4-d">
+					<td>四</td>
+					<td class='wb'>1143</td>
+					<td class='srb'>286</td>
+					<td class='rb'>286</td>
+				</tr>
+				<tr class="5-d">
+					<td>五</td>
+					<td class='wb'>1429</td>
+					<td class='srb'>358</td>
+					<td class='rb'>358</td>
+				</tr>
+				<tr class="6-d">
+					<td>六</td>
+					<td class='wb'>1715</td>
+					<td class='srb'>429</td>
+					<td class='rb'>429</td>
+				</tr>
+				<tr class="0-d">
+					<td>日</td>
+					<td class='wb'>2000</td>
+					<td class='srb'>500</td>
+					<td class='rb'>500</td>
+				</tr>
+			</tbody>
+		</table>
+    </BODY>
+</HTML>
+
+<script>
+	//js-start		
+	
+	var oldWeekday = -1;
+	
+	if(SetFocusWeekday())
+		SetRecord();
+	
+	window.addEventListener("focus", function(event) { 
+			if(SetFocusWeekday())
+				SetRecord();
+		}, false);
+			
+	$("#bukun").change(function () {
+		SetRecord();
+	});
+	$("#bukunR").change(function () {
+		SetRecord();
+	});
+	$("#bukunSR").change(function () {
+		SetRecord();
+	});
+	
+	function SetRecord () {
+		var bukun = $("#bukun").val();
+		var bukunR = $("#bukunR").val();
+		var bukunSR = $("#bukunSR").val();
+		
+		var weekBukun = $('.' + oldWeekday + '-d').children('td.wb').text();
+		var weekBukunR = $('.' + oldWeekday + '-d').children('td.rb').text();
+		var weekBukunSR = $('.' + oldWeekday + '-d').children('td.srb').text();
+		
+		var diffBukun = Clamp(weekBukun - bukun);
+		var diffBukunR = Clamp(weekBukunR - bukunR);
+		var diffBukunSR = Clamp(weekBukunSR - bukunSR);
+		
+		$('p.result').text('本日差額 - 週武勲: ' + diffBukun + ' R武勲: ' + diffBukunR + ' SR武勲: ' + diffBukunSR);
+	}
+	
+	function Clamp (val) {
+		return val;
+		//return val >= 0 ? val : 0;
+	}
+		
+	function GetWeekday () {
+		var d = new Date();
+		d.setHours(d.getHours() - 4);
+		return d.getDay();
+	}
+	
+	function SetFocusWeekday () {
+		var newWeekday = GetWeekday();
+		
+		if (oldWeekday == newWeekday)
+			return false;
+	
+		for (var i = 0; i < 7; i++) {
+			$('.' + i + '-d').css("background-color", "#fff");
+		}		
+		
+		$('.' + newWeekday + '-d').css("background-color", "#BCF5A9");
+		
+		oldWeekday = newWeekday;
+		
+		return true;
+	}
+	
+	/*
+	$(document).ready(function() { $(window).one("focus", SomeFocusMetdod); } );
+
+	var SomeFocusMetdod = function()
+	{
+		$(window).one("blur", SomeBlurMetdod);
+		console.log('focus');
+	};
+	
+	var SomeBlurMetdod = function() 
+	{ 
+		// do stuff
+		$(window).one("focus", SomeFocusMetdod); 
+		console.log('lose');
+	};
+	*/
+
+	//js-end
+</script>

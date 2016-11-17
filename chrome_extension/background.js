@@ -13,6 +13,7 @@ chrome.runtime.onInstalled.addListener(function() {
 	chrome.contextMenus.create({"title": 'Open with DarkerTV', "contexts":[context, 'selection'], "id": 'open'});
 	chrome.contextMenus.create({"title": 'Open with DarkerTV by URL', "contexts":['page'], "id": 'openURL'});
 	chrome.contextMenus.create({"title": '(́◕◞౪◟◕‵)', "contexts":['page'], "id": 'fkFace'});
+	chrome.contextMenus.create({"title": 'GBF', "contexts":['page'], "id": 'gbf'});
 });
 
 chrome.browserAction.onClicked.addListener(function(tab) {
@@ -23,6 +24,11 @@ chrome.contextMenus.onClicked.addListener(onClickHandler);
 
 // The onClicked callback function.
 function onClickHandler(info, tab) {
+	if (info.menuItemId == 'gbf'){
+		window.open('http://game.granbluefantasy.jp/#mypage', 'GBFByDTB', config='height=920,width=600');
+		return;
+	}
+
 	if (info.menuItemId == 'fkFace') {
 		CopyText('(́◕◞౪◟◕‵)');
 		return;
@@ -85,6 +91,7 @@ function GetChannelInfo () {
 		{'key': 'connectcast', 'url': 'www.connectcast.tv/', 'channel': 'CC'},
 		{'key': 'livehouse', 'url': 'livehouse.in/channel/', 'channel': 'LH'},
 		{'key': 'beam', 'url': 'beam.pro/', 'channel': 'BEAM'},
+		{'key': 'afreecatv', 'url': 'afreecatv.com.tw/', 'channel': 'AFTV'},
 	];
 	
 	return info;
