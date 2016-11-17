@@ -68,9 +68,9 @@
 		if (ground[newX][newY] != 0)
 			return;
 			
-		if (ground[posX][posY] == 1) {
+		if (ground[posX][posY] == 1)
 			ground[posX][posY] = 0;
-		}
+		
 		ground[newX][newY] = 1;
 		
 		posX = newX;
@@ -81,6 +81,7 @@
 	
 	function print () {
 		console.log(posX + ',' + posY);
+		console.log(string.format);
 		/*
 		document.write("<table>");
 		for (var i=0; i < 10; i++){
