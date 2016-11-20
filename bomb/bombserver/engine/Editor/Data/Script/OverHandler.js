@@ -30,7 +30,7 @@ OverHandler.prototype.Start = function()
 	if (player2 == winner)
 		p = 2;
 		
-	this.getObjectByName('win' + (winner == 1 ? 2 : 1)).root.setVisible(false);
+	this.getObjectByName('win' + (p == 1 ? 2 : 1)).root.setVisible(false);
 };
 
 //-----------------------------------------------------------------------------
