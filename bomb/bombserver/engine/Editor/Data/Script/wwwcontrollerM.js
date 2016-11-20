@@ -280,13 +280,14 @@ wwwcontrollerM.prototype.Awake = function()
 			SC2State[i][y] = 15;
 		}
 	}	
-	
+	/*
 	for (var i = 0; i < 10; i++) {
 		SC1State[i][0] = 0;
 		SC2State[i][0] = 0;
 		SC1State[9][i] = 0;
 		SC2State[9][i] = 0;
 	}
+	*/
 		
 	playerPos[1] = {x: 0, y: 0};
 	playerPos[2] = {x: 9, y: 9};
