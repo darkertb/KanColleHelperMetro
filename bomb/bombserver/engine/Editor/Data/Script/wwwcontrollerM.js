@@ -87,6 +87,16 @@ function OnMsgReceived (data) {
 	}
 	
 	if (nowScene.indexOf('Game0') >= 0) {
+		if (msg.type == 'msg') {
+			var p = 1;
+			if (player2 == msg.player) {
+				p = 2;
+			}
+			
+			nowSCMgr.pMsg[p].msg = msg.msg;
+			nowSCMgr.pMsg[p].time = 4;
+		}
+	
 		// 遊戲結束
 		if (msg.type == 'gameOver') {
 			winner = msg.winner;

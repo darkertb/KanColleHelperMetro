@@ -38,6 +38,14 @@ function GameMgr()
 	}
 	
 	this.fireTimer = 0;
+	
+	this.pMsg = [];
+	this.pMsg[1] = {};
+	this.pMsg[2] = {};
+	this.pMsg[1].msg = 0;
+	this.pMsg[2].msg = 0;
+	this.pMsg[1].time = 0;
+	this.pMsg[2].time = 0;
 };
 
 //---------------------------------------------------------------------------------------------
@@ -70,18 +78,43 @@ GameMgr.prototype.Terminate = function()
 GameMgr.prototype.Start = function()
 {
 	nowSCMgr = this;
+	
+	for(var i = 1; i < 6; i++) {
+		for(var y = 1; y < 3; y++){
+			this.getObjectByName('p' + y + '_txt_0' + i).root.setVisible(false);
+		}
+	}
 };
 
 //-----------------------------------------------------------------------------
 GameMgr.prototype.Update = function(deltaTime)
 {
 	for(var i = 1; i < 3; i++){
+		if (this.pMsg[i].time > 0 && this.pMsg[i].time != 999)
+			this.pMsg[i].time -= 0.01;
+	
+		if (this.pMsg[i].msg != 0) {
+			for(var y = 1; y < 6; y++) {
+					this.getObjectByName('p' + i + '_txt_0' + y).root.setVisible(false);
+			}
+		
+			this.getObjectByName('p' + i + '_txt_0' + this.pMsg[i].msg).root.setVisible(true);
+			this.pMsg[i].msg = 0;
+		}
+		if (this.pMsg[i].time <= 0 && this.pMsg[i].time != 999) {
+			for(var y = 1; y < 6; y++) {
+				this.getObjectByName('p' + i + '_txt_0' + y).root.setVisible(false);
+			}
+			this.pMsg[i].time = 999;
+		}
+	
 		for(var y = 2; y < 9; y++) {
 			if (this.pSkill[i][y] > 0)
 				this.pSkill[i][y] -= 0.01;
 		}
 	
 		if (this.pSkill[i][1] > 0 && playerHp[i] < 3) {
+			this.pSkill[i][1] = 0;
 			playerHp[i]++;
 			
 			var req = {};
