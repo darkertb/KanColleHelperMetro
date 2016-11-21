@@ -30,6 +30,7 @@ var playerPos = [];
 var playerCount = 0;
 
 var winner = '';
+var pScore;
 
 var SC1State = [];
 var SC2State = [];
@@ -62,7 +63,7 @@ function GetRealPosition (x, y, cubeType) {
 
 function OnMsgReceived (data) {
 	var msg = JSON.parse(data.msg);
-	console.log(msg);
+	//console.log(msg);
 	
 	
 	if (nowScene == 'Waiting') {
@@ -95,11 +96,20 @@ function OnMsgReceived (data) {
 			
 			nowSCMgr.pMsg[p].msg = msg.msg;
 			nowSCMgr.pMsg[p].time = 4;
+			
+			nowSCMgr.pScore[p] += 10;
 		}
 	
 		// 遊戲結束
 		if (msg.type == 'gameOver') {
-			winner = msg.winner;
+			var p = 1;
+			if (player2 == msg.winner) {
+				p = 2;
+			}
+			
+			winner = msg.winner;	
+			
+			nowSCMgr.pScore[p] += 1500;
 		
 			ChangeSC('Over');
 		}
@@ -110,7 +120,6 @@ function OnMsgReceived (data) {
 			if (player2 == msg.player) {
 				p = 2;
 			}
-			
 			
 			//console.log(nowSCMgr);
 			
@@ -133,6 +142,8 @@ function OnMsgReceived (data) {
 				p = 2;
 				
 			if (msg.itemType == 1 && playerHp[p] < 3 && playerItem[p][1] > 0) {
+				nowSCMgr.pScore[p] += 50;
+			
 				nowSCMgr.pSkill[p][1] = 1;
 				playerItem[p][1]--;
 				
@@ -146,6 +157,8 @@ function OnMsgReceived (data) {
 			else{
 				for(var i = 2; i < 9; i++) {
 					if (msg.itemType == i && playerItem[p][i] > 0 && nowSCMgr.pSkill[p][i] <= 0){
+						nowSCMgr.pScore[p] += 50;
+						
 						nowSCMgr.pSkill[p][i] = 10;
 						playerItem[p][i]--;
 						

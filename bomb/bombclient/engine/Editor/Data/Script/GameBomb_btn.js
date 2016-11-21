@@ -36,6 +36,17 @@ GameBomb_btn.prototype.Update = function(deltaTime)
 
 GameBomb_btn.prototype.OnClick = function(sender)
 {
+	var animation = this.getObjectByName('character0' + playerNo).GetComponent("GCAnimator");
+	if (animation != undefined) {
+		var oldAniNAme = animation.GetCurAnimationName();
+		if (oldAniNAme == undefined)
+			oldAniNAme = '';
+	
+		if (!animation.IsPlaying || oldAniNAme.indexOf('Walk') < 0) {					
+			animation.PlayAnimation('BombF');
+		}
+	}	
+
 	var req = {};
 	req.player = wwwData.name;
 	req.type = 'bomb';

@@ -46,6 +46,18 @@ function GameMgr()
 	this.pMsg[2].msg = 0;
 	this.pMsg[1].time = 0;
 	this.pMsg[2].time = 0;
+	
+	this.pScore = [];
+	this.pScore[1] = 0;
+	this.pScore[2] = 0;
+	
+	this.pDamageAni = [];
+	this.pDamageAni[1] = {time: 0, state:true};
+	this.pDamageAni[2] = {time: 0, state:true};
+	
+	this.dTimer = [];
+	this.dTimer[1] = 0;
+	this.dTimer[2] = 0;
 };
 
 //---------------------------------------------------------------------------------------------
@@ -89,7 +101,31 @@ GameMgr.prototype.Start = function()
 //-----------------------------------------------------------------------------
 GameMgr.prototype.Update = function(deltaTime)
 {
+	this.dTimer[1] += 0.01;
+	this.dTimer[2] += 0.01;
+	
 	for(var i = 1; i < 3; i++){
+		
+		if (this.dTimer[i] >= 0.1) {
+			this.dTimer[i] = 0;
+			if (this.pDamageAni[i].time > 0) {
+				this.pDamageAni[i].time--;
+				
+				if (this.pDamageAni[i].state) {
+					this.pDamageAni[i].state = false;
+					this.getObjectByName('character0' + i).root.setVisible(false);
+				}
+				else if (!this.pDamageAni[i].state) {
+					this.pDamageAni[i].state = true;
+					this.getObjectByName('character0' + i).root.setVisible(true);
+				}
+			}
+			else if (!this.pDamageAni[i].state) {
+				this.pDamageAni[i].state = true;
+				this.getObjectByName('character0' + i).root.setVisible(true);
+			}
+		}
+		
 		if (this.pMsg[i].time > 0 && this.pMsg[i].time != 999)
 			this.pMsg[i].time -= 0.01;
 	
@@ -160,6 +196,8 @@ GameMgr.prototype.Update = function(deltaTime)
 				var pPos = GetPlayerPos(i);
 				if (nowSCState[pPos.x][pPos.y] == 0) {
 					// can put the bomb.
+					this.pScore[i] += 5;
+					
 					nowSCState[pPos.x][pPos.y] = 5;
 					
 					var bomb = this.getObjectByName('bomb-trash');
@@ -171,7 +209,18 @@ GameMgr.prototype.Update = function(deltaTime)
 					
 					bomb.SetPosition(GetRealPosition(pPos.x, pPos.y, 5));
 					
-					pBomb.bombPos[pPos.x][pPos.y] = 8;				
+					pBomb.bombPos[pPos.x][pPos.y] = 8;		
+
+					var animation = this.getObjectByName('character0' + i).GetComponent("GCAnimator");
+					if (animation != undefined) {
+						var oldAniNAme = animation.GetCurAnimationName();
+						if (oldAniNAme == undefined)
+							oldAniNAme = '';
+					
+						if (!animation.IsPlaying || oldAniNAme.indexOf('Walk') < 0) {					
+							animation.PlayAnimation('BombF');
+						}
+					}					
 				}
 				
 				pBomb.put = false;
@@ -181,13 +230,36 @@ GameMgr.prototype.Update = function(deltaTime)
 		}
 	
 		var pState = this.pState[i];
+		var animation = this.getObjectByName('character0' + i).GetComponent("GCAnimator");
+		if (animation != undefined) {
+			var oldAniNAme = animation.GetCurAnimationName();
+			if (oldAniNAme == undefined)
+				oldAniNAme = '';
+			
+			var animationName = 'Walk';
+			if (pState.dire == 'up')
+				animationName += 'B';
+			if (pState.dire == 'right')
+				animationName += 'R';
+			if (pState.dire == 'down')
+				animationName += 'F';
+			if (pState.dire == 'left')
+				animationName += 'L';
+			if (pState.dire == '')
+				animationName = 'Idle';
+		
+			if (!animation.IsPlaying || oldAniNAme.indexOf(animationName) < 0) {					
+				animation.PlayAnimation(animationName);
+			}
+		}
+		
 		if (pState.move && !pState.moving) {
 			
-			console.log(i + ' move');
+			//console.log(i + ' move');
 			pState.moving = true;
 			
 			var pPos = GetPlayerPos(i);
-			console.log(pPos);
+			//console.log(pPos);
 			var newPos = {x: pPos.x, y: pPos.y};
 			
 			if (pState.dire == 'up') {
@@ -212,10 +284,11 @@ GameMgr.prototype.Update = function(deltaTime)
 			if (newPos.y > 9)
 				newPos.y = 9;
 			
-			console.log(newPos);
-			
+			//console.log(newPos);
+						
 			if (nowSCState[newPos.x][newPos.y] == 0 || (nowSCState[newPos.x][newPos.y] != 15 && (this.pSkill[i][6] > 0 || (nowSCState[pPos.x][pPos.y] != 0 && nowSCState[pPos.x][pPos.y] != 5)))) {
-				console.log('canMove');
+				//console.log('canMove');
+				this.pScore[i] += 1;
 				// can move
 				/*
 				nowSCState[pPos.x][pPos.y] = 0;
@@ -227,6 +300,7 @@ GameMgr.prototype.Update = function(deltaTime)
 				this.playerMovePos[i] = GetRealPosition(newPos.x, newPos.y, i);
 			}
 			else if (nowSCState[newPos.x][newPos.y] > 20) {
+				this.pScore[i] += 3;
 					
 				playerPos[i] = newPos;
 				
@@ -284,8 +358,10 @@ GameMgr.prototype.Bomb = function(deltaTime) {
 								if(nowSCState[i + z][y] == 15)
 									break;
 									
-								if (this.FireHandle(i + z, y))
+								if (this.FireHandle(i + z, y)) {
+									this.pScore[yy] += 10;
 									continue;
+								}
 									
 								break;
 							}
@@ -296,8 +372,10 @@ GameMgr.prototype.Bomb = function(deltaTime) {
 								if(nowSCState[i - z][y] == 15)
 									break;
 									
-								if (this.FireHandle(i - z, y))
+								if (this.FireHandle(i - z, y)) {
+									this.pScore[yy] += 10;
 									continue;
+								}
 								break;
 							}
 						}
@@ -307,8 +385,10 @@ GameMgr.prototype.Bomb = function(deltaTime) {
 								if(nowSCState[i][y + z] == 15)
 									break;
 										
-								if (this.FireHandle(i, y + z))
-									continue;						
+								if (this.FireHandle(i, y + z)) {
+									this.pScore[yy] += 10;
+									continue;
+								}		
 								break;
 							}
 						}
@@ -318,8 +398,10 @@ GameMgr.prototype.Bomb = function(deltaTime) {
 								if(nowSCState[i][y - z] == 15)
 									break;
 									
-								if (this.FireHandle(i, y - z))
-									continue;											
+								if (this.FireHandle(i, y - z)) {
+									this.pScore[yy] += 10;
+									continue;
+								}							
 								break;
 							}
 						}
@@ -333,8 +415,13 @@ GameMgr.prototype.Bomb = function(deltaTime) {
 GameMgr.prototype.FireHandle = function(fX, fY) {							
 	if (GetPlayerPos(1).x == fX && GetPlayerPos(1).y == fY) {
 		playerHp[1]--;
+		this.pScore[2] += 50;
+		
+		this.pDamageAni[1].time = 6;
 		
 		if (playerHp[1] <= 0) {
+			pScore = this.pScore;
+		
 			var req = {};
 			req.target = 'all';
 			req.type = 'gameOver';
@@ -350,8 +437,13 @@ GameMgr.prototype.FireHandle = function(fX, fY) {
 	}
 	if (GetPlayerPos(2).x == fX&& GetPlayerPos(2).y == fY) {
 		playerHp[2]--;
+		this.pScore[1] += 50;
+		
+		this.pDamageAni[2].time = 6;
 		
 		if (playerHp[2] <= 0) {
+			pScore = this.pScore;
+			
 			var req = {};
 			req.target = 'all';
 			req.type = 'gameOver';
@@ -405,6 +497,7 @@ GameMgr.prototype.FireHandle = function(fX, fY) {
 GameMgr.prototype.PlayerMove = function(player, deltaTime) {			
 	
 	if (this.pState[player].moving) {
+	
 		var playerCube = this.getObjectByName('character0' + player);
 		var speed = 100 + (this.pSkill[player][7] > 0 ? 150 : 0);
 		var movement = speed * deltaTime;		
@@ -432,6 +525,7 @@ GameMgr.prototype.PlayerMove = function(player, deltaTime) {
 			movementVec2.y = -movement;
 		else 
 			yNeed = false;
+					
 		
 		/*		
 		console.log(xNeed);
@@ -447,8 +541,8 @@ GameMgr.prototype.PlayerMove = function(player, deltaTime) {
 			this.pState[player].move = false;
 			
 			var itemPos = playerPos[player];
-			console.log(itemPos.x);
-			console.log(itemPos.y);
+			//console.log(itemPos.x);
+			//console.log(itemPos.y);
 			if (nowSCState[itemPos.x][itemPos.y] > 20){
 			
 				var itemCube = this.getObjectByName('cube_' + itemPos.x + '-' + itemPos.y);

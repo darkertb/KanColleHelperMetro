@@ -19,11 +19,14 @@ var playerDire = '';
 
 var isWinner = false;
 
+var damageAniTime = 0;
+var damageAniState = true;
+
 var gScript;
 
 function OnMsgReceived (data) {
 	var msg = JSON.parse(data.msg);
-	console.log(msg);
+	//console.log(msg);
 	
 	if (msg.target != 'all' && msg.target != wwwData.name)
 		return;
@@ -77,6 +80,8 @@ function OnMsgReceived (data) {
 				
 				heart[i].root.setVisible(true);
 			}
+			
+			damageAniTime = 6;
 		}
 		
 		// 遊戲結束

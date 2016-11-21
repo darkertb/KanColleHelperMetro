@@ -215,11 +215,11 @@ GCAnimator.prototype.Terminate = function()
 GCAnimator.prototype.Start = function()
 {
     //--
-    
+    /*
     this.curAnimationName = null;
     this.curAnimation = null;
     this.sequences = [];
-
+*/
     //map of GCSequence
 
     //--
@@ -342,7 +342,7 @@ GCAnimator.prototype.PlayAnimation = function(name, bLoop)
     var animation = this.GetSequence(name);
     if (!animation)
     {
-        console.log("Cannt PlayAnimation %s", name);
+        //console.log("Cannt PlayAnimation %s", name);
         return;
     }
     
