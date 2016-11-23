@@ -29,11 +29,19 @@ GameMgr.prototype.Terminate = function()
 //-----------------------------------------------------------------------------
 GameMgr.prototype.Start = function()
 {
+	for(var i=0; i<5; i++) {
+		if (i != 0) {
+			this.getObjectByName('character_head0' + i).root.setVisible(false);
+			this.getObjectByName('toTxt0' + i).root.setVisible(false);
+		}
+	}
 };
 
 //-----------------------------------------------------------------------------
 GameMgr.prototype.Update = function(deltaTime)
 {
+	var chIdx = (playerNo == 1 || playerNo == 3) ? 1 : 2;
+
 	this.dTimer += 0.01;
 	if (this.dTimer >= 0.1) {
 		this.dTimer = 0;
@@ -42,22 +50,22 @@ GameMgr.prototype.Update = function(deltaTime)
 			
 			if (damageAniState) {
 				damageAniState = false;
-				this.getObjectByName('character0' + playerNo).root.setVisible(false);
+				this.getObjectByName('character0' + chIdx).root.setVisible(false);
 			}
 			else if (!damageAniState) {
 				damageAniState = true;
-				this.getObjectByName('character0' + playerNo).root.setVisible(true);
+				this.getObjectByName('character0' + chIdx).root.setVisible(true);
 			}
 		}
 		else if (!damageAniState) {
 			damageAniState = true;
-			this.getObjectByName('character0' + playerNo).root.setVisible(true);
+			this.getObjectByName('character0' + chIdx).root.setVisible(true);
 		}
 	}
 
 	this.sendTimer = this.sendTimer - 0.01;
 	if (this.sendTimer <= 0) {
-		var animation = this.getObjectByName('character0' + playerNo).GetComponent("GCAnimator");
+		var animation = this.getObjectByName('character0' + chIdx).GetComponent("GCAnimator");
 		if (animation != undefined) {
 			var oldAniNAme = animation.GetCurAnimationName();
 			if (oldAniNAme == undefined)
@@ -88,7 +96,7 @@ GameMgr.prototype.Update = function(deltaTime)
 		this.sendTimer = 0.05;
 	}
 	else if (playerDire == '') {
-	var animation = this.getObjectByName('character0' + playerNo).GetComponent("GCAnimator");
+	var animation = this.getObjectByName('character0' + chIdx).GetComponent("GCAnimator");
 	if (animation != undefined) {
 		var oldAniNAme = animation.GetCurAnimationName();
 		if (oldAniNAme == undefined)

@@ -9,6 +9,8 @@ function WaitingHandler()
 	
 	this.player1Show = true;
 	this.player2Show = true;
+	this.player3Show = true;
+	this.player4Show = true;
 };
 
 //---------------------------------------------------------------------------------------------
@@ -57,6 +59,32 @@ WaitingHandler.prototype.Update = function(deltaTime)
 		if (this.player2Show){
 			this.player2Show = false;
 			this.getObjectByName('character02').root.setVisible(false);
+		}
+	}
+	
+	if (player3 != ''){
+		if (!this.player3Show){
+			this.player3Show = true;
+			this.getObjectByName('character03').root.setVisible(true);
+		}
+	}
+	else {
+		if (this.player3Show){
+			this.player3Show = false;
+			this.getObjectByName('character03').root.setVisible(false);
+		}
+	}
+	
+	if (player4 != ''){
+		if (!this.player4Show){
+			this.player4Show = true;
+			this.getObjectByName('character04').root.setVisible(true);
+		}
+	}
+	else {
+		if (this.player4Show){
+			this.player4Show = false;
+			this.getObjectByName('character04').root.setVisible(false);
 		}
 	}
 };

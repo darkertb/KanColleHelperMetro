@@ -40,8 +40,10 @@ GameMsgBtn.prototype.OnClick = function(sender)
 	
 	var req = {};
 	req.player = wwwData.name;
+	req.sender = playerNo;
 	req.type = 'msg';
 	req.msg = msg;
+	req.msgTarget = msgTarget;
 	
 	bomClient.send(JSON.stringify(req));
 };    

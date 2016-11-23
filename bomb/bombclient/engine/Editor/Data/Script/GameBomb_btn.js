@@ -36,7 +36,9 @@ GameBomb_btn.prototype.Update = function(deltaTime)
 
 GameBomb_btn.prototype.OnClick = function(sender)
 {
-	var animation = this.getObjectByName('character0' + playerNo).GetComponent("GCAnimator");
+	var chIdx = (playerNo == 1 || playerNo == 3) ? 1 : 2;
+	
+	var animation = this.getObjectByName('character0' + chIdx).GetComponent("GCAnimator");
 	if (animation != undefined) {
 		var oldAniNAme = animation.GetCurAnimationName();
 		if (oldAniNAme == undefined)

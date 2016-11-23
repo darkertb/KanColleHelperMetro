@@ -26,6 +26,7 @@ OverHandler.prototype.Terminate = function()
 //-----------------------------------------------------------------------------
 OverHandler.prototype.Start = function()
 {
+	/*
 	console.log(isWinner);
 	if (!isWinner){
 		this.getObjectByName('win1').root.setVisible(false);
@@ -42,6 +43,22 @@ OverHandler.prototype.Start = function()
 	this.getObjectByName('character01_0' + (playerNo == 1 ? 2 : 1) + '_dead').root.setVisible(false);	
 	this.getObjectByName('character02_0' + playerNo).root.setVisible(false);
 	this.getObjectByName('character02_0' + playerNo + '_dead').root.setVisible(false);
+	
+	*/
+	console.log(HP);
+	var chIdx = (playerNo == 1 || playerNo == 3) ? 1 : 2;
+	this.getObjectByName('character01_01').root.setVisible(false);
+	this.getObjectByName('character01_02').root.setVisible(false);
+	this.getObjectByName('character01_01_dead').root.setVisible(false);
+	this.getObjectByName('character01_02_dead').root.setVisible(false);
+	
+	if (HP <= 0) {
+		this.getObjectByName('win1').root.setVisible(false);
+		this.getObjectByName('character01_0' + chIdx + '_dead').root.setVisible(true);
+	}
+	else {
+		this.getObjectByName('character01_0' + chIdx).root.setVisible(true);
+	}
 };
 
 //-----------------------------------------------------------------------------

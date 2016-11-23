@@ -13,6 +13,16 @@
             <spriteFrame>male_standby_front02.png</spriteFrame>
         </animation>
         <animation>
+            <name>ReLife</name>
+            <delay>0.3</delay>
+            <flipX>false</flipX>
+            <flipY>false</flipY>
+            <spriteFrame>male_life01.png</spriteFrame>
+            <spriteFrame>male_life02.png</spriteFrame>
+            <spriteFrame>male_standby_front02.png</spriteFrame>
+            <spriteFrame>male_standby_front01.png</spriteFrame>
+        </animation>
+        <animation>
             <name>WalkL</name>
             <delay>0.1</delay>
             <flipX>false</flipX>
@@ -67,35 +77,6 @@
             <flipY>false</flipY>
             <spriteFrame>male_bomb_front01.png</spriteFrame>
             <spriteFrame>male_bomb_front02.png</spriteFrame>
-            <spriteFrame>male_bomb_front03.png</spriteFrame>
-            <spriteFrame>male_bomb_front04.png</spriteFrame>
-        </animation>
-		<animation>
-            <name>BombB</name>
-            <delay>0.033</delay>
-            <flipX>false</flipX>
-            <flipY>false</flipY>
-            <spriteFrame>male_bomb_back01.png</spriteFrame>
-            <spriteFrame>male_bomb_back02.png</spriteFrame>
-            <spriteFrame>male_bomb_back03.png</spriteFrame>
-        </animation>
-		<animation>
-            <name>BombR</name>
-            <delay>0.033</delay>
-            <flipX>false</flipX>
-            <flipY>false</flipY>
-            <spriteFrame>male_bomb_R01.png</spriteFrame>
-            <spriteFrame>male_bomb_R02.png</spriteFrame>
-            <spriteFrame>male_bomb_R03.png</spriteFrame>
-        </animation>
-		<animation>
-            <name>BombL</name>
-            <delay>0.033</delay>
-            <flipX>false</flipX>
-            <flipY>false</flipY>
-            <spriteFrame>male_bomb_L01.png</spriteFrame>
-            <spriteFrame>male_bomb_L02.png</spriteFrame>
-            <spriteFrame>male_bomb_L03.png</spriteFrame>
         </animation>
     </animations>
 </root>

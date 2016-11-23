@@ -12,17 +12,25 @@ var nowScene = "";
 
 var player1 = '';
 var player2 = '';
+var player3 = '';
+var player4 = '';
 
 var playerHp = [];
-playerHp[1] = 3;
-playerHp[2] = 3;
+playerHp[1] = 0;
+playerHp[2] = 0;
+playerHp[3] = 0;
+playerHp[4] = 0;
 
 var playerItem = [];
 playerItem[1] = [];
 playerItem[2] = [];
+playerItem[3] = [];
+playerItem[4] = [];
 for(var i = 1; i < 9; i++) {
 	playerItem[1][i] = 0;
 	playerItem[2][i] = 0;
+	playerItem[3][i] = 0;
+	playerItem[4][i] = 0;
 }
 
 var playerPos = [];
@@ -41,6 +49,8 @@ var nowSCMgr;
 
 var gScript;
 
+var realPCount = 0;
+
 function GetPlayerPos (player) {
 	/*
 	for (var i = 0; i < 10; i++) {
@@ -56,7 +66,7 @@ function GetPlayerPos (player) {
 
 function GetRealPosition (x, y, cubeType) {
 	var result = {};
-	result.x = x * 80 + ((cubeType == 1 || cubeType == 2) ? 20 : 0);
+	result.x = x * 80 + ((cubeType == 1 || cubeType == 2 || cubeType == 3 || cubeType == 4) ? 20 : 0);
 	result.y = y * 80;
 	return result;
 }
@@ -82,6 +92,12 @@ function OnMsgReceived (data) {
 				req.type = 'startGame';
 				bomClient.send(JSON.stringify(req));
 				
+				realPCount = playerCount;
+				
+				for(var i=1; i<realPCount+1; i++) {
+					playerHp[i] = 3;
+				}
+				
 				ChangeSC('Game0' + scNo);
 			}
 		}
@@ -93,11 +109,35 @@ function OnMsgReceived (data) {
 			if (player2 == msg.player) {
 				p = 2;
 			}
-			
-			nowSCMgr.pMsg[p].msg = msg.msg;
-			nowSCMgr.pMsg[p].time = 4;
-			
+			if (player3 == msg.player) {
+				p = 3;
+			}
+			if (player4 == msg.player) {
+				p = 4;
+			}
+				
 			nowSCMgr.pScore[p] += 10;
+			
+			if (msg.msgTarget == 0) {
+				nowSCMgr.pMsg[p].msg = msg.msg;
+				nowSCMgr.pMsg[p].time = 4;
+			}
+			else {
+				var target = player1;
+				if (msg.msgTarget == 2)
+					target = player2;
+				if (msg.msgTarget == 3)
+					target = player3;
+				if (msg.msgTarget == 4)
+					target = player4;				
+			
+				var req = {};
+				req.target = target;
+				req.sender = msg.sender;
+				req.type = 'pMsg';
+				req.msg = msg.msg;
+				bomClient.send(JSON.stringify(req));
+			}
 		}
 	
 		// 遊戲結束
@@ -106,10 +146,16 @@ function OnMsgReceived (data) {
 			if (player2 == msg.winner) {
 				p = 2;
 			}
+			if (player3 == msg.winner) {
+				p = 3;
+			}
+			if (player4 == msg.winner) {
+				p = 4;
+			}
 			
 			winner = msg.winner;	
 			
-			nowSCMgr.pScore[p] += 1500;
+			nowSCMgr.pScore[p] += 5500;
 		
 			ChangeSC('Over');
 		}
@@ -119,6 +165,12 @@ function OnMsgReceived (data) {
 			var p = 1;
 			if (player2 == msg.player) {
 				p = 2;
+			}
+			if (player3 == msg.player) {
+				p = 3;
+			}
+			if (player4 == msg.player) {
+				p = 4;
 			}
 			
 			//console.log(nowSCMgr);
@@ -132,6 +184,12 @@ function OnMsgReceived (data) {
 			if (player2 == msg.player) {
 				p = 2;
 			}
+			if (player3 == msg.player) {
+				p = 3;
+			}
+			if (player4 == msg.player) {
+				p = 4;
+			}
 			
 			nowSCMgr.pBomb[p].put = true;
 		}
@@ -140,8 +198,16 @@ function OnMsgReceived (data) {
 			var p = 1;
 			if (player2 == msg.player)
 				p = 2;
+			if (player3 == msg.player) {
+				p = 3;
+			}
+			if (player4 == msg.player) {
+				p = 4;
+			}
 				
 			if (msg.itemType == 1 && playerHp[p] < 3 && playerItem[p][1] > 0) {
+					
+				cc.AudioEngine.getInstance().playEffect("Data/BGM/" + 'item');
 				nowSCMgr.pScore[p] += 50;
 			
 				nowSCMgr.pSkill[p][1] = 1;
@@ -157,9 +223,11 @@ function OnMsgReceived (data) {
 			else{
 				for(var i = 2; i < 9; i++) {
 					if (msg.itemType == i && playerItem[p][i] > 0 && nowSCMgr.pSkill[p][i] <= 0){
+						cc.AudioEngine.getInstance().playEffect("Data/BGM/" + 'item');
+						
 						nowSCMgr.pScore[p] += 50;
 						
-						nowSCMgr.pSkill[p][i] = 10;
+						nowSCMgr.pSkill[p][i] = 25;
 						playerItem[p][i]--;
 						
 						var req = {};
@@ -206,6 +274,28 @@ function OnPlayerEnter (data) {
 		req2.type = 'playerEnter';
 		req2.newPlayer = data.user;
 	}
+	else if (player3 == ''){
+		player3 = data.user;
+		playerCount++;
+		
+		req.type = 'connected';
+		req.playerNo = 3;
+		req.count = playerCount;		
+		
+		req2.type = 'playerEnter';
+		req2.newPlayer = data.user;
+	}
+	else if (player4 == ''){
+		player4 = data.user;
+		playerCount++;
+		
+		req.type = 'connected';
+		req.playerNo = 4;
+		req.count = playerCount;		
+		
+		req2.type = 'playerEnter';
+		req2.newPlayer = data.user;
+	}
 	else {
 		req.type = 'disconnect';			
 	}
@@ -237,6 +327,18 @@ function OnPlayerExit (data) {
 	
 		bomClient.send(JSON.stringify(req));
 	}
+	if (player3 == data.user) {
+		player3 = '';
+		playerCount--;
+	
+		bomClient.send(JSON.stringify(req));
+	}
+	if (player4 == data.user) {
+		player4 = '';
+		playerCount--;
+	
+		bomClient.send(JSON.stringify(req));
+	}
 }
 
 function OnDisconnect (data) {
@@ -248,6 +350,9 @@ function OnDisconnect (data) {
 }
 
 function ChangeSC (scName) {
+	if (nowScene == scName)
+		return;
+	
 	nowScene = scName;
 	console.log('next sc: ' + nowScene);
 	gScript.changeScene(scName);
@@ -314,6 +419,8 @@ wwwcontrollerM.prototype.Awake = function()
 		
 	playerPos[1] = {x: 0, y: 0};
 	playerPos[2] = {x: 9, y: 9};
+	playerPos[3] = {x: 0, y: 9};
+	playerPos[4] = {x: 9, y: 0};
 		
 	SC1State[0][0] = 0;
 	SC1State[9][9] = 0;
@@ -323,6 +430,14 @@ wwwcontrollerM.prototype.Awake = function()
 	SC1State[9][8] = 0;
 	SC1State[8][9] = 0;
 	
+	SC1State[0][9] = 0;
+	SC1State[9][0] = 0;
+	
+	SC1State[9][1] = 0;
+	SC1State[1][9] = 0;
+	SC1State[0][8] = 0;
+	SC1State[8][0] = 0;
+	
 	SC2State[0][0] = 0;
 	SC2State[9][9] = 0;
 	
@@ -330,6 +445,14 @@ wwwcontrollerM.prototype.Awake = function()
 	SC2State[1][0] = 0;
 	SC2State[9][8] = 0;
 	SC2State[8][9] = 0;
+	
+	SC2State[0][9] = 0;
+	SC2State[9][0] = 0;
+	
+	SC2State[9][1] = 0;
+	SC2State[1][9] = 0;
+	SC2State[0][8] = 0;
+	SC2State[8][0] = 0;
 	
 	console.log(SC1State);
 	

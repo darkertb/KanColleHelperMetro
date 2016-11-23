@@ -25,7 +25,9 @@ TitleHandler.prototype.Terminate = function()
 
 //-----------------------------------------------------------------------------
 TitleHandler.prototype.Start = function()
-{
+{   
+	this.playSound('home_bgm', true);
+	
 	console.log('[connect]', wwwData.host, wwwData.port);
 	bomClient.connect(wwwData.host, wwwData.port, wwwData.name, wwwData.channel);
 	

@@ -4,512 +4,395 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>female_bomb_L01.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{876,0},{146,241}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
-                <key>sourceSize</key>
-                <string>{146,241}</string>
-            </dict>
-            <key>female_bomb_L02.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{0,241},{146,241}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
-                <key>sourceSize</key>
-                <string>{146,241}</string>
-            </dict>
-            <key>female_bomb_L03.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{146,241},{146,241}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
-                <key>sourceSize</key>
-                <string>{146,241}</string>
-            </dict>
-            <key>female_bomb_R01.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{292,241},{146,241}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
-                <key>sourceSize</key>
-                <string>{146,241}</string>
-            </dict>
-            <key>female_bomb_R02.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{438,241},{146,241}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
-                <key>sourceSize</key>
-                <string>{146,241}</string>
-            </dict>
-            <key>female_bomb_R03.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{584,241},{146,241}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
-                <key>sourceSize</key>
-                <string>{146,241}</string>
-            </dict>
-            <key>female_bomb_back01.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{0,0},{146,241}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
-                <key>sourceSize</key>
-                <string>{146,241}</string>
-            </dict>
-            <key>female_bomb_back02.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{146,0},{146,241}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
-                <key>sourceSize</key>
-                <string>{146,241}</string>
-            </dict>
-            <key>female_bomb_back03.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{292,0},{146,241}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
-                <key>sourceSize</key>
-                <string>{146,241}</string>
-            </dict>
             <key>female_bomb_front01.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{438,0},{146,241}}</string>
+                <string>{{1,865},{156,286}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-8,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{1,0},{156,286}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
             <key>female_bomb_front02.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{584,0},{146,241}}</string>
+                <string>{{341,571},{156,286}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-8,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{1,0},{156,286}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
-            <key>female_bomb_front03.png</key>
+            <key>female_life01.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{730,0},{146,241}}</string>
+                <string>{{511,285},{156,286}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-8,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{1,0},{156,286}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
-            <key>female_bomb_front04.png</key>
+            <key>female_life02.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{584,0},{146,241}}</string>
+                <string>{{851,1},{156,286}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-8,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{1,0},{156,286}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
             <key>female_standby_front01.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{438,0},{146,241}}</string>
+                <string>{{1,865},{156,286}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-8,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{1,0},{156,286}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
             <key>female_standby_front02.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{730,241},{146,241}}</string>
+                <string>{{289,859},{162,286}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-6,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{0,0},{162,286}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
             <key>female_walk_L01.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{438,482},{146,241}}</string>
+                <string>{{1,1},{168,286}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-2,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{1,0},{168,286}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
             <key>female_walk_L02.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{584,482},{146,241}}</string>
+                <string>{{341,1},{168,284}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-2,-1}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{1,2},{168,284}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
             <key>female_walk_L03.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{730,482},{146,241}}</string>
+                <string>{{341,287},{168,282}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-2,-2}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{1,4},{168,282}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
             <key>female_walk_L04.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{876,482},{146,241}}</string>
+                <string>{{511,1},{168,282}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-2,-2}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{1,4},{168,282}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
             <key>female_walk_L05.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,723},{146,241}}</string>
+                <string>{{1,289},{168,286}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-2,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{1,0},{168,286}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
             <key>female_walk_L06.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{876,482},{146,241}}</string>
+                <string>{{511,1},{168,282}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-2,-2}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{1,4},{168,282}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
             <key>female_walk_L07.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{730,482},{146,241}}</string>
+                <string>{{341,287},{168,282}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-2,-2}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{1,4},{168,282}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
             <key>female_walk_L08.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{584,482},{146,241}}</string>
+                <string>{{341,1},{168,284}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-2,-1}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{1,2},{168,284}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
             <key>female_walk_R01.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{146,723},{146,241}}</string>
+                <string>{{171,1},{168,286}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-2,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{1,0},{168,286}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
             <key>female_walk_R02.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{292,723},{146,241}}</string>
+                <string>{{171,289},{168,284}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-2,-1}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{1,2},{168,284}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
             <key>female_walk_R03.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{438,723},{146,241}}</string>
+                <string>{{171,575},{168,282}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-2,-2}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{1,4},{168,282}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
             <key>female_walk_R04.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{584,723},{146,241}}</string>
+                <string>{{681,1},{168,282}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-2,-2}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{1,4},{168,282}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
             <key>female_walk_R05.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{730,723},{146,241}}</string>
+                <string>{{1,577},{168,286}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-2,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{1,0},{168,286}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
             <key>female_walk_R06.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{584,723},{146,241}}</string>
+                <string>{{681,1},{168,282}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-2,-2}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{1,4},{168,282}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
             <key>female_walk_R07.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{438,723},{146,241}}</string>
+                <string>{{171,575},{168,282}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-2,-2}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{1,4},{168,282}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
             <key>female_walk_R08.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{292,723},{146,241}}</string>
+                <string>{{171,289},{168,284}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-2,-1}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{1,2},{168,284}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
             <key>female_walk_back01.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{799,289},{156,276}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-8,5}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{1,0},{156,276}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
             <key>female_walk_back02.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{876,241},{146,241}}</string>
+                <string>{{577,759},{158,274}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-6,4}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{2,2},{158,274}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
             <key>female_walk_back03.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{799,289},{156,276}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-8,5}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{1,0},{156,276}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
             <key>female_walk_back04.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,482},{146,241}}</string>
+                <string>{{853,567},{156,276}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-9,4}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{0,1},{156,276}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
             <key>female_walk_front01.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{438,0},{146,241}}</string>
+                <string>{{1,865},{156,286}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-8,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{1,0},{156,286}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
             <key>female_walk_front02.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{146,482},{146,241}}</string>
+                <string>{{511,443},{156,286}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-9,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{0,0},{156,286}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
             <key>female_walk_front03.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{438,0},{146,241}}</string>
+                <string>{{1,865},{156,286}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-8,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{1,0},{156,286}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
             <key>female_walk_front04.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{292,482},{146,241}}</string>
+                <string>{{499,601},{156,286}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-5,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,241}}</string>
+                <string>{{4,0},{156,286}}</string>
                 <key>sourceSize</key>
-                <string>{146,241}</string>
+                <string>{174,286}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -525,7 +408,7 @@
             <key>size</key>
             <string>{1022,1022}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:f64be3c7d4efe27118275cfc514c35ab:3daf226be2fea347881db64532a41a59:0da92f2a27db95c94d23f502c26bcf3d$</string>
+            <string>$TexturePacker:SmartUpdate:ac3dd8d5f034d7d56868b45341a550e1:2c97d24c53daa595cc1f9d19b27e83d9:0da92f2a27db95c94d23f502c26bcf3d$</string>
             <key>textureFileName</key>
             <string>bombF.png</string>
         </dict>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <plists>
+        <plist>ani_prop05.plist</plist>
+    </plists>
+    <animations>
+        <animation>
+            <name>Idle</name>
+            <delay>0.05</delay>
+            <flipX>false</flipX>
+            <flipY>false</flipY>
+            <spriteFrame>ani_prop05_01.png</spriteFrame>
+            <spriteFrame>ani_prop05_02.png</spriteFrame>
+            <spriteFrame>ani_prop05_03.png</spriteFrame>
+            <spriteFrame>ani_prop05_04.png</spriteFrame>
+            <spriteFrame>ani_prop05_05.png</spriteFrame>
+            <spriteFrame>ani_prop05_06.png</spriteFrame>
+            <spriteFrame>ani_prop05_07.png</spriteFrame>
+            <spriteFrame>ani_prop05_08.png</spriteFrame>
+            <spriteFrame>ani_prop05_09.png</spriteFrame>
+        </animation>
+    </animations>
+</root>

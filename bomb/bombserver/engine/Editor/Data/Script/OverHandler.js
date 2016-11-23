@@ -1,4 +1,4 @@
-
+var aa = false;
 
 //---------------------------------------------------------------------------------------------
 //  OverHandler : GCScriptComponent
@@ -25,20 +25,42 @@ OverHandler.prototype.Terminate = function()
 
 //-----------------------------------------------------------------------------
 OverHandler.prototype.Start = function()
-{
+{	
 	var p = 1;
 	if (player2 == winner)
 		p = 2;
-		
-	this.getObjectByName('win' + (p == 1 ? 2 : 1)).root.setVisible(false);
+	if (player3 == winner) {
+		p = 3;
+	}
+	if (player4 == winner) {
+		p = 4;
+	}
 	
-	this.getObjectByName('character0' + p + '_dead').root.setVisible(false);
-	this.getObjectByName('character0' + (p == 1 ? 2 : 1)).root.setVisible(false);
+	console.log(p);
+	
+	for (var i=1; i<5; i++) {
+		if (i > playerCount) {
+			this.getObjectByName('character0' + i).root.setVisible(false);
+			this.getObjectByName('win' + i).root.setVisible(false);
+			this.getObjectByName('character0' + i + '_dead').root.setVisible(false);
+		}
+	
+		if (i == p)
+			this.getObjectByName('character0' + i + '_dead').root.setVisible(false);
+			
+		if (i != p){
+			this.getObjectByName('character0' + i).root.setVisible(false);
+			this.getObjectByName('win' + i).root.setVisible(false);
+		}
+	}
 	
 	console.log(pScore[1]);
+	for (var i=1; i<playerCount+1; i++) {
+		this.SetNum(i, pScore[i]);
+	}
 	console.log(pScore[2]);
-	this.SetNum(1, pScore[1]);
-	this.SetNum(2, pScore[2]);
+	
+	this.playSound('over_bgm', true);
 };
 
 //-----------------------------------------------------------------------------
@@ -48,24 +70,23 @@ OverHandler.prototype.Update = function(deltaTime)
 
 OverHandler.prototype.SetNum = function(idx, num)
 {
-	for (var i=0;i<10;i++) {
-		this.getObjectByName('t' + idx + '1' + i).root.setVisible(false);
-		this.getObjectByName('t' + idx + '2' + i).root.setVisible(false);
-		this.getObjectByName('t' + idx + '3' + i).root.setVisible(false);
-		this.getObjectByName('t' + idx + '4' + i).root.setVisible(false);
-		this.getObjectByName('t' + idx + '5' + i).root.setVisible(false);
-	}
+	var fPos = [];
+	fPos[1] = {x: 330, y:360};
+	fPos[2] = {x: 530, y:360};
+	fPos[3] = {x: 330, y:0};
+	fPos[4] = {x: 530, y:0};
+
 	var a = Math.floor(((num - (num % 10000)) / 10000) % 10);
 	var b = Math.floor(((num - (num % 1000)) / 1000) % 10);
 	var c = Math.floor(((num - (num % 100)) / 100) % 10);
 	var d = Math.floor(((num - (num % 10)) / 10) % 10);
 	var e = Math.floor(num % 10);
 	
-	this.getObjectByName('t' + idx + '1' + e).root.setVisible(true);
-	this.getObjectByName('t' + idx + '2' + d).root.setVisible(true);
-	this.getObjectByName('t' + idx + '3' + c).root.setVisible(true);
-	this.getObjectByName('t' + idx + '4' + b).root.setVisible(true);
-	this.getObjectByName('t' + idx + '5' + a).root.setVisible(true);
+	this.getObjectByName('txt1' + e).clone().SetPosition(fPos[idx].x, fPos[idx].y);
+	this.getObjectByName('txt1' + d).clone().SetPosition(fPos[idx].x - 26, fPos[idx].y);
+	this.getObjectByName('txt1' + c).clone().SetPosition(fPos[idx].x - 52, fPos[idx].y);
+	this.getObjectByName('txt1' + b).clone().SetPosition(fPos[idx].x - 78, fPos[idx].y);
+	this.getObjectByName('txt1' + a).clone().SetPosition(fPos[idx].x - 104, fPos[idx].y);
 };
 
 //---------------------------------------------------------------------------------------------

@@ -26,6 +26,16 @@ GameCreater.prototype.Terminate = function()
 //-----------------------------------------------------------------------------
 GameCreater.prototype.Start = function()
 {
+	
+	if (player1 == '')
+		this.getObjectByName('character01').root.setVisible(false);
+	if (player2 == '')
+		this.getObjectByName('character02').root.setVisible(false);
+	if (player3 == '')
+		this.getObjectByName('character03').root.setVisible(false);
+	if (player4 == '')
+		this.getObjectByName('character04').root.setVisible(false);
+
 	var SC = nowSCState;
 	
 	for (var i = 0; i < 10; i++)  {
@@ -44,6 +54,14 @@ GameCreater.prototype.Start = function()
 				cube = this.getObjectByName('character02');	
 				cubeType = 2;
 			}
+			else if (i == playerPos[3].x && y == playerPos[3].y) {
+				cube = this.getObjectByName('character03');	
+				cubeType = 3;
+			}
+			else if (i == playerPos[4].x && y == playerPos[4].y) {
+				cube = this.getObjectByName('character04');	
+				cubeType = 4;
+			}
 			else if (cubeState == 0)
 				continue;
 			
@@ -61,6 +79,9 @@ GameCreater.prototype.Start = function()
 			
 			var pos = GetRealPosition(i, y, cubeType);			
 			cube.SetPosition(pos.x, pos.y);
+			if (cubeType >= 1 && cubeType <= 4 && playerHp[cubeType] > 0) {
+				this.getObjectByName('text0' + cubeType).SetPosition(pos.x + 35, pos.y + 65);	
+			}
 		}
 	}
 };

@@ -26,9 +26,10 @@ GameCharaDisplay.prototype.Terminate = function()
 //-----------------------------------------------------------------------------
 GameCharaDisplay.prototype.Start = function()
 {
+	var chIdx = (playerNo == 1 || playerNo == 3) ? 1 : 2;
 	var name = this.gameObject.name;
 	
-	if (name.indexOf(playerNo) == -1) {
+	if (name.indexOf(chIdx) == -1) {
 		this.gameObject.root.setVisible(false);
 	}
 };

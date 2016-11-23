@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <plists>
+        <plist>explosion.plist</plist>
+    </plists>
+    <animations>
+        <animation>
+            <name>Idle</name>
+            <delay>0.013</delay>
+            <flipX>false</flipX>
+            <flipY>false</flipY>
+            <spriteFrame>explosion_01.png</spriteFrame>
+            <spriteFrame>explosion_02.png</spriteFrame>
+            <spriteFrame>explosion_03.png</spriteFrame>
+            <spriteFrame>explosion_04.png</spriteFrame>
+            <spriteFrame>explosion_05.png</spriteFrame>
+            <spriteFrame>explosion_06.png</spriteFrame>
+            <spriteFrame>explosion_07.png</spriteFrame>
+            <spriteFrame>explosion_08.png</spriteFrame>
+            <spriteFrame>explosion_09.png</spriteFrame>
+            <spriteFrame>explosion_10.png</spriteFrame>
+            <spriteFrame>explosion_11.png</spriteFrame>
+            <spriteFrame>explosion_12.png</spriteFrame>
+            <spriteFrame>explosion_13.png</spriteFrame>
+            <spriteFrame>explosion_14.png</spriteFrame>
+            <spriteFrame>explosion_15.png</spriteFrame>
+            <spriteFrame>explosion_16.png</spriteFrame>
+        </animation>
+    </animations>
+</root>

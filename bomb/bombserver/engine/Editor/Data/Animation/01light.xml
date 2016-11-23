@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <plists>
+        <plist>01light.plist</plist>
+    </plists>
+    <animations>
+        <animation>
+            <name>Idle</name>
+            <delay>0.018</delay>
+            <flipX>false</flipX>
+            <flipY>false</flipY>
+            <spriteFrame>01light_01.png</spriteFrame>
+            <spriteFrame>01light_02.png</spriteFrame>
+            <spriteFrame>01light_03.png</spriteFrame>
+            <spriteFrame>01light_04.png</spriteFrame>
+            <spriteFrame>01light_05.png</spriteFrame>
+            <spriteFrame>01light_06.png</spriteFrame>
+            <spriteFrame>01light_07.png</spriteFrame>
+            <spriteFrame>01light_08.png</spriteFrame>
+        </animation>
+    </animations>
+</root>

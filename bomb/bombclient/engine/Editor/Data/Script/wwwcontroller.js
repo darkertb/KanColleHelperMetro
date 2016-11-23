@@ -22,11 +22,15 @@ var isWinner = false;
 var damageAniTime = 0;
 var damageAniState = true;
 
+var HP = 3;
+
+var msgTarget = 0;
+
 var gScript;
 
 function OnMsgReceived (data) {
 	var msg = JSON.parse(data.msg);
-	//console.log(msg);
+	console.log(msg);
 	
 	if (msg.target != 'all' && msg.target != wwwData.name)
 		return;
@@ -60,6 +64,20 @@ function OnMsgReceived (data) {
 	}
 	
 	if (nowScene == 'Game') {
+		var msgText = [];
+		msgText[1] = '你好!';
+		msgText[2] = '謝謝!';
+		msgText[3] = '玩得不錯!';
+		msgText[4] = '等我一下';
+		msgText[5] = '好';
+		
+		if (msg.type == 'pMsg') {
+			gScript.getObjectByName('Label Object').GetComponent("GCLabel").SetText('P' + msg.sender + ':' + msgText[msg.msg]);
+			
+			setTimeout(function() {
+				gScript.getObjectByName('Label Object').GetComponent("GCLabel").SetText('');
+			}, 3000);
+		}
 		if (msg.type == 'addItem') {
 			var label = gScript.getObjectByName('prop0' + msg.itemType + '_txt').GetComponent("GCLabel");
 			
@@ -67,6 +85,8 @@ function OnMsgReceived (data) {
 		}
 		
 		if (msg.type == 'damage') {
+			HP = msg.heartCount;
+			
 			var heart = [];
 			
 			for (var i = 1; i < 4; i++){
@@ -81,6 +101,11 @@ function OnMsgReceived (data) {
 				heart[i].root.setVisible(true);
 			}
 			
+			if (HP <= 0){
+				ChangeSC('Over');
+				return;
+			}
+			
 			damageAniTime = 6;
 		}
 		
@@ -89,7 +114,9 @@ function OnMsgReceived (data) {
 			if (msg.winner == wwwData.name)
 				isWinner = true;
 		
-			ChangeSC('Over');
+			setTimeout(function() {
+				ChangeSC('Over');
+			}, 200);
 		}
 	}
 }
