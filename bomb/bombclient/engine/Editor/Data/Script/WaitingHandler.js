@@ -28,6 +28,7 @@ WaitingHandler.prototype.Terminate = function()
 WaitingHandler.prototype.Start = function()
 {
 	this.getObjectByName('Ready_btn').root.setVisible(false);
+	this.getObjectByName('button_ready 1').root.setVisible(false);
 };
 
 //-----------------------------------------------------------------------------
@@ -80,8 +81,13 @@ WaitingHandler.prototype.Update = function(deltaTime)
 				this.getObjectByName('text0' + i).root.setVisible(false);
 		}
 		
-		if (playerCount > 1 && playerNo == 1) {
+		if (!this.playerSet && playerCount > 1 && playerNo == 1) {
 			this.getObjectByName('Ready_btn').root.setVisible(true);
+			this.getObjectByName('button_ready 1').root.setVisible(true);
+		}
+		else if (this.playerSet && playerCount <= 1 && playerNo == 1) {
+			this.getObjectByName('Ready_btn').root.setVisible(false);
+			this.getObjectByName('button_ready 1').root.setVisible(false);			
 		}
 	}
 };
