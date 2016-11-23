@@ -434,7 +434,7 @@ GameMgr.prototype.Bomb = function(deltaTime) {
 						// bomb handle
 						var bombPower = 5 + (this.pSkill[yy][3] > 0 ? 5 : 0);
 						
-						this.FireHandle(i, y)
+						this.FireHandle(i, y, yy)
 						var fireCube = this.getObjectByName('fire-trash');
 						if (fireCube == undefined)
 							fireCube = this.getObjectByName('fire').clone();
@@ -450,7 +450,7 @@ GameMgr.prototype.Bomb = function(deltaTime) {
 								if(nowSCState[i + z][y] == 15)
 									break;
 									
-								if (this.FireHandle(i + z, y)) {
+								if (this.FireHandle(i + z, y, yy)) {
 									this.pScore[yy] += 10;
 									continue;
 								}
@@ -464,7 +464,7 @@ GameMgr.prototype.Bomb = function(deltaTime) {
 								if(nowSCState[i - z][y] == 15)
 									break;
 									
-								if (this.FireHandle(i - z, y)) {
+								if (this.FireHandle(i - z, y, yy)) {
 									this.pScore[yy] += 10;
 									continue;
 								}
@@ -477,7 +477,7 @@ GameMgr.prototype.Bomb = function(deltaTime) {
 								if(nowSCState[i][y + z] == 15)
 									break;
 										
-								if (this.FireHandle(i, y + z)) {
+								if (this.FireHandle(i, y + z, yy)) {
 									this.pScore[yy] += 10;
 									continue;
 								}		
@@ -490,7 +490,7 @@ GameMgr.prototype.Bomb = function(deltaTime) {
 								if(nowSCState[i][y - z] == 15)
 									break;
 									
-								if (this.FireHandle(i, y - z)) {
+								if (this.FireHandle(i, y - z, yy)) {
 									this.pScore[yy] += 10;
 									continue;
 								}							
@@ -529,7 +529,7 @@ GameMgr.prototype.GetWinner = function() {
 	}
 }
 
-GameMgr.prototype.FireHandle = function(fX, fY) {							
+GameMgr.prototype.FireHandle = function(fX, fY, player) {							
 	if (GetPlayerPos(1).x == fX && GetPlayerPos(1).y == fY) {
 		
 		cc.AudioEngine.getInstance().playEffect("Data/BGM/" + 'damage');
@@ -694,10 +694,10 @@ GameMgr.prototype.FireHandle = function(fX, fY) {
 	
 	if (Math.floor(Math.random() * 101) < 35) {
 		var itemType = -1;
-		while (itemType == 2 || itemType == 4 || itemType == 5 || itemType == -1) {
+		while (itemType == 2 || itemType == 4 || itemType == -1) {
 			itemType = Math.floor(Math.random() * 8) + 1;
 		}
-			
+			itemType = 5;
 		nowSCState[fX][fY] = itemType + 20;
 		
 		var itemCube = this.getObjectByName('prop0' + itemType).clone();
@@ -712,7 +712,10 @@ GameMgr.prototype.FireHandle = function(fX, fY) {
 		itemCubeAni.name = 'cube_' + fX + '-' + fY + '_ani';
 	}
 	
-	return false;
+	if (this.pSkill[player][5] > 0)
+		return true;
+	else
+		return false;
 }
 
 GameMgr.prototype.PlayerMove = function(player, deltaTime) {			
