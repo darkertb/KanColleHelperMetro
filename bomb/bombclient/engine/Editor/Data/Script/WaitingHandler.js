@@ -84,10 +84,12 @@ WaitingHandler.prototype.Update = function(deltaTime)
 		if (!this.playerSet && playerCount > 1 && playerNo == 1) {
 			this.getObjectByName('Ready_btn').root.setVisible(true);
 			this.getObjectByName('button_ready 1').root.setVisible(true);
+			this.playerSet = true;
 		}
 		else if (this.playerSet && playerCount <= 1 && playerNo == 1) {
 			this.getObjectByName('Ready_btn').root.setVisible(false);
-			this.getObjectByName('button_ready 1').root.setVisible(false);			
+			this.getObjectByName('button_ready 1').root.setVisible(false);	
+			this.playerSet = false;		
 		}
 	}
 };
