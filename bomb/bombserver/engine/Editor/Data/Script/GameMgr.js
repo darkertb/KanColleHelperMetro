@@ -697,7 +697,6 @@ GameMgr.prototype.FireHandle = function(fX, fY, player) {
 		while (itemType == 2 || itemType == 4 || itemType == -1) {
 			itemType = Math.floor(Math.random() * 8) + 1;
 		}
-			itemType = 5;
 		nowSCState[fX][fY] = itemType + 20;
 		
 		var itemCube = this.getObjectByName('prop0' + itemType).clone();
