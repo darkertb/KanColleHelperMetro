@@ -467,7 +467,7 @@ GameMgr.prototype.Bomb = function(deltaTime) {
 										//continue;
 									}			
 								}
-								if (y + z <= 9 && i - zz >= 0 && nowSCState[i  zz][y + z] != 5){
+								if (y + z <= 9 && i - zz >= 0 && nowSCState[i - zz][y + z] != 5){
 										
 									if (this.FireHandle(i - zz, y + z, yy)) {
 										this.pScore[yy] += 10;
