@@ -692,7 +692,7 @@ GameMgr.prototype.FireHandle = function(fX, fY, player) {
 	cubeLig.SetPosition(realPos.x - 10, realPos.y);
 	cubeLig.name = 'light-Clone';
 	
-	if (Math.floor(Math.random() * 101) < 35) {
+	if (Math.floor(Math.random() * 101) < 100) {
 		var itemType = -1;
 		
 		itemType = Math.floor(Math.random() * 8) + 1;
