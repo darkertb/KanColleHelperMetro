@@ -435,11 +435,11 @@ GameMgr.prototype.Bomb = function(deltaTime) {
 						
 						// bomb handle
 						var powerAry = [];
-						powerAry[0] = 1;
-						powerAry[1] = 3;
-						powerAry[2] = 5;
-						powerAry[3] = 8;
-						var bombPower = powerAry[0] + (this.pSkill[yy][3] > 0 ? 5 : 0);
+						powerAry[0] = 2;
+						powerAry[1] = 4;
+						powerAry[2] = 6;
+						powerAry[3] = 9;
+						var bombPower = powerAry[this.paIdx] + (this.pSkill[yy][3] > 0 ? 5 : 0);
 						this.paIdx++;
 						if (this.paIdx > 4)
 							this.paIdx = 0;
