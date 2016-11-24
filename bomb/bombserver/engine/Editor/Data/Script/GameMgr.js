@@ -473,30 +473,9 @@ GameMgr.prototype.Bomb = function(deltaTime) {
 								}							
 								break;
 							}
-							if (y + z <= 9 && i - zz >= 0 && nowSCState[i  zz][y + z] != 5){
-								if(nowSCState[i - zz][y + z] == 15)
-									break;
-									
-								if (this.FireHandle(i - zz, y + z, yy)) {
-									this.pScore[yy] += 10;
-									continue;
-								}							
-								break;
-							}
-							if (y - z >=0 && i + zz <= 9 && nowSCState[i + zz][y - z] != 5){
-								if(nowSCState[i + zz][y - z] == 15)
-									break;
-									
-								if (this.FireHandle(i + zz, y - z, yy)) {
-									this.pScore[yy] += 10;
-									continue;
-								}							
-								break;
-							}
 						}
 						
 						/*
-						if (this.pSkill[2].time <= 0)
 						for (var z = 1; z <= bombPower; z++) {
 							if (i + z <= 9 && nowSCState[i + z][y] != 5){
 								if(nowSCState[i + z][y] == 15)
