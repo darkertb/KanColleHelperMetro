@@ -90,6 +90,8 @@ function GameMgr()
 	this.dTimer[2] = 0;
 	this.dTimer[3] = 0;
 	this.dTimer[4] = 0;
+	
+	this.paIdx = 0;
 };
 
 //---------------------------------------------------------------------------------------------
@@ -432,7 +434,15 @@ GameMgr.prototype.Bomb = function(deltaTime) {
 						
 						
 						// bomb handle
-						var bombPower = 5 + (this.pSkill[yy][3] > 0 ? 5 : 0);
+						var powerAry = [];
+						powerAry[0] = 1;
+						powerAry[1] = 3;
+						powerAry[2] = 5;
+						powerAry[3] = 8;
+						var bombPower = powerAry[0] + (this.pSkill[yy][3] > 0 ? 5 : 0);
+						this.paIdx++;
+						if (this.paIdx > 4)
+							this.paIdx = 0;
 						
 						this.FireHandle(i, y, yy)
 						var fireCube = this.getObjectByName('fire-trash');
