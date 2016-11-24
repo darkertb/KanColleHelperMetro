@@ -459,7 +459,7 @@ GameMgr.prototype.Bomb = function(deltaTime) {
 										
 									if (this.FireHandle(i - zz, y - z, yy)) {
 										this.pScore[yy] += 10;
-										continue;
+										//continue;
 									}							
 									break;
 								}
@@ -469,7 +469,27 @@ GameMgr.prototype.Bomb = function(deltaTime) {
 										
 									if (this.FireHandle(i + zz, y + z, yy)) {
 										this.pScore[yy] += 10;
-										continue;
+										//continue;
+									}							
+									break;
+								}
+								if (y + z <= 9 && i - zz >= 0 && nowSCState[i  zz][y + z] != 5){
+									if(nowSCState[i - zz][y + z] == 15)
+										break;
+										
+									if (this.FireHandle(i - zz, y + z, yy)) {
+										this.pScore[yy] += 10;
+										//continue;
+									}							
+									break;
+								}
+								if (y - z >=0 && i + zz <= 9 && nowSCState[i + zz][y - z] != 5){
+									if(nowSCState[i + zz][y - z] == 15)
+										break;
+										
+									if (this.FireHandle(i + zz, y - z, yy)) {
+										this.pScore[yy] += 10;
+										//continue;
 									}							
 									break;
 								}
