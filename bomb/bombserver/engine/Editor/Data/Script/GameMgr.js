@@ -449,7 +449,8 @@ GameMgr.prototype.Bomb = function(deltaTime) {
 						fireCube.SetPosition(realPos.x, realPos.y);
 													
 						cc.AudioEngine.getInstance().playEffect("Data/BGM/" + 'explosion');	
-						/*
+						
+						
 						for (var z = 1; z < bombPower; z++) {
 							for (var zz = 1; zz < bombPower; zz++) {
 							if (y - z >= 0 && i - zz >= 0 && nowSCState[i - zz][y - z] != 5){
@@ -472,19 +473,29 @@ GameMgr.prototype.Bomb = function(deltaTime) {
 								}							
 								break;
 							}
-							if (y + z <= 9 && i - zz >= 0 && nowSCState[i + zz][y + z] != 5){
-								if(nowSCState[i + zz][y + z] == 15)
+							if (y + z <= 9 && i - zz >= 0 && nowSCState[i  zz][y + z] != 5){
+								if(nowSCState[i - zz][y + z] == 15)
 									break;
 									
-								if (this.FireHandle(i + zz, y + z, yy)) {
+								if (this.FireHandle(i - zz, y + z, yy)) {
+									this.pScore[yy] += 10;
+									continue;
+								}							
+								break;
+							}
+							if (y - z >=0 && i + zz <= 9 && nowSCState[i + zz][y - z] != 5){
+								if(nowSCState[i + zz][y - z] == 15)
+									break;
+									
+								if (this.FireHandle(i + zz, y - z, yy)) {
 									this.pScore[yy] += 10;
 									continue;
 								}							
 								break;
 							}
 						}
-						*/
 						
+						/*
 						if (this.pSkill[2].time <= 0)
 						for (var z = 1; z <= bombPower; z++) {
 							if (i + z <= 9 && nowSCState[i + z][y] != 5){
@@ -538,6 +549,7 @@ GameMgr.prototype.Bomb = function(deltaTime) {
 								break;
 							}
 						}
+						*/
 					}
 				}
 			}
