@@ -92,6 +92,7 @@ function GetChannelInfo () {
 		{'key': 'livehouse', 'url': 'livehouse.in/channel/', 'channel': 'LH'},
 		{'key': 'beam', 'url': 'beam.pro/', 'channel': 'BEAM'},
 		{'key': 'afreecatv', 'url': 'afreecatv.com.tw/', 'channel': 'AFTV'},
+		{'key': 'afreeca.tv', 'url': 'afreeca.tv/', 'channel': 'AFTVN'},
 	];
 	
 	return info;
