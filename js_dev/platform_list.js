@@ -1,6 +1,6 @@
 var platformList = [
-			{'key': 'AFTV', 'name': 'AfreecaTVtw', 'sUrl': 'http://afreecatv.com.tw/{ID}', 'vUrl': 'http://www.afreecatv.com.tw/{ID}/popout', 'cUrl': 'http://www.afreecatv.com.tw/live_chat.php?id={ID}'},
-			{'key': 'AFTVN', 'name': 'AfreecaTV國際板', 'sUrl': 'http://afreeca.tv/{ID}', 'vUrl': 'https://gaftvstatic.afreeca.tv/swf/LivePlayer.swf?id={ID}&s=embed', 'cUrl': 'http://www.afreeca.tv/channel/live_chat.php?id={ID}'},
+			{'key': 'AFTV', 'name': 'AfreecaTV台灣版', 'sUrl': 'http://afreecatv.com.tw/{ID}', 'vUrl': 'http://www.afreecatv.com.tw/{ID}/popout', 'cUrl': 'http://www.afreecatv.com.tw/live_chat.php?id={ID}'},
+			{'key': 'AFTVN', 'name': 'AfreecaTV國際版', 'sUrl': 'http://afreeca.tv/{ID}', 'vUrl': 'https://gaftvstatic.afreeca.tv/swf/LivePlayer.swf?id={ID}&s=embed', 'cUrl': 'http://www.afreeca.tv/channel/live_chat.php?id={ID}'},
 			{'key': 'BEAM', 'name': 'Beam', 'sUrl': 'https://beam.pro/{ID}', 'vUrl': 'https://beam.pro/embed/player/{ID}', 'cUrl': 'https://beam.pro/embed/chat/{ID}'},
 			{'key': 'BRK', 'name': 'Breakers', 'sUrl': 'https://breakers.tv/{ID}', 'vUrl': 'https://breakers.tv/embed/video/{ID}', 'cUrl': 'https://breakers.tv/popout/chat/{ID}'},
 			{'key': 'CC', 'name': 'ConnectCast', 'sUrl': 'http://www.connectcast.tv/{ID}', 'vUrl': 'http://www.connectcast.tv/embed/{ID}', 'cUrl': 'http://www.connectcast.tv/{ID}/chat'},
