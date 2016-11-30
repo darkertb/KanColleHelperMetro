@@ -98,7 +98,7 @@ function OnMsgReceived (data) {
 					playerHp[i] = 3;
 				}
 				
-				ChangeSC('Game0' + 1);
+				ChangeSC('Game0' + scNo);
 			}
 		}
 	}

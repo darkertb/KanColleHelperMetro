@@ -90,8 +90,6 @@ function GameMgr()
 	this.dTimer[2] = 0;
 	this.dTimer[3] = 0;
 	this.dTimer[4] = 0;
-	
-	this.paIdx = 0;
 };
 
 //---------------------------------------------------------------------------------------------
@@ -435,9 +433,6 @@ GameMgr.prototype.Bomb = function(deltaTime) {
 						
 						// bomb handle
 						var bombPower = 5 + (this.pSkill[yy][3] > 0 ? 5 : 0);
-						this.paIdx++;
-						if (this.paIdx > 4)
-							this.paIdx = 1;
 						
 						this.FireHandle(i, y, yy)
 						var fireCube = this.getObjectByName('fire-trash');
@@ -448,41 +443,64 @@ GameMgr.prototype.Bomb = function(deltaTime) {
 						fireCube.root.setVisible(true);
 						fireCube.SetPosition(realPos.x, realPos.y);
 													
-						cc.AudioEngine.getInstance().playEffect("Data/BGM/" + 'explosion');	
+						cc.AudioEngine.getInstance().playEffect("Data/BGM/" + 'explosion');						
 						
-						
-						for (var z = 1; z < bombPower; z++) {
-							if (y - z >= 0 && i - z >= 0 && nowSCState[i - z][y - z] != 5){
-									
-								if (this.FireHandle(i - z, y - z, yy)) {
-									this.pScore[yy] += 10;
-									//continue;
-								}		
+						if (this.pSkill[yy][2] > 0) {
+							for (var z = 1; z < bombPower; z++) {
+								if (i + z <= 9 && y - z >= 0 && nowSCState[i + z][y - z] != 5){
+									if(nowSCState[i + z][y] == 15)
+										break;
+										
+									if (this.FireHandle(i + z, y - z, yy)) {
+										this.pScore[yy] += 10;
+										continue;
+									}
+										
+									break;
+								}
 							}
-							if (y + z <= 9 && i + z <= 9 && nowSCState[i + z][y + z] != 5){
-									
-								if (this.FireHandle(i + z, y + z, yy)) {
-									this.pScore[yy] += 10;
-									//continue;
-								}			
+							
+							for (var z = 1; z < bombPower; z++) {
+								if (i - z >= 0 && y - z >= 0 && nowSCState[i - z][y - z] != 5){
+									if(nowSCState[i - z][y] == 15)
+										break;
+										
+									if (this.FireHandle(i - z, y - z, yy)) {
+										this.pScore[yy] += 10;
+										continue;
+									}
+									break;
+								}
 							}
-							if (y + z <= 9 && i - z >= 0 && nowSCState[i - z][y + z] != 5){
-									
-								if (this.FireHandle(i - z, y + z, yy)) {
-									this.pScore[yy] += 10;
-									//continue;
-								}						
+							
+							for (var z = 1; z < bombPower; z++) {
+								if (y + z <= 9 && i + z <= 9 && nowSCState[i + z][y + z] != 5){
+									if(nowSCState[i + z][y + z] == 15)
+										break;
+											
+									if (this.FireHandle(i + z, y + z, yy)) {
+										this.pScore[yy] += 10;
+										continue;
+									}		
+									break;
+								}
 							}
-							if (y - z >=0 && i + z <= 9 && nowSCState[i + z][y - z] != 5){
-									
-								if (this.FireHandle(i + z, y - z, yy)) {
-									this.pScore[yy] += 10;
-									//continue;
-								}				
+							
+							for (var z = 1; z < bombPower; z++) {
+								if (y + z <= 9 && i - z >= 0 && nowSCState[i - z][y + z] != 5){
+									if(nowSCState[i - z][y + z] == 15)
+										break;
+										
+									if (this.FireHandle(i - z, y + z, yy)) {
+										this.pScore[yy] += 10;
+										continue;
+									}							
+									break;
+								}
 							}
 						}
 						
-						for (var z = 1; z <= bombPower; z++) {
+						for (var z = 1; z < bombPower; z++) {
 							if (i + z <= 9 && nowSCState[i + z][y] != 5){
 								if(nowSCState[i + z][y] == 15)
 									break;
@@ -496,7 +514,7 @@ GameMgr.prototype.Bomb = function(deltaTime) {
 							}
 						}
 						
-						for (var z = 1; z <= bombPower; z++) {
+						for (var z = 1; z < bombPower; z++) {
 							if (i - z >= 0 && nowSCState[i - z][y] != 5){
 								if(nowSCState[i - z][y] == 15)
 									break;
@@ -509,7 +527,7 @@ GameMgr.prototype.Bomb = function(deltaTime) {
 							}
 						}
 						
-						for (var z = 1; z <= bombPower; z++) {
+						for (var z = 1; z < bombPower; z++) {
 							if (y + z <= 9 && nowSCState[i][y + z] != 5){
 								if(nowSCState[i][y + z] == 15)
 									break;
@@ -522,7 +540,7 @@ GameMgr.prototype.Bomb = function(deltaTime) {
 							}
 						}
 						
-						for (var z = 1; z <= bombPower; z++) {
+						for (var z = 1; z < bombPower; z++) {
 							if (y - z >= 0 && nowSCState[i][y - z] != 5){
 								if(nowSCState[i][y - z] == 15)
 									break;
@@ -729,10 +747,11 @@ GameMgr.prototype.FireHandle = function(fX, fY, player) {
 	cubeLig.SetPosition(realPos.x - 10, realPos.y);
 	cubeLig.name = 'light-Clone';
 	
-	if (Math.floor(Math.random() * 101) < 100) {
+	if (Math.floor(Math.random() * 101) < 40) {
 		var itemType = -1;
-		
-		itemType = Math.floor(Math.random() * 8) + 1;
+		while (itemType == 4 || itemType == -1) {
+			itemType = Math.floor(Math.random() * 8) + 1;
+		}		
 		nowSCState[fX][fY] = itemType + 20;
 		
 		var itemCube = this.getObjectByName('prop0' + itemType).clone();
@@ -747,7 +766,10 @@ GameMgr.prototype.FireHandle = function(fX, fY, player) {
 		itemCubeAni.name = 'cube_' + fX + '-' + fY + '_ani';
 	}
 	
-	return true;
+	if (this.pSkill[player][5] > 0)
+		return true;
+	else
+		return false;
 }
 
 GameMgr.prototype.PlayerMove = function(player, deltaTime) {			
