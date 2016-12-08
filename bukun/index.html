@@ -30,6 +30,12 @@
 					<input id="bukunSR" type="text" class="form-control"  placeholder="武勲" />
 				</div>
 			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">榮耀</label>
+				<div class="col-sm-10">
+					<input id="glory" type="text" class="form-control"  placeholder="榮耀" />
+				</div>
+			</div>
 
 			<p class="result text-center"></p>
 
@@ -44,50 +50,30 @@
 					<th>標準武勲</th>
 					<th>標準SR武勲</th>
 					<th>標準R武勲</th>
+					<th>標準榮耀</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr class="1-d">
 					<td>一</td>
-					<td class='wb'>286</td>
-					<td class='srb'>72</td>
-					<td class='rb'>72</td>
 				</tr>
 				<tr class="2-d">
 					<td>二</td>
-					<td class='wb'>572</td>
-					<td class='srb'>143</td>
-					<td class='rb'>143</td>
 				</tr>
 				<tr class="3-d">
 					<td>三</td>
-					<td class='wb'>858</td>
-					<td class='srb'>215</td>
-					<td class='rb'>215</td>
 				</tr>
 				<tr class="4-d">
 					<td>四</td>
-					<td class='wb'>1143</td>
-					<td class='srb'>286</td>
-					<td class='rb'>286</td>
 				</tr>
 				<tr class="5-d">
 					<td>五</td>
-					<td class='wb'>1429</td>
-					<td class='srb'>358</td>
-					<td class='rb'>358</td>
 				</tr>
 				<tr class="6-d">
 					<td>六</td>
-					<td class='wb'>1715</td>
-					<td class='srb'>429</td>
-					<td class='rb'>429</td>
 				</tr>
 				<tr class="0-d">
 					<td>日</td>
-					<td class='wb'>2000</td>
-					<td class='srb'>500</td>
-					<td class='rb'>500</td>
 				</tr>
 			</tbody>
 		</table>
@@ -98,6 +84,55 @@
 	//js-start		
 	
 	var oldWeekday = -1;
+
+	var bukunReach = [
+		{
+			bukun: 2000,
+			rSRBukun: 500,
+			glory: 500
+		},
+		{
+			bukun: 286,
+			rSRBukun: 72,
+			glory: 72
+		},
+		{
+			bukun: 572,
+			rSRBukun: 143,
+			glory: 143
+		},
+		{
+			bukun: 858,
+			rSRBukun: 215,
+			glory: 215
+		},
+		{
+			bukun: 1143,
+			rSRBukun: 286,
+			glory: 286
+		},
+		{
+			bukun: 1429,
+			rSRBukun: 358,
+			glory: 358
+		},
+		{
+			bukun: 1715,
+			rSRBukun: 429,
+			glory: 429
+		}
+	];
+
+	// init
+
+	for (var key in bukunReach) {
+		$('tr.' + key + '-d').append('<td class="wb">' + bukunReach[key].bukun + '</td>');
+		$('tr.' + key + '-d').append('<td class="srb">' + bukunReach[key].rSRBukun + '</td>');
+		$('tr.' + key + '-d').append('<td class="rb">' + bukunReach[key].rSRBukun + '</td>');
+		$('tr.' + key + '-d').append('<td class="wg">' + bukunReach[key].glory + '</td>');
+	}
+
+	// ====
 	
 	if(SetFocusWeekday())
 		SetRecord();
@@ -116,21 +151,27 @@
 	$("#bukunSR").change(function () {
 		SetRecord();
 	});
+	$("#glory").change(function () {
+		SetRecord();
+	});
 	
 	function SetRecord () {
 		var bukun = $("#bukun").val();
 		var bukunR = $("#bukunR").val();
 		var bukunSR = $("#bukunSR").val();
+		var glory = $("#glory").val();
 		
-		var weekBukun = $('.' + oldWeekday + '-d').children('td.wb').text();
-		var weekBukunR = $('.' + oldWeekday + '-d').children('td.rb').text();
-		var weekBukunSR = $('.' + oldWeekday + '-d').children('td.srb').text();
+		var weekBukun = bukunReach[oldWeekday].bukun;
+		var weekBukunR = bukunReach[oldWeekday].rSRBukun;
+		var weekBukunSR = bukunReach[oldWeekday].rSRBukun;
+		var weekGlory = bukunReach[oldWeekday].glory;
 		
 		var diffBukun = Clamp(weekBukun - bukun);
 		var diffBukunR = Clamp(weekBukunR - bukunR);
 		var diffBukunSR = Clamp(weekBukunSR - bukunSR);
+		var diffGlory = Clamp(weekGlory - glory);
 		
-		$('p.result').text('本日差額 - 週武勲: ' + diffBukun + ' R武勲: ' + diffBukunR + ' SR武勲: ' + diffBukunSR);
+		$('p.result').text('本日差額 - 週武勲: ' + diffBukun + ' R武勲: ' + diffBukunR + ' SR武勲: ' + diffBukunSR + ' 榮耀: ' + diffGlory);
 	}
 	
 	function Clamp (val) {
@@ -151,7 +192,7 @@
 			return false;
 	
 		for (var i = 0; i < 7; i++) {
-			$('.' + i + '-d').css("background-color", "#fff");
+			$('.' + i + '-d').css("background-color", "#FFF");
 		}		
 		
 		$('.' + newWeekday + '-d').css("background-color", "#BCF5A9");
@@ -160,23 +201,6 @@
 		
 		return true;
 	}
-	
-	/*
-	$(document).ready(function() { $(window).one("focus", SomeFocusMetdod); } );
-
-	var SomeFocusMetdod = function()
-	{
-		$(window).one("blur", SomeBlurMetdod);
-		console.log('focus');
-	};
-	
-	var SomeBlurMetdod = function() 
-	{ 
-		// do stuff
-		$(window).one("focus", SomeFocusMetdod); 
-		console.log('lose');
-	};
-	*/
 
 	//js-end
 </script>
