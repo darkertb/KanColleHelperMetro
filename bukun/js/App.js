@@ -21,9 +21,17 @@ var App = function(){
     this.bonusList = [ 'bukun', 'rBukun', 'srBukun', 'glory' ];
 };
 
-App.prototype.Diff = function(nowBukun) {
+App.prototype.DiffToday = function(nowBukun) {
+    return this.Diff(nowBukun, this.nowWeekDay);
+}
+
+App.prototype.DiffWeek = function(nowBukun) {
+    return this.Diff(nowBukun, 0);
+}
+
+App.prototype.Diff = function(nowBukun, weekDay) {
     var result = {};
-    var reach = this.bukunReach[this.nowWeekDay];
+    var reach = this.bukunReach[weekDay];
 
     for(let item of this.bonusList) {
         result[item] = reach[item] - nowBukun[item];

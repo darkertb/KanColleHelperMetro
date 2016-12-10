@@ -11,29 +11,30 @@
     </HEAD>
 
     <BODY>
-		<hr>
-
-		<div class="input-group col-sm-4 col-md-offset-4">
-			<span class="input-group-addon" id="basic-addon1">週武勲</span>
-			<input type="text" class="form-control" placeholder="武勲" aria-describedby="basic-addon1" id="bukun">
-		</div>
-		<div class="input-group col-sm-4 col-md-offset-4">
-			<span class="input-group-addon" id="basic-addon1">R武勲</span>
-			<input type="text" class="form-control" placeholder="武勲" aria-describedby="basic-addon1" id="rBukun">
-		</div>
-		<div class="input-group col-sm-4 col-md-offset-4">
-			<span class="input-group-addon" id="basic-addon1">SR武勲</span>
-			<input type="text" class="form-control" placeholder="武勲" aria-describedby="basic-addon1" id="srBukun">
-		</div>
-		<div class="input-group col-sm-4 col-md-offset-4">
-			<span class="input-group-addon" id="basic-addon1">榮耀</span>
-			<input type="text" class="form-control" placeholder="榮耀" aria-describedby="basic-addon1" id="glory">
-		</div>		
-		
-		<hr>
 
 		<div class="col-sm-6 col-md-offset-3" >
-			<p class="text-center">本日差額</p>
+			<hr>
+
+			<div class="input-group col-sm-4 col-md-offset-4">
+				<span class="input-group-addon" id="basic-addon1">週武勲</span>
+				<input type="text" class="form-control" placeholder="武勲" aria-describedby="basic-addon1" id="bukun">
+			</div>
+			<div class="input-group col-sm-4 col-md-offset-4">
+				<span class="input-group-addon" id="basic-addon1">R武勲</span>
+				<input type="text" class="form-control" placeholder="武勲" aria-describedby="basic-addon1" id="rBukun">
+			</div>
+			<div class="input-group col-sm-4 col-md-offset-4">
+				<span class="input-group-addon" id="basic-addon1">SR武勲</span>
+				<input type="text" class="form-control" placeholder="武勲" aria-describedby="basic-addon1" id="srBukun">
+			</div>
+			<div class="input-group col-sm-4 col-md-offset-4">
+				<span class="input-group-addon" id="basic-addon1">榮耀</span>
+				<input type="text" class="form-control" placeholder="榮耀" aria-describedby="basic-addon1" id="glory">
+			</div>		
+			
+			<hr>
+
+			<p class="text-center result">本日差額 ▲</p>
 			<table class="table result table-bordered" style="align: center;">
 				<thead>
 					<tr>
@@ -52,8 +53,8 @@
 					</tr>
 				</tbody>
 			</table>
-
-			<p class="text-center">本日差場</p>
+			
+			<p class="text-center count">本日差場 ▲</p>
 			<table class="table count table-bordered">
 				<thead>
 					<tr>
@@ -72,10 +73,29 @@
 					</tr>
 				</tbody>
 			</table>
-			
-			<hr>
 
-			<table class="table table-bordered">
+			<p class="text-center canget">本週還可獲得 ▲</p>
+			<table class="table canget table-bordered">
+				<thead>
+					<tr>
+						<th>武勲</th>
+						<th>R武勲</th>
+						<th>SR武勲</th>
+						<th>榮耀</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="bukun"></td>
+						<td class="rBukun"></td>
+						<td class="srBukun"></td>
+						<td class="glory"></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<p class="text-center reach">本週標準 ▲</p>
+			<table class="table table-bordered reach">
 				<thead>
 					<tr>
 						<th>週</th>

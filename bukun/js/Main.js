@@ -18,7 +18,32 @@ for(let item of app.bonusList) {
         SetRecord();
     });
 }
+
+RegisterTable();
+
 // *Main
+
+function RegisterTable (arguments) {
+    var tableList = [ 
+        {key: 'result', name: '本日差額'}, 
+        {key: 'count', name: '本日差場'}, 
+        {key: 'canget', name: '本週還可獲得'},
+        {key: 'reach', name: '本週標準'}
+    ];
+
+    for(let item of tableList) {
+        $('p.' + item.key).click(function() {
+        if ($('table.' + item.key).is(":visible")){
+            $('table.' + item.key).hide();
+            $('p.' + item.key).text(item.name + ' ▼');
+        }
+        else{
+            $('table.' + item.key).show();        
+            $('p.' + item.key).text(item.name + ' ▲');
+        }
+        });
+    }
+}
 
 function SetRecord () {
     var nowBukun = {};
@@ -27,7 +52,8 @@ function SetRecord () {
         nowBukun[item] = $('#' + item).val();
     }
 
-    var diff = app.Diff(nowBukun);
+    var diff = app.DiffToday(nowBukun);
+    var diffWeek = app.DiffWeek(nowBukun);
             
     var CountDiff = {};
     for(let item of app.bonusList) {
@@ -37,11 +63,8 @@ function SetRecord () {
     for(let item of app.bonusList) {
         $('table.result tbody tr td.' + item).text(diff[item]);
         $('table.count tbody tr td.' + item).text('自発: '+ CountDiff[item].self + ' 救援: ' + CountDiff[item].other + ' 場');
+        $('table.canget tbody tr td.' + item).text(app.Clamp(diffWeek[item]));
     }
-    $('p.count-bukun').text('武勲: 自発: '+ CountDiff.bukun.self + ' 救援: ' + CountDiff.bukun.other + ' 場');
-    $('p.count-rBukun').text('R武勲: 自発: '+ CountDiff.rBukun.self + ' 救援: ' + CountDiff.rBukun.other + ' 場');
-    $('p.count-srBukun').text('SR武勲: 自発: '+ CountDiff.srBukun.self + ' 救援: ' + CountDiff.srBukun.other + ' 場');
-    $('p.count-glory').text('榮耀: 自発: '+ CountDiff.glory.self + ' 救援: ' + CountDiff.glory.other + ' 場');
 }
 
 function SetFocusWeekday () {
