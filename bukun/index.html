@@ -2,6 +2,7 @@
     <HEAD>
 		<link rel="stylesheet" href = "../libs/bootstrap/css/bootstrap.min.css">
         <script type="text/javascript"src="../libs/jquery1.3.2/jquery.min.js"></script>
+        <script type="text/javascript"src="js/App.js"></script>
 
         <link href="icon.ico" rel="SHORTCUT ICON">
 
@@ -21,13 +22,13 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">R武勲</label>
 				<div class="col-sm-10">
-					<input id="bukunR" type="text" class="form-control"  placeholder="武勲" />
+					<input id="rBukun" type="text" class="form-control"  placeholder="武勲" />
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">SR武勲</label>
 				<div class="col-sm-10">
-					<input id="bukunSR" type="text" class="form-control"  placeholder="武勲" />
+					<input id="srBukun" type="text" class="form-control"  placeholder="武勲" />
 				</div>
 			</div>
 			<div class="form-group">
@@ -38,6 +39,10 @@
 			</div>
 
 			<p class="result text-center"></p>
+			<p class="count-bukun text-center"></p>
+			<p class="count-rBukun text-center"></p>
+			<p class="count-srBukun text-center"></p>
+			<p class="count-glory text-center"></p>
 
             <hr>	
 			
@@ -80,127 +85,4 @@
     </BODY>
 </HTML>
 
-<script>
-	//js-start		
-	
-	var oldWeekday = -1;
-
-	var bukunReach = [
-		{
-			bukun: 2000,
-			rSRBukun: 500,
-			glory: 500
-		},
-		{
-			bukun: 286,
-			rSRBukun: 72,
-			glory: 72
-		},
-		{
-			bukun: 572,
-			rSRBukun: 143,
-			glory: 143
-		},
-		{
-			bukun: 858,
-			rSRBukun: 215,
-			glory: 215
-		},
-		{
-			bukun: 1143,
-			rSRBukun: 286,
-			glory: 286
-		},
-		{
-			bukun: 1429,
-			rSRBukun: 358,
-			glory: 358
-		},
-		{
-			bukun: 1715,
-			rSRBukun: 429,
-			glory: 429
-		}
-	];
-
-	// init
-
-	for (var key in bukunReach) {
-		$('tr.' + key + '-d').append('<td class="wb">' + bukunReach[key].bukun + '</td>');
-		$('tr.' + key + '-d').append('<td class="srb">' + bukunReach[key].rSRBukun + '</td>');
-		$('tr.' + key + '-d').append('<td class="rb">' + bukunReach[key].rSRBukun + '</td>');
-		$('tr.' + key + '-d').append('<td class="wg">' + bukunReach[key].glory + '</td>');
-	}
-
-	// ====
-	
-	if(SetFocusWeekday())
-		SetRecord();
-	
-	window.addEventListener("focus", function(event) { 
-			if(SetFocusWeekday())
-				SetRecord();
-		}, false);
-			
-	$("#bukun").change(function () {
-		SetRecord();
-	});
-	$("#bukunR").change(function () {
-		SetRecord();
-	});
-	$("#bukunSR").change(function () {
-		SetRecord();
-	});
-	$("#glory").change(function () {
-		SetRecord();
-	});
-	
-	function SetRecord () {
-		var bukun = $("#bukun").val();
-		var bukunR = $("#bukunR").val();
-		var bukunSR = $("#bukunSR").val();
-		var glory = $("#glory").val();
-		
-		var weekBukun = bukunReach[oldWeekday].bukun;
-		var weekBukunR = bukunReach[oldWeekday].rSRBukun;
-		var weekBukunSR = bukunReach[oldWeekday].rSRBukun;
-		var weekGlory = bukunReach[oldWeekday].glory;
-		
-		var diffBukun = Clamp(weekBukun - bukun);
-		var diffBukunR = Clamp(weekBukunR - bukunR);
-		var diffBukunSR = Clamp(weekBukunSR - bukunSR);
-		var diffGlory = Clamp(weekGlory - glory);
-		
-		$('p.result').text('本日差額 - 週武勲: ' + diffBukun + ' R武勲: ' + diffBukunR + ' SR武勲: ' + diffBukunSR + ' 榮耀: ' + diffGlory);
-	}
-	
-	function Clamp (val) {
-		return val;
-		//return val >= 0 ? val : 0;
-	}
-		
-	function GetWeekday () {
-		var d = new Date();
-		d.setHours(d.getHours() - 4);
-		return d.getDay();
-	}
-	
-	function SetFocusWeekday () {
-		var newWeekday = GetWeekday();
-		
-		if (oldWeekday == newWeekday)
-			return false;
-	
-		for (var i = 0; i < 7; i++) {
-			$('.' + i + '-d').css("background-color", "#FFF");
-		}		
-		
-		$('.' + newWeekday + '-d').css("background-color", "#BCF5A9");
-		
-		oldWeekday = newWeekday;
-		
-		return true;
-	}
-
-	//js-end
-</script>
+<script type="text/javascript"src="js/Main.js"></script>
