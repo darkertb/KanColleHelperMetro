@@ -1,6 +1,7 @@
 <HTML>
     <HEAD>
 		<link rel="stylesheet" href = "../libs/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href = "css/main.css">
         <script type="text/javascript"src="../libs/jquery1.3.2/jquery.min.js"></script>
         <script type="text/javascript"src="js/App.js"></script>
 
@@ -10,78 +11,105 @@
     </HEAD>
 
     <BODY>
-		<form class="col-sm-10 form-horizontal" role="form">
-            <hr>
+		<hr>
 
-			<div class="form-group">
-				<label class="col-sm-2 control-label">週武勲</label>
-				<div class="col-sm-10">
-					<input id="bukun" type="text" class="form-control"  placeholder="武勲" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">R武勲</label>
-				<div class="col-sm-10">
-					<input id="rBukun" type="text" class="form-control"  placeholder="武勲" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">SR武勲</label>
-				<div class="col-sm-10">
-					<input id="srBukun" type="text" class="form-control"  placeholder="武勲" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">榮耀</label>
-				<div class="col-sm-10">
-					<input id="glory" type="text" class="form-control"  placeholder="榮耀" />
-				</div>
-			</div>
-
-			<p class="result text-center"></p>
-			<p class="count-bukun text-center"></p>
-			<p class="count-rBukun text-center"></p>
-			<p class="count-srBukun text-center"></p>
-			<p class="count-glory text-center"></p>
-
-            <hr>	
-			
-		</form>
+		<div class="input-group col-sm-4 col-md-offset-4">
+			<span class="input-group-addon" id="basic-addon1">週武勲</span>
+			<input type="text" class="form-control" placeholder="武勲" aria-describedby="basic-addon1" id="bukun">
+		</div>
+		<div class="input-group col-sm-4 col-md-offset-4">
+			<span class="input-group-addon" id="basic-addon1">R武勲</span>
+			<input type="text" class="form-control" placeholder="武勲" aria-describedby="basic-addon1" id="rBukun">
+		</div>
+		<div class="input-group col-sm-4 col-md-offset-4">
+			<span class="input-group-addon" id="basic-addon1">SR武勲</span>
+			<input type="text" class="form-control" placeholder="武勲" aria-describedby="basic-addon1" id="srBukun">
+		</div>
+		<div class="input-group col-sm-4 col-md-offset-4">
+			<span class="input-group-addon" id="basic-addon1">榮耀</span>
+			<input type="text" class="form-control" placeholder="榮耀" aria-describedby="basic-addon1" id="glory">
+		</div>		
 		
-		<table class="table">
-			<thead>
-				<tr>
-					<th>週</th>
-					<th>標準武勲</th>
-					<th>標準SR武勲</th>
-					<th>標準R武勲</th>
-					<th>標準榮耀</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr class="1-d">
-					<td>一</td>
-				</tr>
-				<tr class="2-d">
-					<td>二</td>
-				</tr>
-				<tr class="3-d">
-					<td>三</td>
-				</tr>
-				<tr class="4-d">
-					<td>四</td>
-				</tr>
-				<tr class="5-d">
-					<td>五</td>
-				</tr>
-				<tr class="6-d">
-					<td>六</td>
-				</tr>
-				<tr class="0-d">
-					<td>日</td>
-				</tr>
-			</tbody>
-		</table>
+		<hr>
+
+		<div class="col-sm-6 col-md-offset-3" >
+			<p class="text-center">本日差額</p>
+			<table class="table result table-bordered" style="align: center;">
+				<thead>
+					<tr>
+						<th>武勲</th>
+						<th>R武勲</th>
+						<th>SR武勲</th>
+						<th>榮耀</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="bukun"></td>
+						<td class="rBukun"></td>
+						<td class="srBukun"></td>
+						<td class="glory"></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<p class="text-center">本日差場</p>
+			<table class="table count table-bordered">
+				<thead>
+					<tr>
+						<th>武勲</th>
+						<th>R武勲</th>
+						<th>SR武勲</th>
+						<th>榮耀</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="bukun"></td>
+						<td class="rBukun"></td>
+						<td class="srBukun"></td>
+						<td class="glory"></td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<hr>
+
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>週</th>
+						<th>標準武勲</th>
+						<th>標準SR武勲</th>
+						<th>標準R武勲</th>
+						<th>標準榮耀</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="1-d">
+						<td>一</td>
+					</tr>
+					<tr class="2-d">
+						<td>二</td>
+					</tr>
+					<tr class="3-d">
+						<td>三</td>
+					</tr>
+					<tr class="4-d">
+						<td>四</td>
+					</tr>
+					<tr class="5-d">
+						<td>五</td>
+					</tr>
+					<tr class="6-d">
+						<td>六</td>
+					</tr>
+					<tr class="0-d">
+						<td>日</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
     </BODY>
 </HTML>
 

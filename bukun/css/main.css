@@ -1,0 +1,13 @@
+.input-group-addon {
+    min-width:100px;
+    text-align:center;
+}
+table th {
+    text-align:center;
+}
+table tr {
+    text-align:center;
+}
+input {
+    text-align:center;
+}

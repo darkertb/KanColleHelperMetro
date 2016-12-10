@@ -29,13 +29,15 @@ function SetRecord () {
 
     var diff = app.Diff(nowBukun);
             
-    $('p.result').text('本日差額 - 週武勲: ' + diff.bukun + ' R武勲: ' + diff.rBukun + ' SR武勲: ' + diff.srBukun + ' 榮耀: ' + diff.glory);
-
     var CountDiff = {};
     for(let item of app.bonusList) {
         CountDiff[item] = app.CountDiff(item, nowBukun[item]);    
     }
-
+        
+    for(let item of app.bonusList) {
+        $('table.result tbody tr td.' + item).text(diff[item]);
+        $('table.count tbody tr td.' + item).text('自発: '+ CountDiff[item].self + ' 救援: ' + CountDiff[item].other + ' 場');
+    }
     $('p.count-bukun').text('武勲: 自発: '+ CountDiff.bukun.self + ' 救援: ' + CountDiff.bukun.other + ' 場');
     $('p.count-rBukun').text('R武勲: 自発: '+ CountDiff.rBukun.self + ' 救援: ' + CountDiff.rBukun.other + ' 場');
     $('p.count-srBukun').text('SR武勲: 自発: '+ CountDiff.srBukun.self + ' 救援: ' + CountDiff.srBukun.other + ' 場');
