@@ -65,6 +65,9 @@ function SetRecord () {
         $('table.count tbody tr td.' + item).text('自発: '+ CountDiff[item].self + ' 救援: ' + CountDiff[item].other + ' 場');
         $('table.canget tbody tr td.' + item).text(app.Clamp(diffWeek[item]));
     }
+    
+    var bukunDiffSum = diff.bukun + diff.rBukun + diff.srBukun;
+    $('table.canget tbody tr td.bukunSum').text(app.Clamp(bukunDiffSum));
 }
 
 function SetFocusWeekday () {
