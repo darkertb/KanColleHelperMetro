@@ -11,3 +11,13 @@ table tr {
 input {
     text-align:center;
 }
+
+.pro-delay {
+    background-color: #ffa2a2
+}
+.pro-finished {
+    background-color: #a2ffa9
+}
+.pro-timeup {
+    background-color: #ffdaa2
+}

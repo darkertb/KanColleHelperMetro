@@ -21,6 +21,11 @@ var App = function(){
     this.bonusList = [ 'bukun', 'rBukun', 'srBukun', 'glory' ];
 };
 
+App.prototype.ProccessState = function() {
+
+    
+}
+
 App.prototype.DiffToday = function(nowBukun) {
     return this.Diff(nowBukun, this.nowWeekDay);
 }
