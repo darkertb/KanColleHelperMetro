@@ -66,7 +66,7 @@ function SetRecord () {
         $('table.canget tbody tr td.' + item).text(app.Clamp(diffWeek[item]));
     }
     
-    var bukunDiffSum = diff.bukun + diff.rBukun + diff.srBukun;
+    var bukunDiffSum = diffWeek.bukun + diffWeek.rBukun + diffWeek.srBukun;
     $('table.canget tbody tr td.bukunSum').text(app.Clamp(bukunDiffSum));
 }
 
