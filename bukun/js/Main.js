@@ -9,7 +9,7 @@ if(SetFocusWeekday())
     SetRecord();
 
 window.addEventListener("focus", function(event) { 
-        if(SetFocusWeekday())
+        if(SetFocusWeekday() || app.IsWarningTime())
             SetRecord();
     }, false);
 
@@ -52,18 +52,19 @@ function SetRecord () {
         nowBukun[item] = $('#' + item).val();
     }
 
-    var diff = app.DiffToday(nowBukun);
-    var diffWeek = app.DiffWeek(nowBukun);
-            
-    var CountDiff = {};
-    for(let item of app.bonusList) {
-        CountDiff[item] = app.CountDiff(item, nowBukun[item]);    
-    }
+    var diff = app.DiffToday(nowBukun);      
+    var CountDiff = app.CountDiff(nowBukun);
+    var progressState = app.ProgressState(nowBukun);
+    var diffWeek = app.DiffWeek(nowBukun);      
+    if (app.nowWeekDay == 0 && diffWeek.bukun > 1000)
+        diffWeek.bukun = 1000;
         
     for(let item of app.bonusList) {
         $('table.result tbody tr td.' + item).text(diff[item]);
         $('table.count tbody tr td.' + item).text('自発: '+ CountDiff[item].self + ' 救援: ' + CountDiff[item].other + ' 場');
         $('table.canget tbody tr td.' + item).text(app.Clamp(diffWeek[item]));
+
+        $('table:not(.canget) tbody tr td.' + item).css('background-color', app.progressColor[progressState[item]]);
     }
     
     var bukunDiffSum = diffWeek.bukun + diffWeek.rBukun + diffWeek.srBukun;
