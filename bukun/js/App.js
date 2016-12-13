@@ -19,7 +19,7 @@ var App = function(){
     this.nowWeekDay = -1;
 
     this.bonusList = [ 'bukun', 'rBukun', 'srBukun', 'glory' ];
-    this.progressColor = [ '#fff', '#a2ffa9', '#ffdaa2', '#ffa2a2', '#810000' ];
+    this.progressColor = [ '#fff', '#efffe9', '#ffeed5', '#ffd3d3', '#bd4848' ];
 };
 
 App.prototype.DaliyAkashi = function() {
