@@ -22,16 +22,18 @@ var App = function(){
     this.progressColor = [ '#fff', '#a2ffa9', '#ffdaa2', '#ffa2a2', '#810000' ];
 };
 
+App.prototype.DaliyAkashi = function() {
+    var ytdGlory = this.GetYesterdayReach().glory;
+    var todayGlory = this.bukunReach[this.nowWeekDay].glory - ytdGlory;
+    todayGlory += ytdGlory % 20;
+
+    return Math.floor(todayGlory / 20);
+}
+
 App.prototype.ProgressState = function(nowBukun) {
-    var yesterdayReach = {bukun: 0, rBukun: 0, srBukun: 0, glory: 0};
     var todayReach = this.bukunReach[this.nowWeekDay];
     var result = {bukun: 0, rBukun: 0, srBukun: 0, glory: 0};
-
-    if (this.nowWeekDay != 1) {
-        var yesterday = this.nowWeekDay == 0 ? 6 : (this.nowWeekDay - 1);
-
-        yesterdayReach = this.bukunReach[yesterday];
-    }
+    var yesterdayReach = this.GetYesterdayReach();
 
     // 0: normal, 1: completed, 2: warning, 3: delay, 4: failed
     for(let item of this.bonusList) {
@@ -105,6 +107,17 @@ App.prototype.IsWarningTime = function() {
         timeup.setDate(timeup.getDate() + 1);
 
     return (timeup - now < 16200000);
+}
+
+App.prototype.GetYesterdayReach = function() {
+    var result = {bukun: 0, rBukun: 0, srBukun: 0, glory: 0};
+
+    if (this.nowWeekDay != 1) {
+        var yesterday = this.nowWeekDay == 0 ? 6 : (this.nowWeekDay - 1);
+        result = this.bukunReach[yesterday];
+    }
+
+    return result;
 }
 
 App.prototype.GetWeekday = function(arguments) {

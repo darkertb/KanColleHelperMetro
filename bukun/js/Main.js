@@ -85,5 +85,7 @@ function SetFocusWeekday () {
     
     app.nowWeekDay = newWeekday;
     
+    $('p.akashi-count').text('本日可換 ' + app.DaliyAkashi() + ' 個勳章');
+    
     return true;
 }
