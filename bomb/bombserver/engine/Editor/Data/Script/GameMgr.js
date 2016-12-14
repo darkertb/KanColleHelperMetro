@@ -432,7 +432,7 @@ GameMgr.prototype.Bomb = function(deltaTime) {
 						
 						
 						// bomb handle
-						var bombPower = 5 + (this.pSkill[yy][3] > 0 ? 5 : 0);
+						var bombPower = 8 + (this.pSkill[yy][3] > 0 ? 5 : 0);
 						
 						this.FireHandle(i, y, yy)
 						var fireCube = this.getObjectByName('fire-trash');

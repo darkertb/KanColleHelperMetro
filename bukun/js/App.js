@@ -32,8 +32,8 @@ App.prototype.DaliyAkashi = function() {
 
 App.prototype.ProgressState = function(nowBukun) {
     var todayReach = this.bukunReach[this.nowWeekDay];
-    var result = {bukun: 0, rBukun: 0, srBukun: 0, glory: 0};
     var yesterdayReach = this.GetYesterdayReach();
+    var result = {bukun: 0, rBukun: 0, srBukun: 0, glory: 0};
 
     // 0: normal, 1: completed, 2: warning, 3: delay, 4: failed
     for(let item of this.bonusList) {
