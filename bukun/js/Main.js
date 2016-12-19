@@ -28,6 +28,7 @@ function RegisterTable (arguments) {
         {key: 'result', name: '本日差額'}, 
         {key: 'count', name: '本日差場'}, 
         {key: 'canget', name: '本週還可獲得'},
+        {key: 'week-count', name: '本週還需場次'},
         {key: 'reach', name: '本週標準'}
     ];
 
