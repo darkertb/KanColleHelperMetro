@@ -58,16 +58,17 @@ App.prototype.ProgressState = function(nowBukun) {
 }
 
 App.prototype.DiffToday = function(nowBukun) {
-    return this.Diff(nowBukun, this.nowWeekDay);
+    return this.Diff(nowBukun);
 }
 
 App.prototype.DiffWeek = function(nowBukun) {
-    return this.Diff(nowBukun, 0);
+    return this.Diff(nowBukun, this.bukunReach[0]);
 }
 
-App.prototype.Diff = function(nowBukun, weekDay) {
+App.prototype.Diff = function(nowBukun, reach) {
     var result = {};
-    var reach = this.bukunReach[weekDay];
+    if (reach == undefined)
+        reach = this.bukunReach[this.nowWeekDay];
 
     for(let item of this.bonusList) {
         result[item] = reach[item] - nowBukun[item];
@@ -76,10 +77,13 @@ App.prototype.Diff = function(nowBukun, weekDay) {
     return result;
 }
 
-App.prototype.CountDiff = function(nowBukun) {
+App.prototype.CountDiff = function(nowBukun, reach) {
     var result = {};
+    if (reach == undefined)
+        reach = this.bukunReach[this.nowWeekDay];
+
     for(let item of app.bonusList) {
-        var reachDiff = this.bukunReach[this.nowWeekDay][item] - nowBukun[item];
+        var reachDiff = reach[item] - nowBukun[item];
         result[item] = {};
 
         result[item].self = reachDiff / this.bonusVal[item].self;
@@ -98,10 +102,7 @@ App.prototype.Clamp = function(val) {
 App.prototype.IsWarningTime = function() {
     var now = new Date();
     var timeup = new Date();
-    timeup.setHours(4);
-    timeup.setMinutes(0);
-    timeup.setSeconds(0);
-    timeup.setMilliseconds(0);
+    timeup.setHours(4, 0, 0, 0);
 
     if (now.getHours() >= 4)
         timeup.setDate(timeup.getDate() + 1);

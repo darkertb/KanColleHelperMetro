@@ -54,18 +54,20 @@ function SetRecord () {
     }
 
     var diff = app.DiffToday(nowBukun);      
-    var CountDiff = app.CountDiff(nowBukun);
-    var progressState = app.ProgressState(nowBukun);
     var diffWeek = app.DiffWeek(nowBukun);      
+    var countDiff = app.CountDiff(nowBukun);
+    var countDiffWeek = app.CountDiff(nowBukun, app.bukunReach[0]);
+    var progressState = app.ProgressState(nowBukun);
     if (app.nowWeekDay == 0 && diffWeek.bukun > 1000)
         diffWeek.bukun = 1000;
         
     for(let item of app.bonusList) {
         $('table.result tbody tr td.' + item).text(diff[item]);
-        $('table.count tbody tr td.' + item).text('自発: '+ CountDiff[item].self + ' 救援: ' + CountDiff[item].other + ' 場');
+        $('table.count tbody tr td.' + item).text('自発: '+ countDiff[item].self + ' 救援: ' + countDiff[item].other + ' 場');
+        $('table.week-count tbody tr td.' + item).text('自発: '+ countDiffWeek[item].self + ' 救援: ' + countDiffWeek[item].other + ' 場');
         $('table.canget tbody tr td.' + item).text(app.Clamp(diffWeek[item]));
 
-        $('table:not(.canget) tbody tr td.' + item).css('background-color', app.progressColor[progressState[item]]);
+        $('table:not(.canget):not(.week-count) tbody tr td.' + item).css('background-color', app.progressColor[progressState[item]]);
     }
     
     var bukunDiffSum = diffWeek.bukun + diffWeek.rBukun + diffWeek.srBukun;

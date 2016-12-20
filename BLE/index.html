@@ -3,6 +3,8 @@
 </html>
 
 <script>
+
+    alert(navigator.mozBluetooth);
     navigator.mozBluetooth.defaultAdapter.startLeScan([]).then(handle => {
         handle.ondevicefound = e => {
             alert('Found', e.device, e.scanRecord);
