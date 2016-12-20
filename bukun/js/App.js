@@ -77,6 +77,18 @@ App.prototype.Diff = function(nowBukun, reach) {
     return result;
 }
 
+App.prototype.DaysDiff = function(diff) {
+    var result = {};
+    var daliyReach = this.bukunReach[1];
+    
+    for(let item of this.bonusList) {
+        result[item] = diff[item] / daliyReach[item] * -1;
+        result[item] = Math.round(result[item] * 100) / 100
+    }
+
+    return result;
+}
+
 App.prototype.CountDiff = function(nowBukun, reach) {
     var result = {};
     if (reach == undefined)
