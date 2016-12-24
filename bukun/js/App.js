@@ -83,7 +83,7 @@ App.prototype.DaysDiff = function(diff) {
     
     for(let item of this.bonusList) {
         result[item] = diff[item] / daliyReach[item] * -1;
-        result[item] = Math.round(result[item] * 100) / 100
+        result[item] = Math.round(result[item] * 10) / 10
     }
 
     return result;
