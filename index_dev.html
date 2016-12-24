@@ -185,8 +185,8 @@
 	/* default config */
 	var widthOffset = -353;
 	var heightOffset = -30;
-	var topOffset = 0;
-	var chatHeightOffset = 30;
+	var topOffset = 26;
+	var leftOffset = 0;
 			
 	// =====平台列表=====
 	for (var idx in platformList) {
@@ -342,12 +342,12 @@
 		    var url = getCHUrl(videoInfo, 'video', true);
 		    var vChannel = channel;
 
-		    newWindow(url, w, h, ID, channel, topOffset, 30, 'video');
+		    newWindow(url, w, h, ID, channel, leftOffset , topOffset, 'video');
 		}
 
 		if(chatInfo != null){
 			url = (chatInfo == 'same' || chatInfo == 's') ? getCHUrl(videoInfo, 'chat', true) : getCHUrl(chatInfo, 'chat', true);
-			newWindow(url, 350, parseInt(h) + chatHeightOffset, ID, channel, parseInt(w), topOffset, 'chat');
+			newWindow(url, 350, parseInt(h) + topOffset, ID, channel, parseInt(w), leftOffset, 'chat');
 		}
 		
 		var cChannel = chatInfo != null ? channel : null;
@@ -445,7 +445,7 @@
 		$('#A0').width(newWidth).height(newHeight);
 		RefreshIframeSize('A0');
 		
-		var newChatHeight = parseInt(newHeight) + chatHeightOffset;
+		var newChatHeight = parseInt(newHeight) + topOffset;
 		$('#A1').css('left', newWidth).height(newChatHeight);
 		RefreshIframeSize('A1');
 	});
