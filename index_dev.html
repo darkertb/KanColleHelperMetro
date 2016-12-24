@@ -626,9 +626,9 @@
 		if ($(this).is(':animated')){
 			return false;
 		}
-		else if(curH != 19){
+		else if(curH != 17){
 			$(className).animate({
-				height : 19
+				height : 17
 			}, 300);
 			$(className).resizable('disable');
 		}
@@ -677,7 +677,7 @@
 		var elemW = document.getElementById(id);
 		var elemF = document.getElementById(id + 'F');
 		
-		elemF.style.height = parseInt(elemW.style.height) - 19;
+		elemF.style.height = parseInt(elemW.style.height) - 17;
 		elemF.style.width = parseInt(elemW.style.width) - 2;
 	}
 		

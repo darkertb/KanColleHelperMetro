@@ -7,7 +7,7 @@ function WTemplate()
 +"<span class='bt' id='A{0}BS' style='margin-right:2px; float:right;font-size:9pt;' onmouseover='changeCursor(0);' onmouseout='changeCursor(1);'> <font color='#fff'>–</font> </span>"
 +"<font color='#fff'>{6}</font>"
 +"</div>"
-+"<iframe width='{2}px' height='{3}px' id='A{0}F' style='background-color:#000;margin-top:-2px;border-style:solid;border-bottom-style:none;border-width:1px;' src='{7}'>"
++"<iframe width='{2}px' height='{3}px' id='A{0}F' style='background-color:#000;margin-top:-2px;border-style:solid;border-top-style:none;border-width:1px;' src='{7}'>"
 +"</iframe>"
 +"<div id='A{0}container' style=' width:100%; height:100%; filter:alpha(opacity=50); opacity:0; background-color:#000; position:absolute; top:0; left:0;'>"
 +"</div>"
