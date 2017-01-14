@@ -1,0 +1,62 @@
+<HTML>
+    <HEAD>
+		<link rel="stylesheet" href = "../libs/bootstrap/css/bootstrap.min.css">
+        <script type="text/javascript"src="../libs/jquery1.3.2/jquery.min.js"></script>
+
+        <title>Bukun</title>
+    </HEAD>
+
+    <BODY>
+
+		<div class="col-sm-6 col-md-offset-3" >
+			<hr>
+
+			<div class="input-group col-sm-4 col-md-offset-4">
+				<span class="input-group-addon" id="basic-addon1">時間</span>
+				<input type="text" class="form-control" placeholder="2016-12-27 0:0:0" aria-describedby="basic-addon1" id="datetime">
+			</div>
+			
+			<hr>
+
+			<p class="text-center datetime">2016-12-27 0:0:0</p>
+			<p class="text-center timestamp">1482768000</p>
+		</div>
+    </BODY>
+</HTML>
+
+<script>
+    $('#datetime').change(function () {
+        var datetime = $('#datetime').val();
+
+        var date = new Date(datetime);
+        console.log(date);
+
+        var ts = date.GetTimestamp();
+
+        $('.datetime').text(date.Format());
+        $('.timestamp').text(ts);
+    });
+
+    Date.prototype.GetTimestamp = function() {
+        return Math.round(this / 1000)
+    };
+
+    Date.prototype.Format = function(fmt) { //author: meizz 
+        if (fmt == undefined)
+            fmt = 'yyyy-MM-dd hh:mm:ss';
+
+        var o = {
+            "M+": this.getMonth() + 1, //月份 
+            "d+": this.getDate(), //日 
+            "h+": this.getHours(), //小时 
+            "m+": this.getMinutes(), //分 
+            "s+": this.getSeconds(), //秒 
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+            "S": this.getMilliseconds() //毫秒 
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    }
+</script>
