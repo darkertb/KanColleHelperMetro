@@ -1,12 +1,15 @@
 // Main*
-for (var key in app.bukunReach) {
-    for(let item of app.bonusList) {
-        app.bukunReach[key][item] *= 2;
+
+if (document.title.indexOf('活動') > -1) {
+    for (var key in app.bukunReach) {
+        for(let item of app.bonusList) {
+            app.bukunReach[key][item] *= 2;
+        }
     }
-}
-for (var key in app.bonusVal) {
-    for(let item of app.bonusList) {
-        app.bonusVal[key][item] *= 2;
+    for (var key in app.bonusVal) {
+        for(let item of app.bonusList) {
+            app.bonusVal[key][item] *= 2;
+        }
     }
 }
 
