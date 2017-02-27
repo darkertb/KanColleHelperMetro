@@ -793,6 +793,9 @@
 			url = platformInfo.sUrl;
 			url = url.replace('{ID}', ID);
 		}
+
+		if (url.indexOf('twitch') > -1)
+			url = url.toUpperCase();
 			
 		if(url != ''){
 			var newwin = window.open();   //此行一定要如此書寫,否則失效
