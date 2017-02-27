@@ -795,7 +795,7 @@
 		}
 
 		if (url.indexOf('twitch') > -1)
-			url = url.toUpperCase();
+			url = url.toLowerCase();
 			
 		if(url != ''){
 			var newwin = window.open();   //此行一定要如此書寫,否則失效
@@ -817,7 +817,10 @@
 				alert(platformInfo.name + '無法使用此功能');
 				return '';
 			}
-			url = url.replace('{ID}', ID);
+			url = url.replace('{ID}', ID);			
+
+			if (url.indexOf('twitch') > -1)
+				url = url.toLowerCase();
 		}
 		
 		return url;
