@@ -1,0 +1,43 @@
+<html>
+<head>
+    <title>首頁</title>
+    <link href="icon.ico" rel="SHORTCUT ICON">
+
+    <script type="text/javascript" src="libs/jquery1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
+    <script src="libs/bootstrap/js/bootstrap.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <br />
+s
+    <form class="col-sm-10 form-horizontal" role="form">
+
+        <a class="btn btn-default btn-block" href="/MyTV/"><span class="glyphicon glyphicon-facetime-video"></span> MyTV</a>
+        <a class="btn btn-default btn-block" href="/MyTV/form.html"><span class="glyphicon glyphicon-wrench"></span> MyTV頁面產生器</a>
+
+        <hr>
+
+        <a class="btn btn-default btn-block" href="/MyTV/Exclamation.html"><span class="glyphicon glyphicon-pencil"></span> 驚嘆號文產生器</a>
+
+        <hr>
+
+        <span class="btn btn-default btn-block" id="gbf"><span class="glyphicon glyphicon-pencil"></span> GBF </span>
+        <span class="btn btn-default btn-block" id="discord"><span class="glyphicon glyphicon-pencil"></span> Discord </span>
+
+    </form>
+</body>
+
+</html>
+
+<script>
+	$("#gbf").click(function(){
+        window.open('http://game.granbluefantasy.jp/#mypage', 'GBFByDTB', config='height=920,width=600');
+	});
+	$("#discord").click(function(){
+		window.open('https://discordapp.com/channels/@me', 'discord', config='height=920,width=600');
+	});
+</script>
