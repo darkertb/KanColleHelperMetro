@@ -15,7 +15,7 @@
     <br />
 
     <form class="col-sm-10 form-horizontal" role="form">
-        
+
         <a class="btn btn-default btn-block" href="/MyTV/"><span class="glyphicon glyphicon-facetime-video"></span> MyTV</a>
         <a class="btn btn-default btn-block" href="/MyTV/form.html"><span class="glyphicon glyphicon-wrench"></span> MyTV頁面產生器</a>
 
@@ -26,6 +26,7 @@
         <hr>
 
         <span class="btn btn-default btn-block" id="gbf"><span class="glyphicon glyphicon-pencil"></span> GBF </span>
+        <span class="btn btn-default btn-block" id="discord"><span class="glyphicon glyphicon-pencil"></span> Discord </span>
 
     </form>
 </body>
@@ -34,6 +35,9 @@
 
 <script>
 	$("#gbf").click(function(){
-		window.open('http://game.granbluefantasy.jp/#mypage', 'GBFByDTB', config='height=920,width=600');
+        window.open('http://game.granbluefantasy.jp/#mypage', 'GBFByDTB', config='height=920,width=600');
+	});
+	$("#discord").click(function(){
+		window.open('https://discordapp.com/channels/@me', 'discord', config='height=920,width=600');
 	});
 </script>
