@@ -4,6 +4,7 @@ div.title {
 }
 div.kashi {    
     text-align: center;
+    letter-spacing: 2px;
     font-size: 30;
     line-height: 60px;
 }
