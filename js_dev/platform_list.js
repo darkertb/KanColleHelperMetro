@@ -4,6 +4,7 @@ var platformList = [
 			{'key': 'BEAM', 'name': 'Beam', 'sUrl': 'https://beam.pro/{ID}', 'vUrl': 'https://beam.pro/embed/player/{ID}', 'cUrl': 'https://beam.pro/embed/chat/{ID}'},
 			{'key': 'BRK', 'name': 'Breakers', 'sUrl': 'https://breakers.tv/{ID}', 'vUrl': 'https://breakers.tv/embed/video/{ID}', 'cUrl': 'https://breakers.tv/popout/chat/{ID}'},
 			{'key': 'CC', 'name': 'ConnectCast', 'sUrl': 'http://www.connectcast.tv/{ID}', 'vUrl': 'http://www.connectcast.tv/embed/{ID}', 'cUrl': 'http://www.connectcast.tv/{ID}/chat'},
+			{'key': 'CG', 'name': 'CyberGame', 'sUrl': 'https://cybergame.tv/{ID}', 'vUrl': 'https://api.cybergame.tv/p/embed.php?c={ID}&type=embed', 'cUrl': ''},
 			{'key': 'HIT', 'name': 'Hitbox', 'sUrl': 'http://www.hitbox.tv/{ID}', 'vUrl': 'http://www.hitbox.tv/embed/{ID}?popout=true&autoplay=true', 'cUrl': 'http://www.hitbox.tv/embedchat/{ID}?autoconnect=true'},
 			{'key': 'LH', 'name': 'LiveHouse', 'sUrl': 'https://livehouse.in/channel/{ID}', 'vUrl': 'https://livehouse.in/embed/channel/{ID}/video', 'cUrl': 'https://livehouse.in/embed/channel/{ID}/chatroom'},
 			{'key': 'STUP', 'name': 'Streamup', 'sUrl': 'https://streamup.com/{ID}', 'vUrl': 'https://streamup.com/{ID}/embeds/video', 'cUrl': 'https://streamup.com/{ID}/embeds/chatonly'},
