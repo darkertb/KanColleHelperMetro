@@ -7,6 +7,7 @@ var platformList = [
 			{'key': 'CG', 'name': 'CyberGame', 'sUrl': 'https://cybergame.tv/{ID}', 'vUrl': 'https://api.cybergame.tv/p/embed.php?c={ID}&type=embed', 'cUrl': ''},
 			{'key': 'HIT', 'name': 'Hitbox', 'sUrl': 'http://www.hitbox.tv/{ID}', 'vUrl': 'http://www.hitbox.tv/embed/{ID}?popout=true&autoplay=true', 'cUrl': 'http://www.hitbox.tv/embedchat/{ID}?autoconnect=true'},
 			{'key': 'LH', 'name': 'LiveHouse', 'sUrl': 'https://livehouse.in/channel/{ID}', 'vUrl': 'https://livehouse.in/embed/channel/{ID}/video', 'cUrl': 'https://livehouse.in/embed/channel/{ID}/chatroom'},
+			{'key': 'OKRU', 'name': 'Okru', 'sUrl': 'https://ok.ru/video/{ID}', 'vUrl': 'https://ok.ru/videoembed/{ID}?nochat=1&autoplay=1', 'cUrl': ''},
 			{'key': 'STUP', 'name': 'Streamup', 'sUrl': 'https://streamup.com/{ID}', 'vUrl': 'https://streamup.com/{ID}/embeds/video', 'cUrl': 'https://streamup.com/{ID}/embeds/chatonly'},
 			{'key': 'TTV', 'name': 'TwitchTV', 'sUrl': 'https://www.twitch.tv/{ID}', 'vUrl': 'https://player.twitch.tv/?channel={ID}', 'cUrl': 'https://www.twitch.tv/{ID}/chat'},
 			{'key': 'UST', 'name': 'Ustream', 'sUrl': 'http://www.ustream.tv/channel/{ID}', 'vUrl': 'http://www.ustream.tv/embed/{ID}', 'cUrl': 'http://www.ustream.tv/socialstream/{ID}?siteMode=1'},
