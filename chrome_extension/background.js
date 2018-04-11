@@ -2,15 +2,15 @@
 chrome.runtime.onInstalled.addListener(function() {
 	var context = "link";
 	var title = "Open with DarkerTV";
-	
+
 	/*
 	var rootId = chrome.contextMenus.create({"title": 'DarkerTV', "contexts":[context, 'selection', 'page'], "id": 'root'});
 	chrome.contextMenus.create({"title": 'Open with DarkerTV', 'parentId': rootId, "contexts":[context, 'selection'], "id": 'open'});
 	chrome.contextMenus.create({"title": 'Copy to clipboard', 'parentId': rootId, "contexts":[context, 'selection'], "id": 'copy'});
 	chrome.contextMenus.create({"title": 'Open with DarkerTV by URL', 'parentId': rootId, "contexts":['page'], "id": 'openURL'});
 	*/
-	
-	chrome.contextMenus.create({"title": 'Open with DarkerTV', "contexts":[context, 'selection'], "id": 'open'});
+
+	chrome.contextMenus.create({"title": 'Open Facebook', "contexts":[context, 'selection'], "id": 'open'});
 	chrome.contextMenus.create({"title": 'Open with DarkerTV by URL', "contexts":['page'], "id": 'openURL'});
 	chrome.contextMenus.create({"title": '(́◕◞౪◟◕‵)', "contexts":['page'], "id": 'fkFace'});
 	chrome.contextMenus.create({"title": 'GBF', "contexts":['page'], "id": 'gbf'});
@@ -24,6 +24,11 @@ chrome.contextMenus.onClicked.addListener(onClickHandler);
 
 // The onClicked callback function.
 function onClickHandler(info, tab) {
+	if (info.menuItemId == 'open') {
+		window.open('https://www.facebook.com/' + info.selectionText);
+		return;
+	}
+
 	if (info.menuItemId == 'gbf'){
 		window.open('http://game.granbluefantasy.jp/#mypage', 'GBFByDTB', config='height=920,width=600');
 		return;
@@ -35,26 +40,26 @@ function onClickHandler(info, tab) {
 	}
 
 	var sourceUrl = '';
-	
+
 	if (info.menuItemId == 'openURL')
 		sourceUrl = tab.url;
 	else
 		sourceUrl = (info.selectionText) ? info.selectionText : info.linkUrl;
-			
+
 	var url = 'http://darkertb.github.io/MyTV/?v=';
-	
+
 	var streamInfo = [];
-	
+
 	sourceUrl = RemoveHTTP(sourceUrl);
-	
+
 	streamInfo = GetStreamInfo(sourceUrl);
-	
+
 	var streamId = RemoveURLParameters(streamInfo.id);
 	var streamChannel = streamInfo.channel;
 
 	if (streamId != '' && streamChannel != ''){
 		url += streamId + '-' + streamChannel + '&c=s';
-		
+
 		if (info.menuItemId == 'open' || info.menuItemId == 'openURL' ) {
 			//window.open(url, '_blank');
 			chrome.tabs.update(tab.id, {
@@ -64,7 +69,7 @@ function onClickHandler(info, tab) {
 		else if (info.menuItemId == 'copy') {
 			CopyText(url);
 		}
-			
+
 	}
 };
 
@@ -94,7 +99,7 @@ function GetChannelInfo () {
 		{'key': 'afreecatv', 'url': 'afreecatv.com.tw/', 'channel': 'AFTV'},
 		{'key': 'afreeca.tv', 'url': 'afreeca.tv/', 'channel': 'AFTVN'},
 	];
-	
+
 	return info;
 }
 
@@ -102,7 +107,7 @@ function GetChannelInfo () {
 function RemoveHTTP (_url) {
 	if (_url.indexOf('http://') > -1) _url = _url.replace('http://', '');
 	if (_url.indexOf('https://') > -1) _url = _url.replace('https://', '');
-	
+
 	return _url;
 }
 
@@ -112,7 +117,7 @@ function RemoveURLParameters (_url) {
 		_url = _url.substring(0, _url.indexOf('/'));
 	if (_url.indexOf('?') > -1)
 		_url = _url.substring(0, _url.indexOf('?'));
-	
+
 	return _url;
 }
 
@@ -120,17 +125,17 @@ function RemoveURLParameters (_url) {
 function GetStreamInfo (_url) {
 	var result = {'channel': '', 'id': ''};
 	var channelInfo = GetChannelInfo();
-	
+
 	for (var i = 0; i < channelInfo.length; i++) {
 		var key = channelInfo[i]['key'];
-		
+
 		if (_url.indexOf(key) > -1) {
 			result.channel = channelInfo[i]['channel'];
 			result.id = _url.replace(channelInfo[i]['url'], '');
-			
+
 			break;
 		}
-	}	
-	
-	return result; 
+	}
+
+	return result;
 }
