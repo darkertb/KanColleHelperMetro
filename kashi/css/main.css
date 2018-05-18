@@ -1,0 +1,17 @@
+div.title {    
+    text-align: center;
+    font-size: 15;
+}
+div.kashi {    
+    text-align: center;
+    letter-spacing: 2px;
+    font-size: 30;
+    line-height: 60px;
+}
+
+a > span.back {
+    position: fixed; 
+    left: 10px;    
+    top: 10px;    
+    font-size: 20px;
+}

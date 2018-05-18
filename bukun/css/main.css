@@ -1,0 +1,23 @@
+.input-group-addon {
+    min-width:100px;
+    text-align:center;
+}
+table th {
+    text-align:center;
+}
+table tr {
+    text-align:center;
+}
+input {
+    text-align:center;
+}
+
+.pro-delay {
+    background-color: #ffa2a2
+}
+.pro-finished {
+    background-color: #a2ffa9
+}
+.pro-timeup {
+    background-color: #ffdaa2
+}

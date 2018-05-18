@@ -1,0 +1,17 @@
+<html>
+
+</html>
+
+<script>
+
+    alert(navigator.mozBluetooth);
+    navigator.mozBluetooth.defaultAdapter.startLeScan([]).then(handle => {
+        handle.ondevicefound = e => {
+            alert('Found', e.device, e.scanRecord);
+        };
+
+        setTimeout(() => {
+            navigator.mozBluetooth.defaultAdapter.stopLeScan(handle)
+        }, 5000);
+        }, err => alert(err));
+</script>

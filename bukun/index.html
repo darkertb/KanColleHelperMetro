@@ -1,206 +1,181 @@
 <HTML>
-    <HEAD>
-		<link rel="stylesheet" href = "../libs/bootstrap/css/bootstrap.min.css">
-        <script type="text/javascript"src="../libs/jquery1.3.2/jquery.min.js"></script>
 
-        <link href="icon.ico" rel="SHORTCUT ICON">
+<HEAD>
+  <link rel="stylesheet" href="../libs/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <script type="text/javascript" src="../libs/jquery1.3.2/jquery.min.js"></script>
+  <script type="text/javascript" src="js/App.js"></script>
 
-        <title>Bukun</title>
-    </HEAD>
+  <link href="icon.ico" rel="SHORTCUT ICON">
 
-    <BODY>
-		<form class="col-sm-10 form-horizontal" role="form">
-            <hr>
+  <title>Bukun</title>
+</HEAD>
 
-			<div class="form-group">
-				<label class="col-sm-2 control-label">週武勲</label>
-				<div class="col-sm-10">
-					<input id="bukun" type="text" class="form-control"  placeholder="武勲" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">R武勲</label>
-				<div class="col-sm-10">
-					<input id="bukunR" type="text" class="form-control"  placeholder="武勲" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">SR武勲</label>
-				<div class="col-sm-10">
-					<input id="bukunSR" type="text" class="form-control"  placeholder="武勲" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">榮耀</label>
-				<div class="col-sm-10">
-					<input id="glory" type="text" class="form-control"  placeholder="榮耀" />
-				</div>
-			</div>
+<BODY>
 
-			<p class="result text-center"></p>
+  <div class="col-sm-6 col-md-offset-3">
+    <hr>
 
-            <hr>	
-			
-		</form>
-		
-		<table class="table">
-			<thead>
-				<tr>
-					<th>週</th>
-					<th>標準武勲</th>
-					<th>標準SR武勲</th>
-					<th>標準R武勲</th>
-					<th>標準榮耀</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr class="1-d">
-					<td>一</td>
-				</tr>
-				<tr class="2-d">
-					<td>二</td>
-				</tr>
-				<tr class="3-d">
-					<td>三</td>
-				</tr>
-				<tr class="4-d">
-					<td>四</td>
-				</tr>
-				<tr class="5-d">
-					<td>五</td>
-				</tr>
-				<tr class="6-d">
-					<td>六</td>
-				</tr>
-				<tr class="0-d">
-					<td>日</td>
-				</tr>
-			</tbody>
-		</table>
-    </BODY>
+    <div class="input-group col-sm-4 col-md-offset-4">
+      <span class="input-group-addon" id="basic-addon1">週武勲</span>
+      <input type="number" min="0" max="2000" class="form-control" placeholder="本周已獲得武勲" aria-describedby="basic-addon1" id="bukun">
+    </div>
+    <div class="input-group col-sm-4 col-md-offset-4">
+      <span class="input-group-addon" id="basic-addon1">R武勲</span>
+      <input type="number" min="0" max="500" class="form-control" placeholder="本周已獲得R武勲" aria-describedby="basic-addon1" id="rBukun">
+    </div>
+    <div class="input-group col-sm-4 col-md-offset-4">
+      <span class="input-group-addon" id="basic-addon1">SR武勲</span>
+      <input type="number" min="0" max="500" class="form-control" placeholder="本周已獲得SR武勲" aria-describedby="basic-addon1" id="srBukun">
+    </div>
+    <div class="input-group col-sm-4 col-md-offset-4">
+      <span class="input-group-addon" id="basic-addon1">榮耀</span>
+      <input type="number" min="0" max="500" class="form-control" placeholder="本周已獲得榮耀" aria-describedby="basic-addon1" id="glory">
+    </div>
+
+    <hr>
+
+    <p class="text-center akashi-count">本日可換 N 個勳章</p>
+    <p class="text-center result">本日差額 ▲</p>
+    <table class="table result table-bordered">
+      <thead>
+        <tr>
+          <th>武勲</th>
+          <th>R武勲</th>
+          <th>SR武勲</th>
+          <th>榮耀</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="bukun"></td>
+          <td class="rBukun"></td>
+          <td class="srBukun"></td>
+          <td class="glory"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="text-center count">本日差場 ▲</p>
+    <table class="table count table-bordered">
+      <thead>
+        <tr>
+          <th>武勲</th>
+          <th>R武勲</th>
+          <th>SR武勲</th>
+          <th>榮耀</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="bukun"></td>
+          <td class="rBukun"></td>
+          <td class="srBukun"></td>
+          <td class="glory"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="text-center days-diff">本周超前進度(天) ▲</p>
+    <table class="table days-diff table-bordered">
+      <thead>
+        <tr>
+          <th>武勲</th>
+          <th>R武勲</th>
+          <th>SR武勲</th>
+          <th>榮耀</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="bukun"></td>
+          <td class="rBukun"></td>
+          <td class="srBukun"></td>
+          <td class="glory"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="text-center canget">本週還可獲得 ▲</p>
+    <table class="table canget table-bordered">
+      <thead>
+        <tr>
+          <th>武勲</th>
+          <th>R武勲</th>
+          <th>SR武勲</th>
+          <th class="active">總武勲</th>
+          <th>榮耀</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="bukun"></td>
+          <td class="rBukun"></td>
+          <td class="srBukun"></td>
+          <td class="bukunSum active"></td>
+          <td class="glory"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="text-center week-count">本週還需場次 ▲</p>
+    <table class="table week-count table-bordered">
+      <thead>
+        <tr>
+          <th>武勲</th>
+          <th>R武勲</th>
+          <th>SR武勲</th>
+          <th>榮耀</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="bukun"></td>
+          <td class="rBukun"></td>
+          <td class="srBukun"></td>
+          <td class="glory"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="text-center reach">本週標準 ▲</p>
+    <table class="table table-bordered reach">
+      <thead>
+        <tr>
+          <th>週</th>
+          <th>標準武勲</th>
+          <th>標準SR武勲</th>
+          <th>標準R武勲</th>
+          <th>標準榮耀</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="1-d">
+          <td>一</td>
+        </tr>
+        <tr class="2-d">
+          <td>二</td>
+        </tr>
+        <tr class="3-d">
+          <td>三</td>
+        </tr>
+        <tr class="4-d">
+          <td>四</td>
+        </tr>
+        <tr class="5-d">
+          <td>五</td>
+        </tr>
+        <tr class="6-d">
+          <td>六</td>
+        </tr>
+        <tr class="0-d">
+          <td>日</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</BODY>
+
 </HTML>
 
-<script>
-	//js-start		
-	
-	var oldWeekday = -1;
-
-	var bukunReach = [
-		{
-			bukun: 2000,
-			rSRBukun: 500,
-			glory: 500
-		},
-		{
-			bukun: 286,
-			rSRBukun: 72,
-			glory: 72
-		},
-		{
-			bukun: 572,
-			rSRBukun: 143,
-			glory: 143
-		},
-		{
-			bukun: 858,
-			rSRBukun: 215,
-			glory: 215
-		},
-		{
-			bukun: 1143,
-			rSRBukun: 286,
-			glory: 286
-		},
-		{
-			bukun: 1429,
-			rSRBukun: 358,
-			glory: 358
-		},
-		{
-			bukun: 1715,
-			rSRBukun: 429,
-			glory: 429
-		}
-	];
-
-	// init
-
-	for (var key in bukunReach) {
-		$('tr.' + key + '-d').append('<td class="wb">' + bukunReach[key].bukun + '</td>');
-		$('tr.' + key + '-d').append('<td class="srb">' + bukunReach[key].rSRBukun + '</td>');
-		$('tr.' + key + '-d').append('<td class="rb">' + bukunReach[key].rSRBukun + '</td>');
-		$('tr.' + key + '-d').append('<td class="wg">' + bukunReach[key].glory + '</td>');
-	}
-
-	// ====
-	
-	if(SetFocusWeekday())
-		SetRecord();
-	
-	window.addEventListener("focus", function(event) { 
-			if(SetFocusWeekday())
-				SetRecord();
-		}, false);
-			
-	$("#bukun").change(function () {
-		SetRecord();
-	});
-	$("#bukunR").change(function () {
-		SetRecord();
-	});
-	$("#bukunSR").change(function () {
-		SetRecord();
-	});
-	$("#glory").change(function () {
-		SetRecord();
-	});
-	
-	function SetRecord () {
-		var bukun = $("#bukun").val();
-		var bukunR = $("#bukunR").val();
-		var bukunSR = $("#bukunSR").val();
-		var glory = $("#glory").val();
-		
-		var weekBukun = bukunReach[oldWeekday].bukun;
-		var weekBukunR = bukunReach[oldWeekday].rSRBukun;
-		var weekBukunSR = bukunReach[oldWeekday].rSRBukun;
-		var weekGlory = bukunReach[oldWeekday].glory;
-		
-		var diffBukun = Clamp(weekBukun - bukun);
-		var diffBukunR = Clamp(weekBukunR - bukunR);
-		var diffBukunSR = Clamp(weekBukunSR - bukunSR);
-		var diffGlory = Clamp(weekGlory - glory);
-		
-		$('p.result').text('本日差額 - 週武勲: ' + diffBukun + ' R武勲: ' + diffBukunR + ' SR武勲: ' + diffBukunSR + ' 榮耀: ' + diffGlory);
-	}
-	
-	function Clamp (val) {
-		return val;
-		//return val >= 0 ? val : 0;
-	}
-		
-	function GetWeekday () {
-		var d = new Date();
-		d.setHours(d.getHours() - 4);
-		return d.getDay();
-	}
-	
-	function SetFocusWeekday () {
-		var newWeekday = GetWeekday();
-		
-		if (oldWeekday == newWeekday)
-			return false;
-	
-		for (var i = 0; i < 7; i++) {
-			$('.' + i + '-d').css("background-color", "#FFF");
-		}		
-		
-		$('.' + newWeekday + '-d').css("background-color", "#BCF5A9");
-		
-		oldWeekday = newWeekday;
-		
-		return true;
-	}
-
-	//js-end
-</script>
+<script type="text/javascript" src="js/Main.js"></script>
