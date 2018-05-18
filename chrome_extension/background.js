@@ -14,6 +14,7 @@ chrome.runtime.onInstalled.addListener(function() {
 	chrome.contextMenus.create({"title": 'Open with DarkerTV by URL', "contexts":['page'], "id": 'openURL'});
 	chrome.contextMenus.create({"title": '(́◕◞౪◟◕‵)', "contexts":['page'], "id": 'fkFace'});
 	chrome.contextMenus.create({"title": 'GBF', "contexts":['page'], "id": 'gbf'});
+	chrome.contextMenus.create({"title": 'mediafire', "contexts":['selection'], "id": 'mediafire'});
 });
 
 chrome.browserAction.onClicked.addListener(function(tab) {
@@ -24,6 +25,16 @@ chrome.contextMenus.onClicked.addListener(onClickHandler);
 
 // The onClicked callback function.
 function onClickHandler(info, tab) {
+	if (info.menuItemId == 'mediafire') {
+		var url = 'http://www.mediafire.com/';
+		if (info.selectionText.indexOf('?') == -1) {
+			url += '?';
+		}
+		url += info.selectionText;
+		window.open(url);	
+		return;
+	}
+
 	if (info.menuItemId == 'gbf'){
 		window.open('http://game.granbluefantasy.jp/#mypage', 'GBFByDTB', config='height=920,width=600');
 		return;
