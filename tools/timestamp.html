@@ -1,0 +1,48 @@
+<html>
+
+    <body>
+
+        <p id="todayNow">本日 - </p>
+        <hr>
+        <p id="todayMidnight">本日 0:00 - </p>
+        <p id="tomorrowMidnight">次日 0:00 - </p>
+
+    </body>
+
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+
+$(document).ready(function(){
+
+    updateView();
+    setInterval(updateView, 1000);
+
+});
+
+function updateView() {
+    let now = getTimestamp();
+
+    let midNight = getMidNight();
+
+    $('#todayNow').text('本日 - ' + now);
+
+    $('#todayMidnight').text('本日 0:00 - ' + midNight);
+
+    $('#tomorrowMidnight').text('次日 0:00 - ' + (midNight + 86400));
+}
+
+function getTimestamp (date) {
+    date = date ? date : new Date();
+    return Math.floor(date / 1000);
+}
+
+function getMidNight (date) {
+    date || (date = new Date());
+    date.setHours(0,0,0,0);
+    return Math.floor(date/1000);
+}
+
+</script>
