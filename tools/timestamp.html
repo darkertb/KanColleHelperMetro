@@ -2,7 +2,8 @@
 
     <body>
 
-        <input id="dateText" type="text" value="0"/>
+        <input id="datetimepicker" type="text">
+        <input id="datetimepicker2" type="text">
 
         <p id="todayNow">本日 - </p>
         <hr>
@@ -13,15 +14,31 @@
 
 </html>
 
+<link rel="stylesheet" type="text/css" href="./node_modules/jquery-datetimepicker/build/jquery.datetimepicker.min.css" />
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="./node_modules/jquery-datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
 
 <script>
 
     let _midNight;
+    let _midNight2;
+
+    let todayDate = new Date();
+    let now = getMidNight(todayDate);
+    todayDate.setDate(todayDate.getDate() + 1);
+    let tomorrow = getMidNight(todayDate);
+
+    $('#datetimepicker').val(timestampFormat(now, 'yyyy/MM/dd hh:mm'));
+    $('#datetimepicker2').val(timestampFormat(tomorrow, 'yyyy/MM/dd hh:mm'));
+
+    $('#datetimepicker').datetimepicker();
+    $('#datetimepicker2').datetimepicker();
+
 
     $(document).ready(function(){
 
-        // $('#dateText').val(timestampFormat(getTimestamp(), 'yyyy-MM-dd'));
+        // $('#datetimepicker').val(timestampFormat(getTimestamp(), 'yyyy-MM-dd'));
         updateView();
         setInterval(updateView, 1000);
 
@@ -29,10 +46,9 @@
 
     function updateView() {
         let now = getTimestamp();
-        let offsetDay = +($('#dateText').val());
-        let offsetSec = offsetDay * 86400;
 
-        let midNight = getMidNight() + offsetSec;
+        let midNight = getMidNight(new Date($('#datetimepicker').val()) || new Date());
+        let midNight2 = getMidNight(new Date($('#datetimepicker2').val()) || new Date());
 
 
         $('#todayNow').text('本日 - ' + now);
@@ -40,7 +56,10 @@
         if (_midNight != midNight) {
             _midNight = midNight;
             $('#todayMidnight').text('本日 0:00 - ' + midNight);
-            $('#tomorrowMidnight').text('次日 0:00 - ' + (midNight + 86400));
+        }
+        if (_midNight2 != midNight2) {
+            _midNight2 = midNight2;
+            $('#tomorrowMidnight').text('次日 0:00 - ' + midNight2);
         }
     }
 
