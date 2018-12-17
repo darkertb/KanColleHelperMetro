@@ -1,0 +1,9 @@
+{
+  "NORMAL_FUCK_CONDOM": {
+    "name": "普通位(套)",
+    "exp": {
+      "sexualExp": [1, 2],
+      "condomExp": [1, 2]
+    }
+  }
+}
