@@ -1,0 +1,107 @@
+<html>
+<head>
+    <title>首頁</title>
+    <link href="icon.ico" rel="SHORTCUT ICON">
+
+    <script type="text/javascript" src="libs/jquery1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
+    <script src="libs/bootstrap/js/bootstrap.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <br />
+
+    <form class="col-sm-10 form-horizontal" role="form">
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Command</label>
+            <div class="col-sm-10">
+                <input id="command-input" type="text" class="form-control" placeholder="press your command" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">結果</label>
+            <div class="col-sm-10">
+                <p id="res"></p>
+            </div>
+        </div>
+
+    </form>
+</body>
+
+</html>
+
+<script>
+
+    let chineseNum = { '一': 1, '二': 2, '兩': 2, '三': 3, '四': 4, '五': 5, '六': 6, '七': 7, '八': 8, '九': 9 };
+
+    $('#command-input').change(() => {
+        let commandStr = $('#command-input').val();
+
+        let result;
+
+        if (commandStr.indexOf('小時以前') > -1) {
+            let hour = commandStr.replace('小時以前', '');
+            if ($.isNumeric(hour)) {
+                hour = +hour;
+            }
+            else {
+                hour = chineseNum[hour];
+            }
+
+            if (hour === undefined) {
+                result = '無法理解。';
+            }
+            else {
+                result = dateFormat(new Date().AddHours(-hour), 'hh:mm');
+            }
+        }
+        else if (commandStr.indexOf('小時以後') > -1) {
+            let hour = commandStr.replace('小時以後', '');
+            if ($.isNumeric(hour)) {
+                hour = +hour;
+            }
+            else {
+                hour = chineseNum[hour];
+            }
+
+            if (hour === undefined) {
+                result = '無法理解。';
+            }
+            else {
+                result = dateFormat(new Date().AddHours(hour), 'hh:mm');
+            }
+        }
+
+        $('#res').text(result);
+    });
+
+    Date.prototype.AddHours = function(hour) {
+        this.setHours(this.getHours() + hour);
+        return this;
+    };
+
+    function dateFormat (date, fmt) {
+        var o = {
+            "M+": date.getMonth() + 1,  //月
+            "d+": date.getDate(),       //日
+            "h+": date.getHours(),      //時
+            "m+": date.getMinutes(),    //分
+            "s+": date.getSeconds(),    //秒
+            "q+": Math.floor((date.getMonth() + 3) / 3), //季
+            "S": date.getMilliseconds() //毫秒
+        };
+        if (/(y+)/.test(fmt)) {
+            fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+        }
+        for (var k in o) {
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        }
+        return fmt;
+    }
+
+</script>
