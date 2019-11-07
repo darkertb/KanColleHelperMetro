@@ -18,8 +18,8 @@ function merge () {
 
     let parent = $(img).parent()
 
-    let transform = $(img).css('transform').replace('matrix(').replace(')').replace(/ /g, '').split(',')
-    let parenrTransform = parent.css('transform').replace('matrix(').replace(')').replace(/ /g, '').split(',')
+    let transform = $(img).css('transform').replace('matrix(', '').replace(')', '').replace(/ /g, '').split(',')
+    let parenrTransform = parent.css('transform').replace('matrix(', '').replace(')', '').replace(/ /g, '').split(',')
 
     let scalingX = +transform[0]
     let scalingY = +transform[3]
@@ -27,7 +27,7 @@ function merge () {
     let offsetX = +parenrTransform[4]
     let offsetY = +parenrTransform[5]
 
-    console.log(transform)
+    console.log($(img).css('transform'))
 
     imgSize.push([img.width, img.height])
     imgUrl.push({ src: img.src, x: 0, y: offsetY / scalingY })
