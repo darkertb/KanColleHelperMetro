@@ -10,11 +10,27 @@ function merge () {
   let imgUrl = []
   let _width = 0
   let _height = 0
+
+  let matrixRegex = /matrix\((-?\d*\.?\d+),\s*0,\s*0,\s*(-?\d*\.?\d+),\s*0,\s*0\)/
+
   for (let i = 0; i < 3; i++) {
     let img = $('#content-p' + page + ' img')[i]
 
+    let parent = $(img).parent()
+
+    let transform = $(img).css('transform').replace('matrix(').replace(')').replace(/ /g, '').split(',')
+    let parenrTransform = parent.css('transform').replace('matrix(').replace(')').replace(/ /g, '').split(',')
+
+    let scalingX = +transform[0]
+    let scalingY = +transform[3]
+
+    let offsetX = +parenrTransform[4]
+    let offsetY = +parenrTransform[5]
+
+    console.log(transform)
+
     imgSize.push([img.width, img.height])
-    imgUrl.push({ src: img.src, x: 0, y: _height })
+    imgUrl.push({ src: img.src, x: 0, y: offsetY / scalingY })
 
     _width = +imgSize[i][0]
     _height += +imgSize[i][1]
