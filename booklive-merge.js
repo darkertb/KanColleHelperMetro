@@ -33,7 +33,7 @@ function merge () {
     imgUrl.push({ src: img.src, x: 0, y: offsetY / scalingY })
 
     _width = +imgSize[i][0]
-    _height += +imgSize[i][1]
+    _height = imgUrl[i].y + imgSize[i][1]
   }
 
   mergeImages(imgUrl, { width: _width, height: _height })
