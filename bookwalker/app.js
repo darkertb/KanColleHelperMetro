@@ -1,8 +1,10 @@
 if (!window.mergeImported) {
-  $('body').append(`<select id="zoomRaitoSection" style="position:absolute;top:30px;height:10px"><option value="300">300</option><option value="250" selected>250</option><option value="200">200</option><option value="100">100</option></select>`)
+  $('body').append(`<select id="zoomRaitoSection" style="position:absolute;top:30px;height:10px"><option value="300">300</option><option value="250" selected>250</option><option value="200">200</option><option value="175">175</option><option value="150">150</option><option value="125">125</option><option value="110">110</option><option value="100">100</option></select>`)
   $('body').append(`<button style="position:absolute;top:50px;height:10px" onclick="downloadCurPage();">download</button>`)
   window.mergeImported = true
 }
+
+110 125 150 175
 
 function checkZoomRaito() {
   let targetZoomRaito = parseInt(document.getElementById('zoomRaitoSection').value)
