@@ -24,8 +24,12 @@ function getZoomRaito () {
   return parseInt(document.getElementById('zoomRatio').textContent.replace('%', ''))
 }
 
-function getDataUrl (callback) {
-  removeBlanks(document.getElementById('viewport0').getElementsByTagName('canvas')[0], (url) => {
+function getDataUrl(callback) {
+  let viewport0 = document.getElementById('viewport0')
+  let viewport1 = document.getElementById('viewport1')
+  let canvas = (viewport0.style.zIndex === '0' ? viewport0 : viewport1).getElementsByTagName('canvas')[0]
+
+  removeBlanks(canvas, (url) => {
     callback(url)
   })
 }
@@ -36,8 +40,6 @@ function getNowPage () {
 
 function downloadCurPage() {
   checkZoomRaito()
-  console.log(document.getElementById('viewport0').getElementsByTagName('canvas')[0].width)
-  console.log(document.getElementById('viewport0').getElementsByTagName('canvas')[0].height)
 
   getDataUrl((url) => {
     var a = $("<a>")
