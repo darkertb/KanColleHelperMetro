@@ -4,8 +4,6 @@ if (!window.mergeImported) {
   window.mergeImported = true
 }
 
-110 125 150 175
-
 function checkZoomRaito() {
   let targetZoomRaito = parseInt(document.getElementById('zoomRaitoSection').value)
   let diff = targetZoomRaito - getZoomRaito()
